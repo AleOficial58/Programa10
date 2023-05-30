@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema de Gastos</title>
+</head>
+<body>
+  <h1>Sistema de Gastos</h1>
+
+  <div>
+    <label for="product">Producto:</label>
+    <input type="text" id="product">
+    <label for="expense">Gasto:</label>
+    <input type="number" id="expense">
+    <button onclick="addExpense()">Agregar</button>
+    <button onclick="clearExpenses()">Limpiar</button>
+  </div>
+
+  <ul id="expenseList"></ul>
+
+  <h2>Total de Gastos: <span id="totalExpense">0</span></h2>
+
+  <script src="code.js"></script>
+</body>
+</html>
