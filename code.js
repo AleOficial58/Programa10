@@ -13,6 +13,8 @@ function loadExpenses() {
   }
 }
 
+SS
+
 function saveExpenses() {
   localStorage.setItem("expenses", JSON.stringify(expenses));
   localStorage.setItem("totalExpenses", totalExpenses.toFixed(2));
