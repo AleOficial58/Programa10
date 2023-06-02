@@ -222,84 +222,25 @@ function mostrarVentana(ventana) {
 // ...
 
 document.getElementById("registrationForm").addEventListener("submit", function(e) {
+
   e.preventDefault();
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var dni = document.getElementById("dni").value;
+  var zone = document.getElementById("zone").value;
 
-  // Obtener los valores del formulario
-  var firstNameInput = document.getElementById("firstName");
-  var lastNameInput = document.getElementById("lastName");
-  var dniInput = document.getElementById("dni");
-  var zoneInput = document.getElementById("zone");
-
-  var firstName = firstNameInput.value;
-  var lastName = lastNameInput.value;
-  var dni = dniInput.value;
-  var zone = zoneInput.value;
-
-  // Verificar si ya existen registros en el Local Storage
-  var registros = localStorage.getItem('registros');
-  registros = registros ? JSON.parse(registros) : [];
-
-  // Verificar si el nuevo registro ya existe en los registros
-  var registroExistente = registros.find(function(registro) {
-    return registro.dni === dni;
-  });
-
-  if (registroExistente) {
-    alert("El registro ya existe en el Local Storage.");
-    return;
-  }
-
-  // Agregar el nuevo registro al arreglo
-  var nuevoRegistro = {
-    firstName: firstName,
-    lastName: lastName,
-    dni: dni,
-    zone: zone
-  };
-
-  registros.push(nuevoRegistro);
-
-  // Guardar los registros actualizados en el Local Storage
-  localStorage.setItem('registros', JSON.stringify(registros));
-
-  // Limpiar los campos del formulario
-  firstNameInput.value = "";
-  lastNameInput.value = "";
-  dniInput.value = "";
-  zoneInput.value = "";
-
-  // Actualizar la tabla con los registros
-  actualizarTablaRegistros(registros);
-});
-
-// Función para actualizar la tabla con los registros
-function actualizarTablaRegistros(registros) {
   var table = document.getElementById("clientTable").getElementsByTagName("tbody")[0];
+  var newRow = table.insertRow(table.rows.length);
+  var cell1 = newRow.insertCell(0);
+  var cell2 = newRow.insertCell(1);
+  var cell3 = newRow.insertCell(2);
+  var cell4 = newRow.insertCell(3);
+  cell1.innerHTML = firstName;
+  cell2.innerHTML = lastName;
+  cell3.innerHTML = dni;
+  cell4.innerHTML = zone;
 
-  // Limpiar la tabla
-  table.innerHTML = "";
-
-  // Llenar la tabla con los registros
-  registros.forEach(function(registro) {
-    var newRow = table.insertRow(table.rows.length);
-    var cell1 = newRow.insertCell(0);
-    var cell2 = newRow.insertCell(1);
-    var cell3 = newRow.insertCell(2);
-    var cell4 = newRow.insertCell(3);
-    cell1.textContent = registro.firstName;
-    cell2.textContent = registro.lastName;
-    cell3.textContent = registro.dni;
-    cell4.textContent = registro.zone;
-  });
-}
-
-// Cargar registros del Local Storage al iniciar la página
-window.addEventListener('load', function() {
-  var registros = localStorage.getItem('registros');
-  registros = registros ? JSON.parse(registros) : [];
-
-  // Actualizar la tabla con los registros
-  actualizarTablaRegistros(registros);
+  document.getElementById("registrationForm").reset();
 });
-
 // ...
+
