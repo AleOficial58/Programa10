@@ -1,0 +1,273 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #2c3e50;
+  color: #fff;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #fff;
+}
+
+.section {
+  background-color: #34495e;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #fff;
+  color: #333;
+}
+
+.button-container {
+  text-align: right;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c0392b;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #fff;
+}
+
+table th {
+  background-color: #2c3e50;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.table td {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.section:last-child {
+  background-color: #ff0000; /* Cambiar el color de fondo de la última sección */
+}
+
+.section:last-child h2 {
+  color: #00ff00; /* Cambiar el color del título de la última sección */
+}
+
+.section:last-child .form-group {
+  margin-bottom: 0; /* Modificar el margen inferior de los elementos del formulario de la última sección */
+}
+
+.section:last-child .button-container {
+  text-align: center; /* Cambiar la alineación del contenedor de botones de la última sección */
+}
+
+.section:last-child button {
+  background-color: #0000ff; /* Cambiar el color de fondo de los botones de la última sección */
+  color: #ffffff; /* Cambiar el color del texto de los botones de la última sección */
+}
+
+.section:last-child .table {
+  width: 100%; /* Ajustar el ancho de la tabla de la última sección */
+}
+
+.section:last-child table th,
+.section:last-child table td {
+  border-bottom: none; /* Eliminar el borde inferior de las celdas de la tabla de la última sección */
+}
+
+/* Estilos para la sección del registro de clientes */
+section.register {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+section.register h2 {
+  color: #333;
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+section.register table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+section.register th,
+section.register td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #fff;
+}
+
+section.register th {
+  background-color: #ccc;
+  color: #333;
+}
+
+/*menu*/
+
+/* Estilos para el menú */
+#menu {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+#menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#menu li {
+  margin-right: 20px;
+}
+
+#menu li a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  padding: 5px;
+  border-bottom: 3px solid transparent;
+  transition: border-bottom-color 0.3s ease-in-out;
+}
+
+#menu li a:hover {
+  border-bottom-color: #666;
+}
+
+/*REGISTRO*/
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}

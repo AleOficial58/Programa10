@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+  <div id="menu">
+    <ul>
+      <li><a href="venta.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+      <li><a href="registro.html" onclick="mostrarVentana('registro')">Registro de Clientes</a></li>
+      <li><a href="#" onclick="mostrarVentana('zonas')">Zonas</a></li>
+    </ul>
+  </div>
+
+  
+
+  <div class="container">
+    <div class="header">
+      <h1>Sistema de Ventas</h1>
+    </div>
+
+    <div class="section">
+      <h2>Agregar Producto</h2>
+      <div class="form-group">
+        <label for="idProducto">ID Producto:</label>
+        <input type="text" id="idProducto" placeholder="ID Producto">
+      </div>
+      <div class="form-group">
+        <label for="zonaProducto">Zona:</label>
+        <input type="text" id="zonaProducto" placeholder="Zona">
+      </div>
+      <div class="form-group">
+        <label for="precioProducto">Precio:</label>
+        <input type="number" id="precioProducto" placeholder="Precio">
+      </div>
+      <div class="button-container">
+        <button id="agregarBtn">Agregar Producto</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Realizar Venta</h2>
+      <div class="form-group">
+        <label for="idVenta">ID Venta:</label>
+        <input type="text" id="idVenta" placeholder="ID Venta">
+      </div>
+      <div class="form-group">
+        <label for="nombreClienteVenta">Nombre Cliente:</label>
+        <input type="text" id="nombreClienteVenta" placeholder="Nombre Cliente">
+      </div>
+      <div class="form-group">
+        <label for="apellidoClienteVenta">Apellido Cliente:</label>
+        <input type="text" id="apellidoClienteVenta" placeholder="Apellido Cliente">
+      </div>
+      <div class="form-group">
+        <label for="dniClienteVenta">DNI Cliente:</label>
+        <input type="text" id="dniClienteVenta" placeholder="DNI Cliente">
+      </div>
+      <div class="button-container">
+        <button id="ventaBtn">Realizar Venta</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Buscar Producto</h2>
+      <div class="form-group">
+        <label for="buscarInput">Buscar por ID, Nombre o Cliente:</label>
+        <input type="text" id="buscarInput" placeholder="Buscar por ID, Nombre o Cliente">
+      </div>
+      <div class="button-container">
+        <button id="buscarBtn">Buscar</button>
+      </div>
+      <div class="button-container">
+        <button id="restaurarBtn">Restaurar Inventario</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Clientes</h2>
+      <div class="form-group">
+        <label for="buscarCliente">Buscar por Cliente:</label>
+        <input type="text" id="buscarCliente" placeholder="Buscar por Cliente">
+      </div>
+      <div class="button-container">
+        <button id="buscarClienteBtn">Buscar Cliente</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Inventario</h2>
+      <table id="tablaInventario" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Zona</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí se generará dinámicamente el contenido del inventario -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Ventas Realizadas</h2>
+      <table id="tablaVentas" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Zona</th>
+            <th>Precio</th>
+            <th>Cliente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí se generará dinámicamente el contenido de las ventas -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="venta.js"></script>
+</body>
+
+</html>
