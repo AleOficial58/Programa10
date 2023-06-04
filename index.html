@@ -45,30 +45,6 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Tiger Nixon</td>
-                <td>Arquitecto</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-                <td>
-                  <button class="btn btn-sm btn-primary btn-editar">Editar</button>
-                  <button class="btn btn-sm btn-danger btn-eliminar">Eliminar</button>
-                </td>
-              </tr>
-              <tr>
-                <td>Garrett Winters</td>
-                <td>Contador</td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
-                <td>
-                  <button class="btn btn-sm btn-primary btn-editar">Editar</button>
-                  <button class="btn btn-sm btn-danger btn-eliminar">Eliminar</button>
-                </td>
-              </tr>
               <!-- Resto de filas de la tabla -->
             </tbody>
           </table>
@@ -105,12 +81,12 @@
               <input type="text" class="form-control" id="nombre" name="nombre" required>
             </div>
             <div class="form-group">
-              <label for="nombre">Apellido:</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" required>
+              <label for="apellido">Apellido:</label>
+              <input type="text" class="form-control" id="apellido" name="apellido" required>
             </div>
             <div class="form-group">
-              <label for="nombre">Zona:</label>
-              <input type="text" class="form-control" id="puesto" name="puesto" required>
+              <label for="zona">Zona:</label>
+              <input type="text" class="form-control" id="zona" name="zona" required>
             </div>
             <div class="form-group">
               <label for="edad">Edad:</label>
@@ -121,8 +97,8 @@
               <input type="date" class="form-control" id="ingreso" name="ingreso" required>
             </div>
             <div class="form-group">
-              <label for="nombre">Tipo de cliente:</label>
-              <input type="text" class="form-control" id="nombre" name="nombre" required>
+              <label for="cliente">Tipo de cliente:</label>
+              <input type="text" class="form-control" id="cliente" name="cliente" required>
             </div>
           </form>
         </div>
@@ -146,9 +122,18 @@
     $(document).ready(function() {
       // Inicializar DataTables
       var table = $('#example').DataTable({
-        lengthMenu: [ 5, 10, 25, 50, 75, 100 ],
+        lengthMenu: [5, 10, 25, 50, 75, 100],
         pageLength: 5
       });
+
+      // Cargar datos del almacenamiento local al iniciar la página
+      var storedData = localStorage.getItem('clientData');
+      if (storedData) {
+        var parsedData = JSON.parse(storedData);
+        for (var i = 0; i < parsedData.length; i++) {
+          table.row.add(parsedData[i]).draw();
+        }
+      }
 
       // Delegación de eventos click para los botones "Editar"
       $('#example tbody').on('click', '.btn-editar', function() {
@@ -158,11 +143,11 @@
         console.log('Editar', rowData);
         // Aquí puedes abrir el modal de edición y cargar los datos de la fila en los campos correspondientes del formulario
         $('#nombre').val(rowData[0]);
-        $('#puesto').val(rowData[1]);
-        $('#ciudad').val(rowData[2]);
+        $('#apellido').val(rowData[1]);
+        $('#zona').val(rowData[2]);
         $('#edad').val(rowData[3]);
         $('#ingreso').val(rowData[4]);
-        $('#salario').val(rowData[5]);
+        $('#cliente').val(rowData[5]);
         $('#modal-agregar-editar').modal('show');
       });
 
@@ -180,11 +165,11 @@
       $('#btn-agregar').on('click', function() {
         // Aquí puedes abrir el modal de agregar
         $('#nombre').val('');
-        $('#puesto').val('');
-        $('#ciudad').val('');
+        $('#apellido').val('');
+        $('#zona').val('');
         $('#edad').val('');
         $('#ingreso').val('');
-        $('#salario').val('');
+        $('#cliente').val('');
         $('#modal-agregar-editar').modal('show');
       });
 
@@ -192,25 +177,31 @@
       $('#btn-guardar').on('click', function() {
         // Obtener los valores del formulario
         var nombre = $('#nombre').val();
-        var puesto = $('#puesto').val();
-        var ciudad = $('#ciudad').val();
+        var apellido = $('#apellido').val();
+        var zona = $('#zona').val();
         var edad = $('#edad').val();
         var ingreso = $('#ingreso').val();
-        var salario = $('#salario').val();
+        var cliente = $('#cliente').val();
 
-        // Crear una nueva fila con los valores del formulario
-        var newRow = [
-          nombre,
-          puesto,
-          ciudad,
-          edad,
-          ingreso,
-          salario,
-          '<button class="btn btn-sm btn-primary btn-editar">Editar</button> <button class="btn btn-sm btn-danger btn-eliminar">Eliminar</button>'
-        ];
+// Crear una nueva fila con los valores del formulario
+var newRow = [
+  nombre,
+  apellido,
+  zona,
+  edad,
+  ingreso,
+  cliente,
+  '<button class="btn btn-sm btn-primary btn-editar">Editar</button> <button class="btn btn-sm btn-danger btn-eliminar">Eliminar</button>'
+];
 
-        // Agregar la nueva fila a la tabla
-        table.row.add(newRow).draw();
+// Agregar la nueva fila a la tabla
+table.row.add(newRow).draw();
+
+
+
+        // Guardar los datos en el almacenamiento local
+        var tableData = table.rows().data().toArray();
+        localStorage.setItem('clientData', JSON.stringify(tableData));
 
         // Cerrar el modal
         $('#modal-agregar-editar').modal('hide');
@@ -218,4 +209,5 @@
     });
   </script>
 </body>
+
 </html>
