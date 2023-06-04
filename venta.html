@@ -6,19 +6,36 @@
 </head>
 
 <body>
+  <!-- Botón de Cerrar Sesión -->
+  <div class="button-container" style="position: absolute; top: 40px; left: 10px;">
+    <button onclick="cerrarSesion()">Cerrar Sesión</button>
+  </div>
+
   <div id="menu">
     <ul>
       <li><a href="venta.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-      <li><a href="registro.html" onclick="mostrarVentana('registro')">Registro de Clientes</a></li>
+      <li><a href="index.html" onclick="mostrarVentana('registro')">Registro de Clientes</a></li>
       <li><a href="#" onclick="mostrarVentana('zonas')">Zonas</a></li>
     </ul>
   </div>
 
-  
-
   <div class="container">
     <div class="header">
       <h1>Sistema de Ventas</h1>
+    </div>
+
+    <div class="ventana" id="inicio">
+      <!-- Contenido de la ventana de Inicio -->
+    </div>
+
+    <form>
+      <div class="button-container">
+        <button type="submit">Registrar</button>
+      </div>
+    </form>
+
+    <div class="ventana" id="zonas">
+      <!-- Contenido de la ventana de Zonas -->
     </div>
 
     <div class="section">
@@ -72,9 +89,6 @@
       <div class="button-container">
         <button id="buscarBtn">Buscar</button>
       </div>
-      <div class="button-container">
-        <button id="restaurarBtn">Restaurar Inventario</button>
-      </div>
     </div>
 
     <div class="section">
@@ -125,6 +139,12 @@
   <script src="venta.js"></script>
   <script src="business.js"></script>
   <script src="uilogic.js"></script>
+  <script>
+    function cerrarSesion() {
+      // Agrega aquí la lógica para cerrar sesión, como limpiar cookies o variables de sesión
+      window.location = "usuario.html"; // Redirige al formulario de inicio de sesión
+    }
+  </script>
 </body>
 
 </html>

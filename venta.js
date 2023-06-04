@@ -47,9 +47,9 @@ class SistemaVentas {
 
   realizarVenta() {
     const idVenta = document.getElementById("idVenta").value;
-    const nombreCliente = document.getElementById("nombreCliente").value;
-    const apellidoCliente = document.getElementById("apellidoCliente").value;
-    const dniCliente = document.getElementById("dniCliente").value;
+    const nombreCliente = document.getElementById("nombreClienteVenta").value;
+    const apellidoCliente = document.getElementById("apellidoClienteVenta").value;
+    const dniCliente = document.getElementById("dniClienteVenta").value;
 
     const producto = this.inventario.find((p) => p.id === idVenta);
 
@@ -159,9 +159,9 @@ class SistemaVentas {
 
   limpiarCamposVenta() {
     document.getElementById("idVenta").value = "";
-    document.getElementById("nombreCliente").value = "";
-    document.getElementById("apellidoCliente").value = "";
-    document.getElementById("dniCliente").value = "";
+    document.getElementById("nombreClienteVenta").value = "";
+    document.getElementById("apellidoClienteVenta").value = "";
+    document.getElementById("dniClienteVenta").value = "";
   }
 }
 
@@ -169,7 +169,7 @@ class SistemaVentas {
 const sistemaVentas = new SistemaVentas();
 
 // Eventos de botones
-/*document.getElementById("agregarBtn").addEventListener("click", () => {
+document.getElementById("agregarBtn").addEventListener("click", () => {
   sistemaVentas.agregarProducto();
 });
 
@@ -188,59 +188,3 @@ document.getElementById("buscarClienteBtn").addEventListener("click", () => {
 document.getElementById("restaurarBtn").addEventListener("click", () => {
   sistemaVentas.restaurarInventario();
 });
-*/
-// Guardar datos en el Local Storage
-localStorage.setItem('nombre', 'John');
-localStorage.setItem('apellido', 'Doe');
-
-// Recuperar datos del Local Storage
-const nombre = localStorage.getItem('nombre');
-const apellido = localStorage.getItem('apellido');
-
-console.log(nombre); // John
-console.log(apellido); // Doe
-
-
-
-// menu 
-
-function mostrarVentana(ventana) {
-  // Ocultar todas las ventanas
-  const ventanas = document.getElementsByClassName('ventana');
-  for (let i = 0; i < ventanas.length; i++) {
-    ventanas[i].style.display = 'none';
-  }
-
-  // Mostrar la ventana seleccionada
-  document.getElementById(ventana).style.display = 'block';
-}
-
-
-//registro
-
-// ...
-// ...
-
-document.getElementById("registrationForm").addEventListener("submit", function(e) {
-
-  e.preventDefault();
-  var firstName = document.getElementById("firstName").value;
-  var lastName = document.getElementById("lastName").value;
-  var dni = document.getElementById("dni").value;
-  var zone = document.getElementById("zone").value;
-
-  var table = document.getElementById("clientTable").getElementsByTagName("tbody")[0];
-  var newRow = table.insertRow(table.rows.length);
-  var cell1 = newRow.insertCell(0);
-  var cell2 = newRow.insertCell(1);
-  var cell3 = newRow.insertCell(2);
-  var cell4 = newRow.insertCell(3);
-  cell1.innerHTML = firstName;
-  cell2.innerHTML = lastName;
-  cell3.innerHTML = dni;
-  cell4.innerHTML = zone;
-
-  document.getElementById("registrationForm").reset();
-});
-// ...
-

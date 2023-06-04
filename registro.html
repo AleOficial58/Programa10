@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Sistema de Registro de Clientes</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
@@ -38,7 +39,6 @@
         <input type="text" id="zone" required>
       </div>
 
-      <!-- <input type="submit" value="Registrar">  -->
       <button type="button" class="btn btn-default" id="btnListAgend">Registrar</button>
     </form>
 
@@ -54,9 +54,69 @@
       <tbody></tbody>
     </table>
 
+    <script>
+      document.getElementById("btnListAgend").addEventListener("click", function () {
+        debugger
+        // var firstNameInput = document.getElementById("firstName");
+        // var lastNameInput = document.getElementById("lastName");
+        // var dniInput = document.getElementById("dni");
+        // var zoneInput = document.getElementById("zone");
+
+        // Obtener los valores de los campos del formulario
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+        var dni = document.getElementById("dni").value;
+        var zone = document.getElementById("zone").value;
+
+        // Insertar nueva fila en la tabla con los datos ingresados
+        var table = document.getElementById("clientTable").getElementsByTagName('tbody')[0];
+        var tblBody = document.createElement("tbody");
+        // var row = table.insertRow();
+        // var cell1 = row.insertCell(0);
+        // var cell2 = row.insertCell(1);
+        // var cell3 = row.insertCell(2);
+        // var cell4 = row.insertCell(3);
+        // cell1.innerHTML = firstName;
+        // cell2.innerHTML = lastName;
+        // cell3.innerHTML = dni;
+        // cell4.innerHTML = zone;
+        var fila = document.createElement("tr");
+        var celda1 = document.createElement("td");
+        var celda2 = document.createElement("td");
+        var celda3 = document.createElement("td");
+        var celda4 = document.createElement("td");
+        var textoCelda1 = document.createTextNode(firstName);
+        celda1.appendChild(textoCelda1);
+        fila.appendChild(celda1);
+
+        var textoCelda2 = document.createTextNode(lastName);
+        celda2.appendChild(textoCelda2);
+        fila.appendChild(celda2);
+
+        var textoCelda3 = document.createTextNode(dni);
+        celda3.appendChild(textoCelda3);
+        fila.appendChild(celda3);
+
+        var textoCelda4 = document.createTextNode(zone);
+        celda4.appendChild(textoCelda4);
+        fila.appendChild(celda4);
+
+        tblBody.appendChild(fila);
+        table.appendChild(tblBody);
+
+        // Limpiar los valores de los campos del formulario
+        setTimeout(() => {
+          document.getElementById("firstName").value = "";
+          document.getElementById("lastName").value = "";
+          document.getElementById("dni").value = "";
+          document.getElementById("zone").value = "";
+        }, 200)
+      });
+    </script>
     <script src="venta.js"></script>
     <script src="business.js"></script>
     <script src="uilogic.js"></script>
   </div>
 </body>
+
 </html>

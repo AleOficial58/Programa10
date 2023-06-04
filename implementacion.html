@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de ventas</title>
+</head>
+<body>
+    <h1>Añade a tus Empleados</h1>
+
+    <form id= "FormularioCliente">
+
+        <input type="text" id= "AddCliente" name="">
+
+        <button type= "submit">Agregar</button>
+
+    </form>
+
+    <h2>
+        Clientes
+    </h2>
+
+    <div id="Clientes">  
+        <ul id="listaClientes">
+            
+        </ul>
+
+    </div>
+
+    <script>
+        'use strict'
+
+        var Cliente = document.getElementById('FormularioCliente');
+
+        cliente.addEventListener('submit', function(){
+
+            var TituloCliente = document.getElementById("AddCliente").value();
+
+            if(TituloCliente.lenght >=1){
+
+                // sistema de guardado ( // set Item )
+
+                localStorage.setItem(TituloCliente, TituloCliente);
+
+            }
+
+        });
+                
+                var ul = document.getElementById("listaClientes")
+                for(var i in  localStorage){
+
+                    console.log (localStorage[i]);
+                }
+
+    </script>
+
+
+
+
+</body>
+</html>

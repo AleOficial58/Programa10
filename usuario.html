@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SISTEMA DE VENTA</title>
+  <style>
+    /* Estilo para el cuerpo de la página */
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Estilo para el contenedor principal */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #ffffff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    /* Estilo para el título principal */
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: #333333;
+    }
+
+    /* Estilo para el formulario */
+    form {
+      margin-bottom: 30px;
+    }
+
+    /* Estilo para los campos de entrada */
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dddddd;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #333333;
+    }
+
+    /* Estilo para el botón de enviar */
+    button {
+      padding: 12px 40px;
+      background-color: #ff4081;
+      color: #ffffff;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 18px;
+      letter-spacing: 1px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1f5c;
+    }
+
+    /* Estilo para los enlaces */
+    a {
+      color: #ff4081;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<script src="/usuarios.js"></script>
+
+<body>
+  <div class="container">
+    <h1 class="title">SISTEMA DE VENTA</h1>
+
+    <form onsubmit="return login()">
+      <input type="text" id="usuario" placeholder="Usuario">
+      <input type="password" id="contraseña" placeholder="Contraseña">
+      <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <p>¿Olvidaste tu contraseña? <a href="#">Recupérala aquí</a></p>
+  </div>
+
+  <script>
+    function login() {
+      var user = document.getElementById("usuario").value;
+      var pass = document.getElementById("contraseña").value;
+
+      if (user === "Miguel" && pass === "1234") {
+        window.location = "venta.html";
+      }
+
+      return false; // Evita que el formulario se envíe y la página se recargue
+    }
+  </script>
+</body>
+
+</html>

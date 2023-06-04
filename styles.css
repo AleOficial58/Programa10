@@ -1,13 +1,14 @@
+/* Estilos generales */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #2c3e50;
-  color: #fff;
+  background-color: #f2f2f2;
+  color: #333;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -18,24 +19,25 @@ body {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 48px;
   margin: 0;
   padding: 20px 0;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
+  color: #333;
 }
 
 .section {
-  background-color: #34495e;
+  background-color: #fff;
   border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 40px;
+  padding: 40px;
+  margin-bottom: 60px;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 36px;
   margin-top: 0;
-  margin-bottom: 20px;
-  color: #fff;
+  margin-bottom: 30px;
+  color: #333;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -44,33 +46,49 @@ h2 {
   margin-bottom: 20px;
 }
 
+/* Estilos para ampliar la zona de nombre, apellido, DNI y zona */
+.form-group input[name="nombre"],
+.form-group input[name="apellido"],
+.form-group input[name="dni"],
+.form-group input[name="zona"] {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
 label {
   display: block;
   font-weight: bold;
-  margin-bottom: 5px;
-  color: #fff;
+  margin-bottom: 10px;
+  color: #333;
 }
 
 input[type="text"],
 input[type="number"] {
-  padding: 10px;
-  font-size: 16px;
+  padding: 15px;
+  font-size: 18px;
   border: none;
   border-radius: 5px;
   width: 100%;
-  background-color: #fff;
+  background-color: #f2f2f2;
   color: #333;
+  border: 1px solid #ccc;
 }
 
 .button-container {
   text-align: right;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #e74c3c;
+  padding: 15px 30px;
+  font-size: 18px;
+  background-color: #333;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -79,11 +97,11 @@ button {
 }
 
 button:hover {
-  background-color: #c0392b;
+  background-color: #222;
 }
 
 .table-container {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .table {
@@ -93,68 +111,31 @@ button:hover {
 
 table th,
 table td {
-  padding: 10px;
+  padding: 15px;
   text-align: left;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
 }
 
 table th {
-  background-color: #2c3e50;
-  color: #fff;
+  background-color: #f2f2f2;
+  color: #333;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .table td {
-  background-color: #34495e;
-  color: #fff;
-}
-
-.section:last-child {
-  background-color: #ff0000; /* Cambiar el color de fondo de la última sección */
-  
-}
-
-.section:last-child h2 {
-  color: #00ff00; /* Cambiar el color del título de la última sección */
-}
-
-.section:last-child .form-group {
-  margin-bottom: 0; /* Modificar el margen inferior de los elementos del formulario de la última sección */
-}
-
-.section:last-child .button-container {
-  text-align: center; /* Cambiar la alineación del contenedor de botones de la última sección */
-}
-
-.section:last-child button {
-  background-color: #0000ff; /* Cambiar el color de fondo de los botones de la última sección */
-  color: #ffffff; /* Cambiar el color del texto de los botones de la última sección */
-}
-
-.section:last-child .table {
-  width: 100%; /* Ajustar el ancho de la tabla de la última sección */
-}
-
-.section:last-child table th,
-.section:last-child table td {
-  border-bottom: none; /* Eliminar el borde inferior de las celdas de la tabla de la última sección */
-}
-
-/* Estilos para la sección del registro de clientes */
-section.register {
-  background-color: #f5f5f5;
+  background-color: #fff;
   color: #333;
+}
+
+/* Estilos para la sección de registro de clientes */
+section.register {
+  background-color: #fafafa;
   padding: 20px;
-  margin-bottom: 40px;
-  
-  
 }
 
 section.register h2 {
-  color: #333;
-  font-size: 24px;
-  margin-top: 0;
+  color: #555;
   margin-bottom: 20px;
 }
 
@@ -165,23 +146,21 @@ section.register table {
 
 section.register th,
 section.register td {
-  padding: 10px;
+  padding: 15px;
   text-align: left;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
 }
 
 section.register th {
-  background-color: #ccc;
+  background-color: #f2f2f2;
   color: #333;
 }
 
-/*menu*/
-
 /* Estilos para el menú */
 #menu {
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
+  background-color: #333;
+  border-bottom: 1px solid #222;
+  padding: 20px 0;
   display: flex;
   justify-content: center;
 }
@@ -201,92 +180,317 @@ section.register th {
   text-decoration: none;
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: #fff;
   padding: 5px;
   border-bottom: 3px solid transparent;
   transition: border-bottom-color 0.3s ease-in-out;
 }
 
 #menu li a:hover {
-  border-bottom-color: #666;
+  border-bottom-color: #ccc;
 }
 
-/*REGISTRO*/
-
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f7f7f7;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 60px;
+/* Efectos visuales y animaciones */
+.section:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
-h2 {
+.section:hover:before {
+  opacity: 1;
+}
+
+.section:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.section:hover:after {
+  opacity: 1;
+}
+
+.section .form-group {
+  position: relative;
+}
+
+.section .form-group:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #333;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.section .form-group:hover:before {
+  opacity: 1;
+}
+
+.section:last-child {
+  background-color: #333;
+  color: #fff;
+}
+
+.section:last-child h2 {
+  color: #fff;
+}
+
+.section:last-child .form-group {
+  margin-bottom: 0;
+}
+
+.section:last-child .button-container {
   text-align: center;
-  margin-bottom: 30px;
+}
+
+.section:last-child button {
+  background-color: #fff;
   color: #333;
 }
 
-.form-group {
-  margin-bottom: 20px;
+.section:last-child .table th {
+  background-color: #f2f2f2;
+  color: #333;
 }
 
-label {
-  display: block;
-  font-size: 18px;
-  font-weight: bold;
-  color: #555;
+.section:last-child .table td {
+  background-color: #fff;
+  color: #333;
 }
-
-input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-input[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-table {
-  width: 100%;
-  margin-top: 30px;
-  border-collapse: collapse;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
-  font-size: 16px;
-}
-
-th {
-  background-color: #4CAF50;
-  color: white;
-}
-
 
 /* Estilos para los campos de entrada */
 #registrationForm input[type="text"]:focus {
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
+  border-color: #666;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos para la lista de nombres de los clientes */
 #clientTable tbody tr td:nth-child(1),
 #clientTable tbody tr td:nth-child(2),
-#clientTable tbody tr td:nth-child(3),
-#clientTable tbody tr td:nth-child(4) {
-
-  color: black;
+#clientTable tbody tr td:nth-child(3) {
+  font-weight: bold;
+  font-style: italic;
+  color: #333;
+  width: 200px;
 }
+
+/* Estilos para el botón de registro */
+#registerBtn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos finales para el menú (continuación) */
+#menu li a {
+  border-radius: 3px;
+}
+
+/* Estilos para el botón activo del menú */
+#menu li.active a {
+  background-color: #555;
+  border-bottom-color: #555;
+}
+
+/* Estilos para el menú desplegable */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 8px 12px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Estilos para el formulario de registro */
+form {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+
+/* Estilos para la tabla de clientes */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Estilos para los botones de acción en la tabla */
+.table .action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.table .action-buttons a {
+  color: #555;
+  margin-right: 8px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.table .action-buttons a:hover {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+
+/* Estilos para el mensaje de error */
+.error-message {
+  color: #ff0000;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Estilos para el mensaje de éxito */
+.success-message {
+  color: #00ff00;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Estilos para el mensaje de información */
+.info-message {
+  color: #0000ff;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Estilos para el mensaje de advertencia */
+.warning-message {
+  color: #ff9900;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Estilos para el mensaje de confirmación */
+.confirmation-message {
+  color: #008000;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+body{
+  /*    background: #673AB7;*/
+  }
+  header{
+      background:#512DA8;
+  }
+  
+  header {
+      background-image: linear-gradient(to right, #ff4081, #ff8f00);
+      padding: 60px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    h1 {
+      color: #fff;
+      font-size: 64px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+    }
+    
+    h3 {
+      color: #fff;
+      font-size: 32px;
+      font-family: "Playfair Display", serif;
+      margin-top: 0;
+      opacity: 0.8;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+    
+    header:before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: radial-gradient(ellipse at center, #ff4081 0%, #ff8f00 100%);
+      z-index: -1;
+      opacity: 0.8;
+    }
+    
+    header:after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      z-index: -1;
+    }
+    
