@@ -399,16 +399,96 @@ form {
 }
 
 
-/* Estilos para los campos de entrada */
-#registrationForm input[type="text"]:focus {
-  background-color: rgb(255, 255, 255);
+/* Estilos para el mensaje de error */
+.error-message {
+  color: #ff0000;
+  font-weight: bold;
+  margin-top: 8px;
 }
 
-/* Estilos para la lista de nombres de los clientes */
-#clientTable tbody tr td:nth-child(1),
-#clientTable tbody tr td:nth-child(2),
-#clientTable tbody tr td:nth-child(3),
-#clientTable tbody tr td:nth-child(4) {
-
-  color: black;
+/* Estilos para el mensaje de éxito */
+.success-message {
+  color: #00ff00;
+  font-weight: bold;
+  margin-top: 8px;
 }
+
+/* Estilos para el mensaje de información */
+.info-message {
+  color: #0000ff;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Estilos para el mensaje de advertencia */
+.warning-message {
+  color: #ff9900;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* Estilos para el mensaje de confirmación */
+.confirmation-message {
+  color: #008000;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+
+  header{
+      background:#512DA8;
+  }
+  
+  header {
+      background-image: linear-gradient(to right, #ff4081, #ff8f00);
+      padding: 60px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    h1 {
+      color: #fff;
+      font-size: 64px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+    }
+    
+    h3 {
+      color: #fff;
+      font-size: 32px;
+      font-family: "Playfair Display", serif;
+      margin-top: 0;
+      opacity: 0.8;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    }
+    
+    header:before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: radial-gradient(ellipse at center, #ff4081 0%, #ff8f00 100%);
+      z-index: -1;
+      opacity: 0.8;
+    }
+    
+    header:after {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      z-index: -1;
+    }
+    
