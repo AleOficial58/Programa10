@@ -16,7 +16,7 @@ $(document).ready(function () {
     }
     $('#agregarClienteForm').on('submit', function (e) {
         e.preventDefault();
-        debugger
+        
 
         var nombre = $('#nombre').val();
         var apellido = $('#apellido').val();

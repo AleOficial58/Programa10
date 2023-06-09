@@ -1,4 +1,4 @@
-debugger
+debugger;
 
 document.addEventListener("DOMContentLoaded", function () {
   // Obtener referencia al dataTable

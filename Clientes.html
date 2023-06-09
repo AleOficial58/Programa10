@@ -15,8 +15,14 @@
     <!--datables estilo bootstrap 4 CSS-->
     <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="zonas.js"></script>
+    <script src="Clientes.js"></script>
     <style>
+
+
         .select-style {
             width: 200px;
             height: 34px;
@@ -62,6 +68,8 @@
         </ul>
     </div>
 
+    <div id="tablaClientes"></div>
+
 
     
 
@@ -70,6 +78,7 @@
     <div class="container">
         <h1>Clientes</h1>
         <table id="clientesTable" class="display">
+            <input type="text" id="clienteSelect">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalClientes">
                 Nuevo Cliente
@@ -174,7 +183,7 @@
                         <input type="text" id="id-cliente" style="display: none;">
                         <input type="text" id="botones" style="display: none;">
                         <input type="text" id="rowS" style="display: none;">
-                         <!-- Datos que se van a utilizar para actualizar los datos -->
+                        <!-- Datos que se van a utilizar para actualizar los datos -->
                         <div class="row">
                             <div class="col-6">
                                 <div>
@@ -236,7 +245,7 @@
     <script>
         $(document).ready(function() {
             // Obtener la referencia al select en zonas.html
-            var selectZonas = window.opener.document.getElementById("selectRegistros");
+ 
 
             // Función para cargar los clientes en el select de zonas.html
             function cargarClientesEnSelect() {
@@ -266,25 +275,49 @@
         });
     </script>
 
+    <!-- Agrega el siguiente bloque de código -->
+<script>
+    $(document).ready(function() {
+        // Obtener la referencia al select en zonas.html
 
+        // Función para cargar los clientes en el select de zonas.html
+        function cargarClientesEnSelect() {
+            var clientes = obtenerClientes();
 
+            if (clientes && clientes.length > 0) {
+                for (var i = 0; i < clientes.length; i++) {
+                    var cliente = clientes[i];
+                    var option = document.createElement("option");
+                    option.text = cliente.nombre + " " + cliente.apellido;
+                    selectZonas.add(option);
+                }
+            }
+        }
 
+        // Función para obtener los clientes almacenados
+        function obtenerClientes() {
+            var clientes = localStorage.getItem('clientes');
+            if (clientes) {
+                return JSON.parse(clientes);
+            }
+            return [];
+        }
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        // Cargar los clientes en el select al cargar la página
+        cargarClientesEnSelect();
+    });
+</script>
+
     <!-- DataTables -->
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    
     
     <!-- ACA VA EL JS DE CADA HTML -->
-    <script src="Clientes.js"></script>
-    <script src="zonas.js"></script>
-
-
-
-
-
 
     
 
-    
+
+
+
+
 </body>
 </html>
