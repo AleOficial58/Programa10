@@ -27,6 +27,7 @@ h1 {
 }
 
 .section {
+  color: white !important;  
   background-color: #fff;
   border-radius: 10px;
   padding: 40px;
@@ -51,6 +52,7 @@ h2 {
 .form-group input[name="apellido"],
 .form-group input[name="dni"],
 .form-group input[name="zona"] {
+  
   width: 100%;
   padding: 15px;
   font-size: 18px;
@@ -491,4 +493,10 @@ form {
       background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
       z-index: -1;
     }
+  
+    .modal-title.fs-5{
+      color: rgb(255, 157, 0);
+    }
+    
+    
     

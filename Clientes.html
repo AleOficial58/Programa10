@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css" />
+    <!--datables estilo bootstrap 4 CSS-->
+    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .select-style {
+            width: 200px;
+            height: 34px;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            background-image: none;
+            font-size: 14px;
+        }
+
+        .btn-condicion {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-condicion.consumidor-final {
+            background-color: #17a2b8;
+        }
+
+        .btn-condicion.monotributista {
+            background-color: #ffc107;
+        }
+
+        .btn-condicion.responsable-inscripto {
+            background-color: #28a745;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+            <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+            <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+            <li><a href="" onclick="mostrarVentana('zonas')">Facturación</a></li>
+            <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+            <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+        </ul>
+    </div>
+
+
+    
+
+    
+    
+    <div class="container">
+        <h1>Clientes</h1>
+        <table id="clientesTable" class="display">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalClientes">
+                Nuevo Cliente
+            </button>
+            <thead>
+                <tr>
+                    <th>Código ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Localidad</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Condición</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal modal-lg fade" data-bs-keyboard="false" data-bs-backdrop="static" id="modalClientes" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Alta Cliente</h1>
+                    <button type="button" id="button-cerrar" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="agregarClienteForm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div>
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre" name="nombre" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="apellido">Apellido:</label>
+                                    <input type="text" id="apellido" name="apellido" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="dni">DNI:</label>
+                                    <input type="text" id="dni" name="dni" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="localidad">Localidad:</label>
+                                    <input type="text" id="localidad" name="localidad" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="direccion">Dirección:</label>
+                                    <input type="text" id="direccion" name="direccion" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="telefono">Teléfono:</label>
+                                    <input type="text" id="telefono" name="telefono" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="condicion">Condición:</label>
+                                <select id="condicion" name="condicion" required class="select-style">
+                                    <option value="Consumidor Final">Consumidor Final</option>
+                                    <option value="Monotributista">Monotributista</option>
+                                    <option value="Responsable Inscripto">Responsable Inscripto</option>
+                                </select>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cerrar-cliente" data-bs-dismiss="modal">Close</button>
+                        <button type="submit">Agregar Cliente</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Edicion-->
+    <div class="modal modal-lg fade" data-bs-keyboard="false" data-bs-backdrop="static" id="modalClientes-act" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Alta Cliente</h1>
+                    <button type="button" id="button-cerrar-act" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="actualizarClienteForm">
+                    <div class="modal-body">
+                        <!-- Datos que se van a utilizar para actualizar los datos -->
+                        <input type="text" id="id-cliente" style="display: none;">
+                        <input type="text" id="botones" style="display: none;">
+                        <input type="text" id="rowS" style="display: none;">
+                         <!-- Datos que se van a utilizar para actualizar los datos -->
+                        <div class="row">
+                            <div class="col-6">
+                                <div>
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre-act" name="nombre" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="apellido">Apellido:</label>
+                                    <input type="text" id="apellido-act" name="apellido" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="dni">DNI:</label>
+                                    <input type="text" id="dni-act" name="dni" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="localidad">Localidad:</label>
+                                    <input type="text" id="localidad-act" name="localidad" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="direccion">Dirección:</label>
+                                    <input type="text" id="direccion-act" name="direccion" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="telefono">Teléfono:</label>
+                                    <input type="text" id="telefono-act" name="telefono" required>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="condicion">Condición:</label>
+                                <select id="condicion" name="condicion" required class="select-style">
+                                    <option value="Consumidor Final">Consumidor Final</option>
+                                    <option value="Monotributista">Monotributista</option>
+                                    <option value="Responsable Inscripto">Responsable Inscripto</option>
+                                </select>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cerrar-cliente-act" data-bs-dismiss="modal">Close</button>
+                        <button type="submit">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+        $(document).ready(function() {
+            // Obtener la referencia al select en zonas.html
+            var selectZonas = window.opener.document.getElementById("selectRegistros");
+
+            // Función para cargar los clientes en el select de zonas.html
+            function cargarClientesEnSelect() {
+                var clientes = obtenerClientes();
+
+                if (clientes && clientes.length > 0) {
+                    for (var i = 0; i < clientes.length; i++) {
+                        var cliente = clientes[i];
+                        var option = document.createElement("option");
+                        option.text = cliente.nombre + " " + cliente.apellido;
+                        selectZonas.add(option);
+                    }
+                }
+            }
+
+            // Función para obtener los clientes almacenados
+            function obtenerClientes() {
+                var clientes = localStorage.getItem('clientes');
+                if (clientes) {
+                    return JSON.parse(clientes);
+                }
+                return [];
+            }
+
+            // Cargar los clientes en el select al cargar la página
+            cargarClientesEnSelect();
+        });
+    </script>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    
+    <!-- ACA VA EL JS DE CADA HTML -->
+    <script src="Clientes.js"></script>
+    <script src="zonas.js"></script>
+
+
+
+
+
+
+    
+
+    
+</body>
+</html>

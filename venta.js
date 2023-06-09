@@ -3,10 +3,9 @@ class Producto {
   constructor(id, zona, precio) {
     this.id = id;
     this.zona = zona;
-    this.precio = precio;
-  }
+    this.precio = precio;
+  }
 }
-
 // Clase Cliente
 class Cliente {
   constructor(nombre, apellido, dni) {

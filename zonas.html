@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registros de Zonas</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+</head>
+<body>
+    <div>
+        <h3>Asignar Zona</h3>
+        <select id="selectRegistros"></select>
+        <input type="text" id="inputZona" placeholder="Ingrese la zona">
+        <button id="btnAsignar">Asignar</button>
+    </div>
+
+    <h3>Clientes con zonas asignadas:</h3>
+    <table id="tablaZonas" class="display">
+        <thead>
+            <tr>
+                <th>Nombre y Apellido</th>
+                <th>Zona</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Las zonas asignadas se cargarán aquí -->
+        </tbody>
+    </table>
+
+    <select id="clienteSelect">
+        <!-- Opciones del select -->
+      </select>
+      
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            var tablaRegistros = $('#tablaRegistros').DataTable();
+            var selectRegistros = $('#selectRegistros');
+            var inputZona = $('#inputZona');
+            var btnAsignar = $('#btnAsignar');
+            var tablaZonas = $('#tablaZonas').DataTable();
+
+            cargarRegistros();
+
+            selectRegistros.change(function() {
+                var selectedIdx = $(this).val();
+                var registros = obtenerRegistros();
+
+                if (selectedIdx >= 0 && selectedIdx < registros.length) {
+                    var registro = registros[selectedIdx];
+                    mostrarClienteSeleccionado(registro.nombre, registro.apellido, registro.zona);
+                }
+            });
+
+            btnAsignar.click(function() {
+                var zona = inputZona.val();
+                var selectedIdx = selectRegistros.val();
+                var registros = obtenerRegistros();
+
+                if (selectedIdx >= 0 && selectedIdx < registros.length) {
+                    registros[selectedIdx].zona = zona;
+                    actualizarRegistros(registros);
+                    mostrarClienteSeleccionado(registros[selectedIdx].nombre, registros[selectedIdx].apellido, zona);
+                    mostrarZonasAsignadas(registros);
+                }
+            });
+
+            function cargarRegistros() {
+                var registros = obtenerRegistros();
+
+                if (registros && registros.length > 0) {
+                    for (var i = 0; i < registros.length; i++) {
+                        var registro = registros[i];
+                        tablaRegistros.row.add([registro.nombre + ' ' + registro.apellido, registro.zona]).draw(false);
+
+                        var option = '<option value="' + i + '">' + registro.nombre + ' ' + registro.apellido + '</option>';
+                        selectRegistros.append(option);
+
+                        if (registro.zona) {
+                            tablaZonas.row.add([registro.nombre + ' ' + registro.apellido, registro.zona]).draw(false);
+                        }
+                    }
+                }
+            }
+
+            function obtenerRegistros() {
+                var registros = localStorage.getItem('clientes');
+                if (registros) {
+                    return JSON.parse(registros);
+                }
+                return [];
+            }
+
+            function actualizarRegistros(registros) {
+                localStorage.setItem('clientes', JSON.stringify(registros));
+            }
+
+            function mostrarClienteSeleccionado(nombre, apellido, zona) {
+                $('#tablaClienteSeleccionado').remove();
+
+                var html = '<table id="tablaClienteSeleccionado" class="display">';
+                html += '<thead><tr><th>Nombre y Apellido</th><th>Zona</th></tr></thead>';
+                html += '<tbody><tr><td>' + nombre + ' ' + apellido + '</td><td>' + zona + '</td></tr></tbody>';
+                html += '</table>';
+
+                $('h3:contains("Cliente seleccionado:")').after(html);
+                $('#tablaClienteSeleccionado').DataTable();
+            }
+
+            function mostrarZonasAsignadas(registros) {
+                tablaZonas.clear().draw();
+
+                for (var i = 0; i < registros.length; i++) {
+                    var registro = registros[i];
+                    if (registro.zona) {
+                        tablaZonas.row.add([registro.nombre + ' ' + registro.apellido, registro.zona]).draw(false);
+                    }
+                }
+            }
+        });
+
+
+        
+    </script>
+    <script src="zonas.js"></script>
+    <script src="Clientes.js"></script>
+</body>
+</html>
