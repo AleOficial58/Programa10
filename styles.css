@@ -556,5 +556,29 @@ form {
       text-decoration: none;
     }
     
+    .botonEliminar{
+      color: white !important;
+      background-color: red;
+    }
 
+    .botonEliminar:hover{
+      background-color: rgb(255, 162, 0) !important;
+    }
 
+    .input{
+      color: red;
+    }
+
+    .titulo{
+      color: black;
+      font-size: 20px;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    .analisiscliente{
+      color: black;
+      font-size: 20px;
+      margin-top: 20px;
+      margin-left: 20px;
+    }

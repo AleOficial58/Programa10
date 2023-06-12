@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Facturas</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="menu">
+        <ul>
+          <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+          <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+          <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+          <li><a href="Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
+          <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+          <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+          <li><a href="Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
+        </ul>
+      </div>
+
+  <div class="container">
+    <table id="facturasTable">
+      <thead>
+        <tr>
+          <th>Número de Factura</th>
+          <th>Fecha</th>
+          <th>Cliente</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>001</td>
+          <td>2023-06-01</td>
+          <td>Victoria Rodriguez</td>
+          <td>
+            <button onclick="descargarFactura(1)">Descargar</button>
+            <button onclick="imprimirFactura(1)">Imprimir</button>
+            <button class="botonEliminar" onclick="EliminarFactura(1)">EliminarFactura</button>
+          </td>
+        </tr>
+        <tr>
+          <td>002</td>
+          <td>2023-06-02</td>
+          <td>Maria Eugenia</td>
+          <td>
+            <button onclick="descargarFactura(2)">Descargar</button>
+            <button onclick="imprimirFactura(2)">Imprimir</button>
+            <button class="botonEliminar" onclick="EliminarFactura(1)">EliminarFactura</button>
+          </td>
+        </tr>
+        <!-- Agregar más filas de facturas aquí -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="/JS/Facturacion.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#facturasTable').DataTable();
+    });
+
+    function descargarFactura(id) {
+      // Lógica para descargar la factura con el ID proporcionado
+      console.log('Descargando factura:', id);
+    }
+
+    function imprimirFactura(id) {
+      // Lógica para imprimir la factura con el ID proporcionado
+      console.log('Imprimiendo factura:', id);
+    }
+  </script>
+</body>
+</html>

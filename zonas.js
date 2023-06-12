@@ -110,14 +110,38 @@ function generarOpcionesSelect(selectElement, registros) {
   });
 }
 
+ // Generar las opciones del select con los registros del DataTable
+
+  // (FUNCION DE ABAJO UTILIZA SWEET ALERT)
+
 function eliminarCliente(id) {
-  let clientes = obtenerRegistroZone()
-  const cliente = clientes.find((cliente) => cliente[0] == id)
-  const index = clientes.indexOf(cliente)
-  clientes.splice(index, 1)
-  localStorage.setItem('clientesZona', JSON.stringify(clientes));
-  location.reload()
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: 'Esta acción eliminará la zona definitivamente. ¿Deseas continuar?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let clientes = obtenerRegistroZone()
+      const cliente = clientes.find((cliente) => cliente[0] == id)
+      const index = clientes.indexOf(cliente)
+      clientes.splice(index, 1)
+      localStorage.setItem('clientesZona', JSON.stringify(clientes));
+      location.reload()
+      Swal.fire(
+        'Eliminado',
+        'La zona ha sido eliminada correctamente.',
+        'success'
+      )
+    }
+  });
 }
+
+ // (FUNCION DE ARRIBA UTILIZA SWEET ALERT)
 
 // function editarCliente
 var myModal = document.getElementById('exampleModal')
