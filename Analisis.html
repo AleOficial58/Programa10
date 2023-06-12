@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Analisis de ventas</title>
+    <style>
+
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .resultado-container {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .resultado-container h2 {
+            color: #333;
+            margin-top: 0;
+        }
+
+        .resultado-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
+        }
+
+        .resultado-container th, .resultado-container td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .resultado-container th {
+            background-color: #f2f2f2;
+            text-align: left;
+            color: #333;
+        }
+
+        .resultado-container td {
+            color: #666;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .button2-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .form-container2 {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .container2 {
+            max-width: 800px;
+            margin-top: 20px;
+            margin-left: 290px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .dataTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="menu">
+        <ul>
+          <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+          <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+          <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+          <li><a href="Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
+          <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+          <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+          <li><a href="Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
+        </ul>
+      </div>
+
+
+    <h1 class="titulo">Analisis de ventas Generales</h1>
+
+    <div class="form-container">
+        <div>
+            <label for="mesSelect">Seleccione el mes:</label>
+            <select id="mesSelect">
+                <option value="enero">Enero</option>
+                <option value="febrero">Febrero</option>
+                <option value="marzo">Marzo</option>
+                <option value="abril">Abril</option>
+                <option value="mayo">Mayo</option>
+                <option value="junio">Junio</option>
+                <option value="julio">Julio</option>
+                <option value="agosto">Agosto</option>
+                <option value="septiembre">Septiembre</option>
+                <option value="octubre">Octubre</option>
+                <option value="noviembre">Noviembre</option>
+                <option value="diciembre">Diciembre</option>
+            </select>
+        </div>
+
+        <div class="button-container">
+            <button class="AnalisisdeVentas" onclick="realizarAnalisis()">Realizar análisis</button>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h1>Resultados</h1>
+
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Unidades</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cliente 1</td>
+                    <td>Producto A</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Cliente 1</td>
+                    <td>Producto B</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Cliente 2</td>
+                    <td>Producto A</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>Cliente 2</td>
+                    <td>Producto C</td>
+                    <td>3</td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+        </table>
+    </div>
+
+
+
+    
+
+    <h1 class="titulo">Analisis de ventas por cliente</h1>
+
+    <div class="form-container2">
+        <div>
+            <label for="mesSelect2">Seleccione el mes:</label>
+            <select id="mesSelect2">
+                <option value="enero">Enero</option>
+                <option value="febrero">Febrero</option>
+                <option value="marzo">Marzo</option>
+                <option value="abril">Abril</option>
+                <option value="mayo">Mayo</option>
+                <option value="junio">Junio</option>
+                <option value="julio">Julio</option>
+                <option value="agosto">Agosto</option>
+                <option value="septiembre">Septiembre</option>
+                <option value="octubre">Octubre</option>
+                <option value="noviembre">Noviembre</option>
+                <option value="diciembre">Diciembre</option>
+            </select>
+        </div>
+
+        <div>
+            <label class="input" for="clienteInput">Ingrese el nombre del cliente o ID para analizar lo que vendió de ese cliente en el mes:</label>
+            <input type="text" id="clienteInput" placeholder="ID O Cliente">
+        </div>
+
+        <div class="button2-container">
+            <button class="AnalisisdeVentas" onclick="realizarAnalisis()">Realizar análisis</button>
+        </div>
+
+    </div>
+
+    <div class="container2">
+        <h1>Resultados</h1>
+
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Unidades</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cliente 1</td>
+                    <td>Producto A</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Cliente 1</td>
+                    <td>Producto B</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Cliente 2</td>
+                    <td>Producto A</td>
+                    <td>8</td>
+                </tr>
+                <tr>
+                    <td>Cliente 2</td>
+                    <td>Producto C</td>
+                    <td>3</td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Aquí puedes incluir los scripts necesarios para el análisis de ventas -->
+    <script src="/JS/Facturacion.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                "paging": true, // Activar paginación
+                "lengthChange": false, // Ocultar la opción de cambiar la cantidad de filas mostradas
+                "searching": true, // Activar la barra de búsqueda
+                "ordering": true, // Permitir ordenar por columnas
+                "info": true, // Mostrar información de la tabla
+                "autoWidth": false // Desactivar el ajuste automático de ancho de las columnas
+            });
+        });
+    </script>
+</body>
+</html>

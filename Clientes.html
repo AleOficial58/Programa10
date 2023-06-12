@@ -54,17 +54,18 @@
     </style>
 </head>
 
-<body>
-    <div id="menu">
-        <ul>
-          <li><a href="venta.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-          <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
-          <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
-          <li><a href="" onclick="mostrarVentana('zonas')">Facturación</a></li>
-          <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
-          <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
-        </ul>
-      </div>
+<div id="menu">
+    <ul>
+      <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+      <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+      <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+      <li><a href="Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
+      <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+      <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+      <li><a href="Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
+    </ul>
+  </div>
+
 
     <div id="tablaClientes"></div>
 
@@ -76,7 +77,7 @@
     <div class="container">
         <h1>Clientes</h1>
         <table id="clientesTable" class="display">
-            <input type="text" id="clienteSelect">
+            <!-- <input type="text" id="clienteSelect"> -->
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalClientes">
                 Nuevo Cliente
