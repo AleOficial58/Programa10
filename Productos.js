@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    var productosTable = $("#productosTable").DataTable({
+   
+  var productosTable = $("#productosTable").DataTable({
       columns: [
         { data: "id" },
         { data: "nombre" },
@@ -91,8 +92,6 @@ $(document).ready(function() {
       return editButton + deleteButton;
     }
 
-    
-  
     $("#productosTable tbody").on("click", ".btn-edit", function() { 
       debugger
       currentRow = $(this).closest("tr");
@@ -148,16 +147,16 @@ $(document).ready(function() {
       });
       return used;
     }
-  
+
+    
     function calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4) {
-      var resultado1 = precioProducto * (1 + (porcentaje1 / 100));
-      var resultado2 = resultado1 * (1 + (porcentaje2 / 100));
-      var resultado3 = resultado2 * (1 + (porcentaje3 / 100));
-      var resultado4 = resultado3 * (1 + (porcentaje4 / 100));
-  
-      var precioFinal = resultado4.toFixed(2); // Redondear el resultado a 2 decimales
-  
-      return precioFinal;
+
+      let resultado = precioProducto *  (1 + (porcentaje1 / 100));
+      resultado += resultado * (1 + (porcentaje2 / 100));
+      resultado += resultado * (1 + (porcentaje3 / 100));
+      resultado += resultado * (1 + (porcentaje4 / 100));
+      return resultado.toFixed(3);  // Redondear el resultado a 2 decimales
+
     }
   
     function guardarProductosEnLocalStorage() {
