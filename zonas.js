@@ -1,104 +1,171 @@
-debugger;
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Obtener referencia al dataTable
-  var dataTable = document.getElementById("clientesTable");
+// Obtener referencia al dataTable
+var dataTable = document.getElementById("clientesTable");
 
-  // Obtener referencia al select
-  var clienteSelect = document.getElementById("clienteSelect");
+// Obtener referencia al select
 
-  // Obtener los datos del Local Storage
-  var registros = obtenerRegistros();
+var clienteSelect = document.getElementById("selectRegistros");
+// Obtener los datos del Local Storage
+var registros = obtenerRegistros();
 
-  if (registros.length > 0) {
-    // Generar las filas del DataTable
-    var filas = registros.map(function (registro) {
-      return [
-        registro.codigo,
-        registro.nombre,
-        registro.apellido,
-        registro.dni,
-        registro.localidad,
-        registro.direccion,
-        registro.telefono,
-        registro.condicion,
-      ];
-    });
+if (registros) {
+  // Generar las filas del DataTable
 
-    // Inicializar el DataTable
-    var table = $("#clientesTable").DataTable({
-      data: filas,
-      columns: [
-        { title: "Código ID" },
-        { title: "Nombre" },
-        { title: "Apellido" },
-        { title: "DNI" },
-        { title: "Localidad" },
-        { title: "Dirección" },
-        { title: "Teléfono" },
-        { title: "Condición" },
-      ],
-    });
+  // var filas = registros.map(function (registro) {
+  //   return [
+  //     registro[0], // id
+  //     registro[1], // nombre
+  //     registro[2], // apellido
+  //     'N/A'
+  //   ];
+  // });
 
-    // Generar las opciones del select con los registros del DataTable
-    generarOpcionesSelect(clienteSelect, registros);
-  }
 
-  // Escuchar el evento de cambio en el select
-  clienteSelect.addEventListener("change", function () {
-    var selectedValue = clienteSelect.value;
-    if (selectedValue !== "") {
-      // Filtrar los registros por cliente seleccionado
-      var registrosFiltrados = registros.filter(function (registro, index) {
-        return index === parseInt(selectedValue);
-      });
-
-      // Generar las filas filtradas del DataTable
-      var filasFiltradas = registrosFiltrados.map(function (registro) {
-        return [
-          registro.codigo,
-          registro.nombre,
-          registro.apellido,
-          registro.dni,
-          registro.localidad,
-          registro.direccion,
-          registro.telefono,
-          registro.condicion,
-        ];
-      });
-
-      // Limpiar el DataTable y agregar las filas filtradas
-      table.clear().rows.add(filasFiltradas).draw();
-    } else {
-      // Mostrar todos los registros en el DataTable
-      table.clear().rows.add(filas).draw();
-    }
+  // Inicializar el DataTable
+  var table = $("#tablaZonas").DataTable({
+    data: obtenerRegistroZone(), // Data
+    columns: [
+      { title: "Código ID" },
+      { title: "Nombre" },
+      { title: "Apellido" },
+      { title: "Zona" },
+      { title: "Acciones" }
+    ],
   });
+  // Generar las opciones del select con los registros del DataTable
+  generarOpcionesSelect(clienteSelect, registros);
+}
 
-  function obtenerRegistros() {
-    var registros = localStorage.getItem("clientes");
-    if (registros) {
-      return JSON.parse(registros);
+var btnAgregar = document.getElementById("btnAsignar")
+
+// Escuchar el evento de cambio en el select
+btnAgregar.addEventListener("click", function () {
+
+  var selectedValue = clienteSelect.options[clienteSelect.selectedIndex].value;
+  let zone = document.getElementById("inputZona").value
+  if (selectedValue !== "-1" && zone !== "") {
+
+    // Obtener todas las filas del DataTable
+    var filas = table.rows().data().toArray();
+    let isAdded = filas.some((fila) => fila[0] == selectedValue)
+    if (isAdded) {
+      Swal.fire({
+        title: "Atención",
+        text: `El cliente seleccionado ya se encuentra en la tabla`,
+        icon: "error"
+      })
+    } else {
+
+      let clientes = obtenerRegistros()
+      const cliente = clientes.find((cliente) => cliente[0] == selectedValue)
+
+      const clienteZona = obtenerRegistroZone()
+   
+      
+      const newClienteZona = [cliente[0], cliente[1], cliente[2], zone, 
+      `<button class="btn btn-danger btn-sm ml-2" onclick="eliminarCliente(${cliente[0]})">Eliminar</button>
+      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnOpenModal" data-cliente-id="${cliente[0]}">Editar</button>`
+    ]
+      clienteZona.push(newClienteZona)
+      table.row.add(newClienteZona).draw();
+      localStorage.setItem('clientesZona', JSON.stringify(clienteZona));
     }
-    return []; // Devolver un arreglo vacío si no hay registros
-  }
 
-  function generarOpcionesSelect(selectElement, registros) {
-    // Limpiar las opciones previas del select
-    selectElement.innerHTML = "";
-
-    // Agregar la opción "Seleccione un cliente"
-    var option = document.createElement("option");
-    option.value = ""; // Valor vacío
-    option.textContent = "Seleccione un cliente";
-    selectElement.appendChild(option);
-
-    // Generar las opciones del select con los registros del DataTable
-    registros.forEach(function (registro, index) {
-      var option = document.createElement("option");
-      option.value = index; // Índice como valor
-      option.textContent = registro.nombre; // Nombre del cliente como texto de la opción
-      selectElement.appendChild(option);
-    });
   }
 });
+
+function obtenerRegistros() {
+
+  var registros = localStorage.getItem("clientesData");
+  if (registros) {
+    return JSON.parse(registros);
+  }
+  return []; // Devolver un arreglo vacío si no hay registros
+}
+function obtenerRegistroZone() {
+
+  const registros = localStorage.getItem("clientesZona");
+  if (registros) {
+    return JSON.parse(registros);
+  }
+  return []; // Devolver un arreglo vacío si no hay registros
+}
+
+function generarOpcionesSelect(selectElement, registros) {
+  // Limpiar las opciones previas del select
+  selectElement.innerHTML = "";
+
+  // Agregar la opción "Seleccione un cliente"
+  var option = document.createElement("option");
+  option.value = "-1"; // Valor vacío
+  option.textContent = "-- Selecone un cliente --";
+  selectElement.appendChild(option);
+
+  // Generar las opciones del select con los registros del DataTable
+  registros.forEach(function (registro, index) {
+    var option = document.createElement("option");
+    option.value = registro[0]; // id como valor
+    option.textContent = `${registro[1]} ${registro[2]}`; // Nombre del cliente como texto de la opción
+    selectElement.appendChild(option);
+  });
+}
+
+function eliminarCliente(id) {
+  let clientes = obtenerRegistroZone()
+  const cliente = clientes.find((cliente) => cliente[0] == id)
+  const index = clientes.indexOf(cliente)
+  clientes.splice(index, 1)
+  localStorage.setItem('clientesZona', JSON.stringify(clientes));
+  location.reload()
+}
+
+// function editarCliente
+var myModal = document.getElementById('exampleModal')
+
+myModal.addEventListener('shown.bs.modal', function (e) {
+
+  let clientes = obtenerRegistroZone()
+  const cliente = clientes.find(cliente => cliente[0] == e.relatedTarget.getAttribute('data-cliente-id'))
+  const index = clientes.indexOf(cliente)
+  clientes.splice(index, 1)
+  document.getElementById("oldZoneValue").textContent = cliente[3]
+
+ 
+
+  $("#btnUpdateZoneModal").unbind('click')
+  $("#btnUpdateZoneModal").bind('click', () => {
+
+    const newZone = document.getElementById("updateZoneValue")
+    if (newZone.value !== "") {
+      cliente[3] = newZone.value
+      clientes.push(cliente)
+      localStorage.setItem('clientesZona', JSON.stringify(clientes));
+      location.reload()
+    }
+
+
+  })
+
+
+})
+
+
+
+
+// // Obtener referencia al elemento donde se mostrarán los datos en la página de zonas
+// var datosClienteElemento = document.getElementById('datosCliente');
+
+// // Obtener los datos del cliente almacenados en el localStorage
+// var cliente = JSON.parse(localStorage.getItem('cliente'));
+
+// // Mostrar los datos del cliente en la página de zonas
+// if (cliente) {
+//   datosClienteElemento.textContent = 'Cliente: ' + cliente.nombre + ' ' + cliente.apellido;
+// } else {
+//   datosClienteElemento.textContent = 'No hay datos de cliente almacenados';
+// }
+
+
+// 
+
+

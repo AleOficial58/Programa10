@@ -144,19 +144,40 @@ $(document).ready(function () {
     });
 });
 
-// Función para obtener los datos del dataTable en Clientes.html
-function obtenerDatosDataTable() {
-    // Lógica para obtener los datos del dataTable
-    // ...
+// // Función para obtener los datos del dataTable en Clientes.html
+// function obtenerDatosDataTable() {
+//     // Lógica para obtener los datos del dataTable
+//     // ...
   
-    return dataTableData; // Retornar los datos obtenidos
-  }
+//     return dataTableData; // Retornar los datos obtenidos
+//   }
   
-  // Obtener los datos del dataTable en Clientes.html
-  var dataTableData = obtenerDatosDataTable();
+//   // Obtener los datos del dataTable en Clientes.html
+//   var dataTableData = obtenerDatosDataTable();
   
-  // Guardar los datos en el Local Storage
-  localStorage.setItem('dataTableData', JSON.stringify(dataTableData));
-  
+//   // Guardar los datos en el Local Storage
+//   localStorage.setItem('dataTableData', JSON.stringify(dataTableData));
 
-  
+
+// // Obtener referencia al formulario de clientes
+// var formularioClientes = document.getElementById('agregarClienteForm');
+
+// // Escuchar el evento de envío del formulario de clientes
+// formularioClientes.addEventListener('submit', function(event) {
+//   event.preventDefault();
+
+//   // Obtener los datos del formulario de clientes
+//   var nombre = document.getElementById('nombreInput').value;
+//   var apellido = document.getElementById('apellidoInput').value;
+
+//   // Crear un objeto cliente con los datos del formulario
+//   var cliente = {
+//     nombre: nombre,
+//     apellido: apellido
+//   };
+
+//   // Almacenar los datos del cliente en el localStorage
+//   localStorage.setItem('cliente', JSON.stringify(cliente));
+
+//   // Resto del código para procesar el formulario o redirigir a otra página
+// });

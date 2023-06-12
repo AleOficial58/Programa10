@@ -1,135 +1,90 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Tutorial DataTables</title>
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <!-- CSS personalizado -->
-  <link rel="stylesheet" href="main.css">
-
-  <!--datables CSS básico-->
-  <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css" />
-  <!--datables estilo bootstrap 4 CSS-->
-  <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+  <title>Sistema de Facturación</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="AgregaTusVentas.js"></script>
   <link rel="stylesheet" href="styles.css">
-
 </head>
-
 <body>
+
+
   <div id="menu">
-      <ul>
-          <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-          <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
-          <li><a href="" onclick="mostrarVentana('zonas')">Zonas</a></li>
-          <li><a href="" onclick="mostrarVentana('zonas')">Facturación</a></li>
-          <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
-          <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
-      </ul>
+    <ul>
+      <li><a href="venta.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+      <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+      <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+      <li><a href="" onclick="mostrarVentana('zonas')">Facturación</a></li>
+      <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+      <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+    </ul>
   </div>
-    
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistema de Facturación</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
   <div class="container">
-    <h1>Agrega tus Ventas</h1>
-    <table id="ventasTable" class="display">
+    <h1>Sistema de Ventas</h1>
+    
+    <h2>Seleccione un cliente:</h2>
+    <select id="clientes">
+      <option value="cliente1">Cliente 1</option>
+      <option value="cliente2">Cliente 2</option>
+      <option value="cliente3">Cliente 3</option>
+    </select>
+
+    <h2>Seleccione un producto:</h2>
+    <table id="productosTable">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Producto</th>
-          <th>Cantidad</th>
+          <th>Precio</th>
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>Producto 1</td>
+          <td>$10.00</td>
+        </tr>
+        <tr>
+          <td>Producto 2</td>
+          <td>$15.00</td>
+        </tr>
+        <tr>
+          <td>Producto 3</td>
+          <td>$20.00</td>
+        </tr>
       </tbody>
     </table>
-    <br>
-    <div>
-      <h3>Agregar Venta</h3>
-      <form id="agregarVentaForm">
-        <div>
-          <label for="producto">Producto:</label>
-          <select class="select-style" id="producto" name="producto" required>
-            <option value="" disabled selected>Seleccione un producto</option>
-            <option value="Producto 1">Producto 1</option>
-            <option value="Producto 2">Producto 2</option>
-            <option value="Producto 3">Producto 3</option>
-          </select>
-        </div>
-        <div>
-          <label for="cantidad">Cantidad:</label>
-          <input type="number" id="cantidad" name="cantidad" required>
-        </div>
-        <br>
-        <button type="submit">Agregar Venta</button>
-      </form>
-    </div>
+
+    <button onclick="generarFactura()">Generar Factura</button>
+
+    <h2>Factura Generada:</h2>
+    <div id="facturaGenerada"></div>
+
+    <script>
+      $(document).ready(function() {
+        var table = $('#productosTable').DataTable();
+
+        $('#productosTable tbody').on('click', 'tr', function() {
+          if ($(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+          } else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+          }
+        });
+      });
+    </script>
   </div>
-
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- DataTables -->
-  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      // Inicializar DataTables
-      var table = $('#ventasTable').DataTable();
-
-      // Obtener datos almacenados en el Local Storage y cargarlos en el DataTables
-      var storedData = localStorage.getItem('ventasData');
-      if (storedData) {
-        var parsedData = JSON.parse(storedData);
-        table.rows.add(parsedData).draw();
-      }
-
-      // Generar código ID único de 6 dígitos
-      function generateUniqueID() {
-        var uniqueID = '';
-        var digits = '0123456789';
-        for (var i = 0; i < 6; i++) {
-          uniqueID += digits.charAt(Math.floor(Math.random() * digits.length));
-        }
-        return uniqueID;
-      }
-
-      // Agregar venta al DataTables y almacenamiento local
-      $('#agregarVentaForm').on('submit', function (e) {
-        e.preventDefault();
-
-        var producto = $('#producto').val();
-        var cantidad = $('#cantidad').val();
-        var id = generateUniqueID();
-
-        var rowData = [id, producto, cantidad];
-        var deleteButton = '<button class="btn btn-sm btn-danger btn-eliminar" data-id="' + id + '">Eliminar</button>';
-        rowData.push(deleteButton);
-        table.row.add(rowData).draw();
-
-        // Actualizar datos en el almacenamiento local
-        var tableData = table.rows().data().toArray();
-        localStorage.setItem('ventasData', JSON.stringify(tableData));
-
-        // Limpiar el formulario
-        $('#agregarVentaForm')[0].reset();
-      });
-
-      // Delegación de eventos click para los botones de eliminar
-      $('#ventasTable tbody').on('click', '.btn-eliminar', function () {
-        var id = $(this).data('id');
-        var rowData = table.row($(this).closest('tr')).data();
-        // Aquí puedes realizar la acción que necesites con los datos de la fila seleccionada
-        console.log('Eliminar', rowData);
-        // Aquí puedes eliminar la fila de la tabla
-        table.row($(this).closest('tr')).remove().draw();
-
-        // Actualizar datos en el almacenamiento local
-        var tableData = table.rows().data().toArray();
-        localStorage.setItem('ventasData', JSON.stringify(tableData));
-      });
-    });
-  </script>
 </body>
-
 </html>

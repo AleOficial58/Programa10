@@ -17,6 +17,8 @@ $(document).ready(function() {
       ]
     });
     var currentRow;
+
+    
   
     // Verificar si hay datos en el almacenamiento local al cargar la página
     var productosGuardados = localStorage.getItem("productos");
@@ -88,8 +90,11 @@ $(document).ready(function() {
       var deleteButton = '<button type="button" class="btn btn-danger btn-delete">Eliminar</button>';
       return editButton + deleteButton;
     }
+
+    
   
-    $("#productosTable tbody").on("click", ".btn-edit", function() {
+    $("#productosTable tbody").on("click", ".btn-edit", function() { 
+      debugger
       currentRow = $(this).closest("tr");
       var data = productosTable.row(currentRow).data();
       var idProducto = data.id;

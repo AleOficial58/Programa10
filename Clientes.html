@@ -15,11 +15,9 @@
     <!--datables estilo bootstrap 4 CSS-->
     <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="zonas.js"></script>
-    <script src="Clientes.js"></script>
+
     <style>
 
 
@@ -59,14 +57,14 @@
 <body>
     <div id="menu">
         <ul>
-            <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-            <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
-            <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
-            <li><a href="" onclick="mostrarVentana('zonas')">Facturación</a></li>
-            <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
-            <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+          <li><a href="venta.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+          <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+          <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+          <li><a href="" onclick="mostrarVentana('zonas')">Facturación</a></li>
+          <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+          <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
         </ul>
-    </div>
+      </div>
 
     <div id="tablaClientes"></div>
 
@@ -240,6 +238,10 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <!-- <script src="zonas.js"></script> -->
+    <script src="Clientes.js"></script>
 
     
     <script>
