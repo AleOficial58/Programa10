@@ -95,7 +95,7 @@
     document.querySelector(".right-section").innerHTML = `<div class="right-section">
     <p class="right-info pedido">Nº Pedido: ${factura.facturaID}</p>
     <p class="right-info fecha">Fecha: ${factura.fecha}</p>
-    <p class="right-info Vendedor">Vendedor: ${factura.vendedor}</p>
+    <p class="right-info Vendedor">Vendedor: ${factura.vendedor.first_name} ${factura.vendedor.last_name}</p>
     <p class="right-info Zona">Zona: <span id="zona">${factura.zona}</span></p>
     </div>`
 

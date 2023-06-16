@@ -301,7 +301,7 @@ myModal.addEventListener('shown.bs.modal', function (e) {
     const total = document.getElementById('totalValue').textContent;
     const cID = document.getElementById('clientes').value != "" ? document.getElementById('clientes').value : JSON.parse(localStorage.getItem('temporal')).clienteID
     const cliente = JSON.parse(localStorage.getItem('clientesData')).find(c => c[0] == cID)
-
+    const vendedor = JSON.parse(localStorage.getItem('usuarioActivo'))
     const productos = JSON.parse(localStorage.getItem('temporal')).productos;
     const factura = {
         facturaID: facturaID,
@@ -313,7 +313,7 @@ myModal.addEventListener('shown.bs.modal', function (e) {
         productos: productos,
         condicionVenta: "",
         entrega: "",
-        vendedor: "",
+        vendedor: vendedor,
         zona: ""
     }
 
@@ -331,7 +331,7 @@ myModal.addEventListener('shown.bs.modal', function (e) {
     document.querySelector(".right-section").innerHTML = `<div class="right-section">
     <p class="right-info pedido">Nº Pedido: ${factura.facturaID}</p>
     <p class="right-info fecha">Fecha: ${factura.fecha}</p>
-    <p class="right-info Vendedor">Vendedor: N/A</p>
+    <p class="right-info Vendedor">Vendedor: ${vendedor.first_name} ${vendedor.last_name}</p>
     <p class="right-info Zona">Zona: <span contenteditable id="zona">N/A</span></p>
     </div>`
 

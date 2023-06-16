@@ -150,13 +150,14 @@ $(document).ready(function() {
 
     
     function calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4) {
-
-      let resultado = precioProducto *  (1 + (porcentaje1 / 100));
-      resultado += resultado * (1 + (porcentaje2 / 100));
-      resultado += resultado * (1 + (porcentaje3 / 100));
-      resultado += resultado * (1 + (porcentaje4 / 100));
+      
+      let resultado =  precioProducto + (precioProducto *  (porcentaje1 / 100));
+      
+      resultado += (resultado *  (porcentaje2 / 100));
+      resultado += (resultado *  (porcentaje3 / 100));
+      resultado += (resultado *  (porcentaje4 / 100));
       return resultado.toFixed(3);  // Redondear el resultado a 2 decimales
-
+  
     }
   
     function guardarProductosEnLocalStorage() {
