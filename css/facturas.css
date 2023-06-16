@@ -1,0 +1,124 @@
+/* body {
+    margin: 5px;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+} */
+
+.invoice {
+    background-image: linear-gradient(#332B47, #7D7C79);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #a98282;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-section {
+    flex: 1;
+}
+
+.right-section {
+    flex: 1;
+    text-align: right;
+}
+
+.right-info {
+    text-align: right;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.right-info span {
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+thead th {
+    background-color: #f2f2f2;
+}
+
+tfoot td {
+    font-weight: bold;
+}
+
+tfoot td[colspan="3"] {
+    text-align: right;
+}
+
+.section.contact {
+    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    margin: 5px 0;
+}
+
+p.phone {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.additional-info {
+    margin-bottom: 20px;
+}
+
+.pedido,
+.fecha,
+.Vendedor,
+.Zona {
+    text-align: right;
+    position: relative;
+    top: -300px;
+}
+
+.pedido span,
+.fecha span,
+.Vendedor span,
+.Zona span {
+    font-weight: bold;
+}
+
+.cliente30 {
+    margin-top: -300px;
+}
+
+.logo-left,
+.logo-right {
+    flex: 1;
+}
+
+.logo-right {
+    text-align: right;
+    position: relative;
+    top: -420px;
+    left: -30px;
+}
+
+body {
+    background-color: #ffffff;
+}

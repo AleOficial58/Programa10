@@ -21,58 +21,12 @@
       </div>
 
   <div class="container">
-    <table id="facturasTable">
-      <thead>
-        <tr>
-          <th>Número de Factura</th>
-          <th>Fecha</th>
-          <th>Cliente</th>
-          <th>Opciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>001</td>
-          <td>2023-06-01</td>
-          <td>Victoria Rodriguez</td>
-          <td>
-            <button onclick="descargarFactura(1)">Descargar</button>
-            <button onclick="imprimirFactura(1)">Imprimir</button>
-            <button class="botonEliminar" onclick="EliminarFactura(1)">EliminarFactura</button>
-          </td>
-        </tr>
-        <tr>
-          <td>002</td>
-          <td>2023-06-02</td>
-          <td>Maria Eugenia</td>
-          <td>
-            <button onclick="descargarFactura(2)">Descargar</button>
-            <button onclick="imprimirFactura(2)">Imprimir</button>
-            <button class="botonEliminar" onclick="EliminarFactura(1)">EliminarFactura</button>
-          </td>
-        </tr>
-        <!-- Agregar más filas de facturas aquí -->
-      </tbody>
-    </table>
+    <table id="facturasTable"></table>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <script src="/JS/Facturacion.js"></script>
-  <script>
-    $(document).ready(function() {
-      $('#facturasTable').DataTable();
-    });
+  <script src="js/Facturacion.js"></script>
 
-    function descargarFactura(id) {
-      // Lógica para descargar la factura con el ID proporcionado
-      console.log('Descargando factura:', id);
-    }
-
-    function imprimirFactura(id) {
-      // Lógica para imprimir la factura con el ID proporcionado
-      console.log('Imprimiendo factura:', id);
-    }
-  </script>
 </body>
 </html>
