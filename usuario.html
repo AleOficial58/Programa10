@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SISTEMA DE VENTA</title>
+  <script src="./js/usuarios.js"></script>
   <style>
     /* Estilo para el cuerpo de la página */
     body {
@@ -77,32 +78,34 @@
   </style>
 </head>
 
-<script src="/usuarios.js"></script>
-
 <body>
   <div class="container">
     <h1 class="title">SISTEMA DE VENTA</h1>
 
-    <form onsubmit="return login()">
+    <form>
       <input type="text" id="usuario" placeholder="Usuario">
       <input type="password" id="contraseña" placeholder="Contraseña">
-      <button type="submit">Iniciar sesión</button>
+      <button type="button" id="btnLogin">Iniciar sesión</button>
     </form>
 
     <p>¿Olvidaste tu contraseña? <a href="#">Recupérala aquí</a></p>
   </div>
 
   <script>
-    function login() {
-      var user = document.getElementById("usuario").value;
-      var pass = document.getElementById("contraseña").value;
 
-      if (user === "Miguel" && pass === "1234") {
-        window.location = "Inicio.html";
-      }
+    document.querySelector("#btnLogin").addEventListener("click", () => {
+      const user = document.getElementById("usuario").value;
+      const pass = document.getElementById("contraseña").value;
 
-      return false; // Evita que el formulario se envíe y la página se recargue
-    }
+      usuarios = JSON.parse(localStorage.getItem("usuarios"));
+      usuarios.forEach(dbUser => {
+
+        if (dbUser.username == user && dbUser.password == pass) {
+          localStorage.setItem("usuarioActivo", JSON.stringify(dbUser));
+          window.location = "Inicio.html";
+        }
+      });
+    });
   </script>
 </body>
 

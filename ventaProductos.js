@@ -1,6 +1,9 @@
 
 var table;
 
+if (!localStorage.getItem('facturas')) {
+    localStorage.setItem('facturas', JSON.stringify([]))
+}
 
 
 if (!localStorage.getItem('temporal')) {
@@ -17,21 +20,21 @@ if (!localStorage.getItem('temporal')) {
             { title: "Precio" },
             { title: "Subtotal" }
         ],
-        footerCallback: function(row, data, start, end, display) {
+        footerCallback: function (row, data, start, end, display) {
             var api = this.api();
-            
+
             // Calcular la suma de la columna "Subtotal"
             var subtotalTotal = api.column(4, { page: 'current' }).data()
-              .reduce(function(acc, value) {
-                return acc + parseFloat(value);
-              }, 0);
-            
+                .reduce(function (acc, value) {
+                    return acc + parseFloat(value);
+                }, 0);
+
             // Agregar el valor de la suma debajo de la columna "Subtotal"
             $(api.column(4).footer()).html(subtotalTotal.toFixed(2));
             // $('#totalValue').text(subtotalTotal.toFixed(2));
 
 
-          }
+        }
     })
 }
 
@@ -67,21 +70,21 @@ if (JSON.parse(localStorage.getItem('temporal')).productos.length > 0) {
                     { title: "Precio" },
                     { title: "Subtotal" }
                 ],
-                footerCallback: function(row, data, start, end, display) {
+                footerCallback: function (row, data, start, end, display) {
                     var api = this.api();
-                    
+
                     // Calcular la suma de la columna "Subtotal"
                     var subtotalTotal = api.column(4, { page: 'current' }).data()
-                      .reduce(function(acc, value) {
-                        return acc + parseFloat(value);
-                      }, 0);
-                    
+                        .reduce(function (acc, value) {
+                            return acc + parseFloat(value);
+                        }, 0);
+
                     // Agregar el valor de la suma debajo de la columna "Subtotal"
                     $(api.column(4).footer()).html(subtotalTotal.toFixed(2));
                     // $('#totalValue').text(subtotalTotal.toFixed(2));
-        
-        
-                  }
+
+
+                }
             })
             swalWithBootstrapButtons.fire(
                 'Venta anterior',
@@ -107,21 +110,21 @@ if (JSON.parse(localStorage.getItem('temporal')).productos.length > 0) {
                     { title: "Precio" },
                     { title: "Subtotal" }
                 ],
-                footerCallback: function(row, data, start, end, display) {
+                footerCallback: function (row, data, start, end, display) {
                     var api = this.api();
-                    
+
                     // Calcular la suma de la columna "Subtotal"
                     var subtotalTotal = api.column(4, { page: 'current' }).data()
-                      .reduce(function(acc, value) {
-                        return acc + parseFloat(value);
-                      }, 0);
-                    
+                        .reduce(function (acc, value) {
+                            return acc + parseFloat(value);
+                        }, 0);
+
                     // Agregar el valor de la suma debajo de la columna "Subtotal"
                     $(api.column(4).footer()).html(subtotalTotal.toFixed(2));
                     // $('#totalValue').text(subtotalTotal.toFixed(2));
-        
-        
-                  }
+
+
+                }
             })
 
             swalWithBootstrapButtons.fire(
@@ -143,21 +146,21 @@ if (JSON.parse(localStorage.getItem('temporal')).productos.length > 0) {
             { title: "Precio" },
             { title: "Subtotal" }
         ],
-        footerCallback: function(row, data, start, end, display) {
+        footerCallback: function (row, data, start, end, display) {
             var api = this.api();
-            
+
             // Calcular la suma de la columna "Subtotal"
             var subtotalTotal = api.column(4, { page: 'current' }).data()
-              .reduce(function(acc, value) {
-                return acc + parseFloat(value);
-              }, 0);
-            
+                .reduce(function (acc, value) {
+                    return acc + parseFloat(value);
+                }, 0);
+
             // Agregar el valor de la suma debajo de la columna "Subtotal"
             $(api.column(4).footer()).html(subtotalTotal.toFixed(2));
             // $('#totalValue').text(subtotalTotal.toFixed(2));
 
 
-          }
+        }
     })
 }
 
@@ -273,3 +276,111 @@ btnAddProduct.addEventListener("click", function () {
 
 cargarClientes()
 cargarProductos()
+
+/*
+
+-- Ahora de facturacion
+
+*/
+
+function generateUniqueID() {
+    var uniqueID = '';
+    var digits = '0123456789ABCDEF';
+    for (var i = 0; i < 6; i++) {
+        uniqueID += digits.charAt(Math.floor(Math.random() * digits.length));
+    }
+    return uniqueID;
+}
+
+
+var myModal = document.getElementById('exampleModal')
+myModal.addEventListener('shown.bs.modal', function (e) {
+    const facturaID = generateUniqueID()
+    document.getElementById('facturaID').textContent = facturaID
+    const fecha = new Date().toLocaleDateString();
+    const total = document.getElementById('totalValue').textContent;
+    const cID = document.getElementById('clientes').value != "" ? document.getElementById('clientes').value : JSON.parse(localStorage.getItem('temporal')).clienteID
+    const cliente = JSON.parse(localStorage.getItem('clientesData')).find(c => c[0] == cID)
+    const vendedor = JSON.parse(localStorage.getItem('usuarioActivo'))
+    const productos = JSON.parse(localStorage.getItem('temporal')).productos;
+    const factura = {
+        facturaID: facturaID,
+        clienteID: cliente[0],
+        fecha: fecha,
+        total: total,
+        clienteNombre: cliente[1],
+        clienteApellido: cliente[2],
+        productos: productos,
+        condicionVenta: "",
+        entrega: "",
+        vendedor: vendedor,
+        zona: ""
+    }
+
+
+    document.querySelector(".left-section").innerHTML = `<div class="left-section">
+    <h3 class="cliente30">Cliente: ${cliente[1]} ${cliente[2]}</h3>
+    <p>Dirección: ${cliente[4]}</p>
+    <p>IVA: ${cliente[7]}</p>
+    <p>Condición de Venta: <span contenteditable id="condicionVenta">N/A</span></p>
+    <p>Entrega: <span contenteditable id="entrega">N/A</span></p>
+    </div>
+    </div>`
+
+
+    document.querySelector(".right-section").innerHTML = `<div class="right-section">
+    <p class="right-info pedido">Nº Pedido: ${factura.facturaID}</p>
+    <p class="right-info fecha">Fecha: ${factura.fecha}</p>
+    <p class="right-info Vendedor">Vendedor: ${vendedor.first_name} ${vendedor.last_name}</p>
+    <p class="right-info Zona">Zona: <span contenteditable id="zona">N/A</span></p>
+    </div>`
+
+    let facturas = JSON.parse(localStorage.getItem('facturas'))
+
+    var table2 = $('#facturaTabla').DataTable({
+        data: factura.productos,
+        columns: [
+            { title: "ID" },
+            { title: "Producto" },
+            { title: "Cantidad" },
+            { title: "Precio" },
+            { title: "Subtotal" }
+        ],
+        footerCallback: function (row, data, start, end, display) {
+            var api = this.api();
+
+            // Calcular la suma de la columna "Subtotal"
+            var subtotalTotal = api.column(4, { page: 'current' }).data()
+                .reduce(function (acc, value) {
+                    return acc + parseFloat(value);
+                }, 0);
+
+            // Agregar el valor de la suma debajo de la columna "Subtotal"
+            $(api.column(4).footer()).html(subtotalTotal.toFixed(2));
+            // $('#totalValue').text(subtotalTotal.toFixed(2));
+        }
+    })
+
+    $("#GenFact").unbind("click")
+    $("#GenFact").on("click", function () {
+        factura.condicionVenta = document.getElementById('condicionVenta').textContent
+        factura.entrega = document.getElementById('entrega').textContent
+        factura.zona = document.getElementById('zona').textContent
+        facturas.push(factura)
+        localStorage.setItem('facturas', JSON.stringify(facturas))
+
+        // Limpiar los productos del carrito
+        localStorage.setItem('temporal', JSON.stringify({
+            clienteID: -1,
+            productos: []
+        }))
+        table.clear().draw();
+        table2.clear().draw();
+        document.getElementById("productos").selectedIndex = 0;
+        document.getElementById('clientes').selectedIndex = 0;
+
+        // redireccionar a facturacion
+        location.href = "Facturacion.html"
+    })
+
+})

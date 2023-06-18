@@ -109,7 +109,7 @@
 
 
     <div class="logout-button">
-      <button onclick="window.location.href='usuario.html'">Cerrar sesión</button>
+      <button onclick="logout()">Cerrar sesión</button>
     </div>
   </div>
   
@@ -125,6 +125,11 @@
   <script src="uilogic.js"></script>
   <script>
     var inventarioTable;
+
+    function logout() {
+      localStorage.setItem("usuarioActivo", JSON.stringify({}))
+      location.href='usuario.html'
+    }
 
     function cerrarSesion() {
       // Agrega aquí la lógica para cerrar sesión, como limpiar cookies o variables de sesión
