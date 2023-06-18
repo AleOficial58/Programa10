@@ -463,7 +463,7 @@ form {
     }
     
     h3 {
-      color: #fff;
+      color: #ff0000;
       font-size: 32px;
       font-family: "Playfair Display", serif;
       margin-top: 0;
@@ -499,4 +499,88 @@ form {
     }
     
     
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    h2 {
+      color: #666;
+    }
+    
+    select {
+      margin-bottom: 10px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    
+    #facturaGenerada {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    
+    .selected {
+      background-color: yellow;
+    }
+    
+
+  
+
+    .menu {
+      /* width: 100%; */
+      width: auto;
+    }
+    
+    .menu ul {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .menu ul li {
+      flex-grow: 1;
+    }
+    
+    .menu ul li a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+    }
+    
+    .botonEliminar{
+      color: white !important;
+      background-color: red;
+    }
+
+    .botonEliminar:hover{
+      background-color: rgb(255, 162, 0) !important;
+    }
+
+    .input{
+      color: red;
+    }
+
+    .titulo{
+      color: black;
+      font-size: 20px;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    .analisiscliente{
+      color: black;
+      font-size: 20px;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
     

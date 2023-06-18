@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    var productosTable = $("#productosTable").DataTable({
+   
+  var productosTable = $("#productosTable").DataTable({
       columns: [
         { data: "id" },
         { data: "nombre" },
@@ -17,6 +18,8 @@ $(document).ready(function() {
       ]
     });
     var currentRow;
+
+    
   
     // Verificar si hay datos en el almacenamiento local al cargar la página
     var productosGuardados = localStorage.getItem("productos");
@@ -88,8 +91,9 @@ $(document).ready(function() {
       var deleteButton = '<button type="button" class="btn btn-danger btn-delete">Eliminar</button>';
       return editButton + deleteButton;
     }
-  
-    $("#productosTable tbody").on("click", ".btn-edit", function() {
+
+    $("#productosTable tbody").on("click", ".btn-edit", function() { 
+      debugger
       currentRow = $(this).closest("tr");
       var data = productosTable.row(currentRow).data();
       var idProducto = data.id;
@@ -143,21 +147,21 @@ $(document).ready(function() {
       });
       return used;
     }
-  
+
+    
     function calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4) {
-      var resultado1 = precioProducto * (1 + (porcentaje1 / 100));
-      var resultado2 = resultado1 * (1 + (porcentaje2 / 100));
-      var resultado3 = resultado2 * (1 + (porcentaje3 / 100));
-      var resultado4 = resultado3 * (1 + (porcentaje4 / 100));
+      
+      let resultado =  precioProducto + (precioProducto *  (porcentaje1 / 100));
+      
+      resultado += (resultado *  (porcentaje2 / 100));
+      resultado += (resultado *  (porcentaje3 / 100));
+      resultado += (resultado *  (porcentaje4 / 100));
+      return resultado.toFixed(3);  // Redondear el resultado a 2 decimales
   
-      var precioFinal = resultado4.toFixed(2); // Redondear el resultado a 2 decimales
-  
-      return precioFinal;
     }
   
     function guardarProductosEnLocalStorage() {
       var productos = productosTable.data().toArray();
-  
       localStorage.setItem("productos", JSON.stringify(productos));
     }
   });

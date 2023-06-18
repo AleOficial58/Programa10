@@ -1,135 +1,156 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Tutorial DataTables</title>
+  <title>Sistema de Facturación</title>
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <!-- CSS personalizado -->
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
-  <!--datables CSS básico-->
-  <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css" />
-  <!--datables estilo bootstrap 4 CSS-->
-  <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
-
+  <link rel="stylesheet" href="css/facturas.css">
+  
 </head>
 
-<body>
-  <div id="menu">
-      <ul>
-          <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-          <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
-          <li><a href="" onclick="mostrarVentana('zonas')">Zonas</a></li>
-          <li><a href="" onclick="mostrarVentana('zonas')">Facturación</a></li>
-          <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
-          <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
-      </ul>
+<div id="menu">
+  <ul>
+    <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+    <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+    <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+    <li><a href="Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
+    <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+    <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+    <li><a href="Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
+  </ul>
+</div>
+
+
+
+<div class="container">
+  <h1>Sistema de Ventas</h1>
+
+  <h2>Seleccione un cliente:</h2>
+  <div class="row">
+    <div class="col-12">
+      <select id="clientes" class="form-control form-control-lg">
+        <option value="">-- Selecione un cliente --</option>
+      </select>
+    </div>
+
   </div>
-    
-  <div class="container">
-    <h1>Agrega tus Ventas</h1>
-    <table id="ventasTable" class="display">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Producto</th>
-          <th>Cantidad</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-    <br>
-    <div>
-      <h3>Agregar Venta</h3>
-      <form id="agregarVentaForm">
-        <div>
-          <label for="producto">Producto:</label>
-          <select class="select-style" id="producto" name="producto" required>
-            <option value="" disabled selected>Seleccione un producto</option>
-            <option value="Producto 1">Producto 1</option>
-            <option value="Producto 2">Producto 2</option>
-            <option value="Producto 3">Producto 3</option>
-          </select>
-        </div>
-        <div>
-          <label for="cantidad">Cantidad:</label>
-          <input type="number" id="cantidad" name="cantidad" required>
-        </div>
-        <br>
-        <button type="submit">Agregar Venta</button>
-      </form>
+
+
+  <h2>Seleccione un producto:</h2>
+  <div class="row">
+    <div class="col-8">
+      <select id="productos" class="form-control form-control-lg">
+        <option value="">-- Selecione un productos --</option>
+      </select>
+    </div>
+    <div class="col-4">
+      <button class="btn btn-primary form-control form-control-lg" id="addProductToCar">Agregar</button>
     </div>
   </div>
 
-  <!-- jQuery -->
+
+
+  <table id="productosTable">
+    <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th id="totalValue">0.0</th>
+      </tr>
+    </tfoot>
+  </table>
+
+
+  <div class="row">
+    <div class="col-6">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary mt-4 form-control form-control-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Generar factura</button>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Generar factura (<span id="facturaID" style="color: black; font-weight: 500;"></span>)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="invoice">
+            <div class="logo-left">
+                <img src="./img/El SHADDAI (12).png" alt="Logo izquierdo">
+            </div>
+            <h2>Factura</h2>
+            <div class="logo-right">
+                <img src="./img/El SHADDAI (14).png" alt="Logo derecho">
+            </div>
+            <div class="section">
+                <div class="left-section">
+                    <h3 class="cliente30">Cliente: NOmbre</h3>
+                    <p>Dirección: Seccion Clientes</p>
+                    <p>IVA: Seccion Clientes</p> 
+                    <label for="">Condición de Venta:</label>
+                    <input type="text" id="condicionVenta">
+                    <label for="">Entrega:</label>
+                    <input type="text" id="entrega">
+                </div>
+                <div class="right-section">
+                    <p class="right-info pedido"><span>Nº Pedido:</span></p>
+                    <p class="right-info fecha"><span>Fecha:</span></p>
+                    <p class="right-info Vendedor"><span>Vendedor:</span> Nombre del vendedor en Login</p>
+                    <p class="right-info Zona"><span>Zona:</span> Texto en blanco a escribir</p>
+                </div>
+            </div>
+        
+            <table id="facturaTabla">
+              <tfoot>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th id="totalValueFactura">0.0</th>
+                </tr>
+              </tfoot>
+            </table>
+          
+
+            <div class="section contact">
+                <h3>Contacto</h3>
+                <p class="phone">Teléfono: +54 9 336 400-4107</p>
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="GenFact">Generar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- DataTables -->
-  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      // Inicializar DataTables
-      var table = $('#ventasTable').DataTable();
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
-      // Obtener datos almacenados en el Local Storage y cargarlos en el DataTables
-      var storedData = localStorage.getItem('ventasData');
-      if (storedData) {
-        var parsedData = JSON.parse(storedData);
-        table.rows.add(parsedData).draw();
-      }
 
-      // Generar código ID único de 6 dígitos
-      function generateUniqueID() {
-        var uniqueID = '';
-        var digits = '0123456789';
-        for (var i = 0; i < 6; i++) {
-          uniqueID += digits.charAt(Math.floor(Math.random() * digits.length));
-        }
-        return uniqueID;
-      }
 
-      // Agregar venta al DataTables y almacenamiento local
-      $('#agregarVentaForm').on('submit', function (e) {
-        e.preventDefault();
+  <script src="ventaProductos.js"></script>
 
-        var producto = $('#producto').val();
-        var cantidad = $('#cantidad').val();
-        var id = generateUniqueID();
-
-        var rowData = [id, producto, cantidad];
-        var deleteButton = '<button class="btn btn-sm btn-danger btn-eliminar" data-id="' + id + '">Eliminar</button>';
-        rowData.push(deleteButton);
-        table.row.add(rowData).draw();
-
-        // Actualizar datos en el almacenamiento local
-        var tableData = table.rows().data().toArray();
-        localStorage.setItem('ventasData', JSON.stringify(tableData));
-
-        // Limpiar el formulario
-        $('#agregarVentaForm')[0].reset();
-      });
-
-      // Delegación de eventos click para los botones de eliminar
-      $('#ventasTable tbody').on('click', '.btn-eliminar', function () {
-        var id = $(this).data('id');
-        var rowData = table.row($(this).closest('tr')).data();
-        // Aquí puedes realizar la acción que necesites con los datos de la fila seleccionada
-        console.log('Eliminar', rowData);
-        // Aquí puedes eliminar la fila de la tabla
-        table.row($(this).closest('tr')).remove().draw();
-
-        // Actualizar datos en el almacenamiento local
-        var tableData = table.rows().data().toArray();
-        localStorage.setItem('ventasData', JSON.stringify(tableData));
-      });
-    });
-  </script>
+</div>
 </body>
 
 </html>

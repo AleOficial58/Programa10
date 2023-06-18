@@ -83,19 +83,22 @@
   
   <div class="sections">
     <div class="button-container">
-      <button onclick="window.location.href='Clientes.html'">Gestión de Clientes</button>
+      <button onclick="window.location.href='clientes.html'">Gestión de Clientes</button>
     </div>
     <div class="button-container">
-      <button onclick="window.location.href=''">Zonas</button>
+      <button onclick="window.location.href='zonas.html'">Zonas</button>
     </div>
     <div class="button-container">
-      <button onclick="window.location.href=''">Facturación</button>
+      <button onclick="window.location.href='facturacion.html'">Facturación</button>
     </div>
     <div class="button-container">
       <button onclick="window.location.href='AgregaTusProductos.html'">Agrega tus Productos</button>
     </div>
     <div class="button-container">
-      <button onclick="window.location.href='AgregarTusVentas.html'">Agrega tus Ventas</button>
+      <button onclick="window.location.href='AgregaTusVentas.html'">Agrega tus Ventas</button>
+    </div>
+    <div class="button-container">
+      <button onclick="window.location.href='Analisis.html'">Analisis</button>
     </div>
     
 
@@ -106,7 +109,7 @@
 
 
     <div class="logout-button">
-      <button onclick="window.location.href='usuario.html'">Cerrar sesión</button>
+      <button onclick="logout()">Cerrar sesión</button>
     </div>
   </div>
   
@@ -122,6 +125,11 @@
   <script src="uilogic.js"></script>
   <script>
     var inventarioTable;
+
+    function logout() {
+      localStorage.setItem("usuarioActivo", JSON.stringify({}))
+      location.href='usuario.html'
+    }
 
     function cerrarSesion() {
       // Agrega aquí la lógica para cerrar sesión, como limpiar cookies o variables de sesión
