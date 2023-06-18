@@ -162,7 +162,6 @@ $(document).ready(function() {
   
     function guardarProductosEnLocalStorage() {
       var productos = productosTable.data().toArray();
-  
       localStorage.setItem("productos", JSON.stringify(productos));
     }
   });

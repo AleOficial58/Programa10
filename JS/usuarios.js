@@ -1,7 +1,6 @@
 const DB_USUARIOS = [
-
     {   id: 1,
-        username: "miguel",
+        username: "Miguel",
         password: "1234",
         first_name: "Miguel Angel",
         last_name: "Gonzalez",
