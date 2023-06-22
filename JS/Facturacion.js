@@ -35,10 +35,18 @@ function EliminarFactura(btn) {
         if (factura.facturaID == facturaID) {
             facturas.splice(index, 1)
         }
+        
     })
     localStorage.setItem('facturas', JSON.stringify(facturas))
-
-    location.reload();
+    let data = JSON.parse(localStorage.getItem("RegistroEnvioData"));
+    data.map((registro, index) => { 
+        if (registro.facturaID == facturaID) {
+            data.splice(index, 1)
+            
+        }
+    }) 
+    localStorage.setItem('RegistroEnvioData', JSON.stringify(data))
+    location.reload(); 
 }
 
 
