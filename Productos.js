@@ -46,7 +46,12 @@ $(document).ready(function() {
         id: idProducto,
         nombre: nombreProducto,
         precio: precioFinal,
-        descripcion: descripcionProducto
+        descripcion: descripcionProducto, 
+        p1: porcentaje1, 
+        p2: porcentaje2,
+        p3: porcentaje3,
+        p4: porcentaje4,
+        precioBruto: precioProducto
       };
   
       productosTable.row.add(nuevoProducto).draw();
@@ -76,6 +81,7 @@ $(document).ready(function() {
         nombre: nombreProducto,
         precio: precioFinal,
         descripcion: descripcionProducto
+
       };
   
       productosTable.row(currentRow).data(rowData).draw();
@@ -96,16 +102,31 @@ $(document).ready(function() {
       debugger
       currentRow = $(this).closest("tr");
       var data = productosTable.row(currentRow).data();
-      var idProducto = data.id;
-      var nombreProducto = data.nombre;
-      var precioOriginal = data.precio; // Guardar el precio original sin los cálculos
-      var descripcionProducto = data.descripcion;
-  
-      $("#id-producto").val(idProducto);
-      $("#nombreProducto-act").val(nombreProducto);
-      $("#precioProducto-act").val(precioOriginal); // Restablecer el precio original
-      $("#descripcionProducto-act").val(descripcionProducto);
-      $("#precioOriginal").val(precioOriginal); // Guardar el precio original en el campo oculto
+      //var idProducto = data.id;
+      //var nombreProducto = data.nombre;
+      //var precioOriginal = data.precio; // Guardar el precio original sin los cálculos
+      //var descripcionProducto = data.descripcion;
+      
+      let productos = JSON.parse(localStorage.getItem("productos"));
+      const producto= productos.filter((p, index) => { 
+        if (p.id == data.id) {
+          return true
+            
+        }
+    }) 
+
+
+      $("#id-producto").val(producto.id);
+      {
+        "id": 188748,
+        "nombre": "auto",
+        "precio": "146.410",
+        "descripcion": "10"
+    }
+      $("#nombreProducto-act").val(producto.nombre);
+      $("#precioProducto-act").val(producto.precioBruto); // Restablecer el precio original
+      $("#descripcionProducto-act").val(producto.descripcion);
+      $("#precioOriginal").val(producto.precioBruto); // Guardar el precio original en el campo oculto
     });
   
     $("#productosTable tbody").on("click", ".btn-delete", function() {
