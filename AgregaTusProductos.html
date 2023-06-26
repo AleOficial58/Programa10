@@ -140,6 +140,12 @@
                                     <input type="text" id="porcentaje4" name="porcentaje4" required>
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="descuento">% Descuento:</label>
+                                    <input type="number" max="100" min="0" step="any" name="descuento" value="0" id="descuento" name="descuento">
+                                </div>
+                            </div>
                             <br>
                         </div>
                     </div>
@@ -164,11 +170,9 @@
                 </div>
                 <form id="actualizarProductoForm">
                     <div class="modal-body">
-                        <!-- Datos que se van a utilizar para actualizar los datos -->
-                        <input type="hidden" id="precioOriginal" value="">
+                
                         <input type="text" id="id-producto" style="display: none;">
-                        <input type="text" id="botones" style="display: none;">
-                        <input type="text" id="rowS" style="display: none;">
+                      
                         <!-- Datos que se van a utilizar para actualizar los datos -->
                         <div class="row">
                             <div class="col-6">
@@ -211,6 +215,12 @@
                                 <div>
                                     <label for="porcentaje4-act">Porcentaje 4:</label>
                                     <input type="text" id="porcentaje4-act" name="porcentaje4" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="descuento-act">% Descuento:</label>
+                                    <input type="number" max="100" min="0" step="any" name="descuento" value="0" id="descuento-act" name="descuento">
                                 </div>
                             </div>
                             <br>

@@ -39,14 +39,24 @@ $(document).ready(function() {
       var porcentaje2 = parseFloat($("#porcentaje2").val());
       var porcentaje3 = parseFloat($("#porcentaje3").val());
       var porcentaje4 = parseFloat($("#porcentaje4").val());
+      var descuento = parseFloat($("#descuento").val());
   
       var precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4);
-  
+      
+      // aplicar descuento
+      precioFinal -= precioFinal * (descuento / 100)
+
       var nuevoProducto = {
         id: idProducto,
         nombre: nombreProducto,
         precio: precioFinal,
-        descripcion: descripcionProducto
+        descripcion: descripcionProducto, 
+        p1: porcentaje1, 
+        p2: porcentaje2,
+        p3: porcentaje3,
+        p4: porcentaje4,
+        precioBruto: precioProducto,
+        descuento: descuento
       };
   
       productosTable.row.add(nuevoProducto).draw();
@@ -58,6 +68,7 @@ $(document).ready(function() {
     });
   
     $("#actualizarProductoForm").submit(function(event) {
+  
       event.preventDefault();
       var idProducto = $("#id-producto").val();
       var nombreProducto = $("#nombreProducto-act").val();
@@ -68,14 +79,25 @@ $(document).ready(function() {
       var porcentaje2 = parseFloat($("#porcentaje2-act").val());
       var porcentaje3 = parseFloat($("#porcentaje3-act").val());
       var porcentaje4 = parseFloat($("#porcentaje4-act").val());
+      var descuento = parseFloat($("#descuento-act").val());
   
       var precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4);
-  
+      // aplicar descuento
+      precioFinal -= precioFinal * (descuento / 100)
+
       var rowData = {
         id: idProducto,
         nombre: nombreProducto,
         precio: precioFinal,
-        descripcion: descripcionProducto
+        descripcion: descripcionProducto,
+        p1: porcentaje1, 
+        p2: porcentaje2,
+        p3: porcentaje3,
+        p4: porcentaje4,
+        precioBruto: precioProducto,
+        descuento: descuento
+
+
       };
   
       productosTable.row(currentRow).data(rowData).draw();
@@ -93,19 +115,33 @@ $(document).ready(function() {
     }
 
     $("#productosTable tbody").on("click", ".btn-edit", function() { 
-      debugger
+      
       currentRow = $(this).closest("tr");
       var data = productosTable.row(currentRow).data();
-      var idProducto = data.id;
-      var nombreProducto = data.nombre;
-      var precioOriginal = data.precio; // Guardar el precio original sin los cálculos
-      var descripcionProducto = data.descripcion;
-  
-      $("#id-producto").val(idProducto);
-      $("#nombreProducto-act").val(nombreProducto);
-      $("#precioProducto-act").val(precioOriginal); // Restablecer el precio original
-      $("#descripcionProducto-act").val(descripcionProducto);
-      $("#precioOriginal").val(precioOriginal); // Guardar el precio original en el campo oculto
+      //var idProducto = data.id;
+      //var nombreProducto = data.nombre;
+      //var precioOriginal = data.precio; // Guardar el precio original sin los cálculos
+      //var descripcionProducto = data.descripcion;
+      
+      let productos = JSON.parse(localStorage.getItem("productos"));
+      const producto = productos.filter((p, index) => { 
+        if (p.id == data.id) {
+          return true
+        }
+    })[0]
+    
+
+
+      $("#id-producto").val(producto.id);
+      $("#nombreProducto-act").val(producto.nombre);
+      $("#precioProducto-act").val(producto.precioBruto); // Restablecer el precio original
+      $("#descripcionProducto-act").val(producto.descripcion);
+      $("#porcentaje1-act").val(producto.p1);
+      $("#porcentaje2-act").val(producto.p2);
+      $("#porcentaje3-act").val(producto.p3);
+      $("#porcentaje4-act").val(producto.p4);
+      $("#descuento-act").val(producto.descuento)
+
     });
   
     $("#productosTable tbody").on("click", ".btn-delete", function() {
@@ -156,7 +192,7 @@ $(document).ready(function() {
       resultado += (resultado *  (porcentaje2 / 100));
       resultado += (resultado *  (porcentaje3 / 100));
       resultado += (resultado *  (porcentaje4 / 100));
-      return resultado.toFixed(3);  // Redondear el resultado a 2 decimales
+      return resultado.toFixed(3);  // Redondear el resultado a 3 decimales
   
     }
   
