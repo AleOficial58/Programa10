@@ -25,9 +25,10 @@ if (registros) {
   var table = $("#tablaZonas").DataTable({
     data: obtenerRegistroZone(), // Data
     columns: [
-      { title: "Código ID" },
+      { title: "Orden" },
       { title: "Nombre" },
       { title: "Apellido" },
+      //{ title: "Direccion" },
       { title: "Zona" },
       { title: "Acciones" }
     ],
