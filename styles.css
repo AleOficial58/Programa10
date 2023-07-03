@@ -583,4 +583,9 @@ form {
       margin-left: 20px;
     }
 
-    
+    #tablaEnviosContainer {
+      position: relative;
+      top: 20px; /* Ajusta la posición vertical según tus necesidades */
+      left: -50px; /* Ajusta la posición horizontal según tus necesidades */
+  }
+  

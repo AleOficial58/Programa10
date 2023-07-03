@@ -1,6 +1,14 @@
 
 var table;
 
+if (!localStorage.getItem('contadorRegistroEnvio')) {
+    localStorage.setItem('contadorRegistroEnvio', JSON.stringify(0))
+}
+
+if (!localStorage.getItem('RegistroEnvioData')) {
+    localStorage.setItem('RegistroEnvioData', JSON.stringify([]))
+}
+
 if (!localStorage.getItem('facturas')) {
     localStorage.setItem('facturas', JSON.stringify([]))
 }
@@ -165,18 +173,6 @@ if (JSON.parse(localStorage.getItem('temporal')).productos.length > 0) {
 }
 
 
-
-// $('#productosTable tbody').on('click', 'tr', function() {
-//   if ($(this).hasClass('selected')) {
-//     $(this).removeClass('selected');
-//   } else {
-//     table.$('tr.selected').removeClass('selected');
-//     $(this).addClass('selected');
-//   }
-// });
-
-
-
 function cargarProductos() {
     let selectProductos = document.getElementById("productos");
     let productosGuardados = localStorage.getItem("productos");
@@ -291,13 +287,23 @@ function generateUniqueID() {
     }
     return uniqueID;
 }
+function currentDate() {
+    const currentDate = new Date();
 
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+    const day = String(currentDate.getDate()).padStart(2, "0");
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    return formattedDate;
+}
 
 var myModal = document.getElementById('exampleModal')
 myModal.addEventListener('shown.bs.modal', function (e) {
     const facturaID = generateUniqueID()
     document.getElementById('facturaID').textContent = facturaID
-    const fecha = new Date().toLocaleDateString();
+    const fecha = currentDate();
     const total = document.getElementById('totalValue').textContent;
     const cID = document.getElementById('clientes').value != "" ? document.getElementById('clientes').value : JSON.parse(localStorage.getItem('temporal')).clienteID
     const cliente = JSON.parse(localStorage.getItem('clientesData')).find(c => c[0] == cID)
@@ -378,6 +384,31 @@ myModal.addEventListener('shown.bs.modal', function (e) {
         table2.clear().draw();
         document.getElementById("productos").selectedIndex = 0;
         document.getElementById('clientes').selectedIndex = 0;
+
+        // Registrar el envio
+        let registroEnvioContador = JSON.parse(localStorage.getItem('contadorRegistroEnvio'));
+        let registro = JSON.parse(localStorage.getItem('RegistroEnvioData'))
+
+        registroEnvioContador = registroEnvioContador + 1;
+        localStorage.setItem('contadorRegistroEnvio', JSON.stringify(registroEnvioContador))
+        const registroEnvio = {
+
+            id: registroEnvioContador,
+            facturaID: factura.facturaID,
+            cliente: {
+                id: cliente[0],
+                nombre: cliente[1],
+                apellido: cliente[2],
+                nombre: cliente[1],
+                dni: cliente[3],
+                direccion: cliente[4],
+                telefono: cliente[5],
+                condicion: cliente[6],
+            }
+        }
+
+        registro.push(registroEnvio)
+        localStorage.setItem('RegistroEnvioData', JSON.stringify(registro))
 
         // redireccionar a facturacion
         location.href = "Facturacion.html"
