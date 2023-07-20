@@ -49,22 +49,18 @@ $("#tablaZonas").on("blur", "input.editable", function() {
   const newValue = $(this).val();
   const regex = /^[0-9]+$/;
   if (regex.test(newValue) && newValue !== "" && newValue.toLowerCase() !== "e") {
-    console.log(3)
 
     const registros = obtenerRegistroZone();  
     let registro;  
     for (const i in registros) {
       
       if (registros[i][0] == $(this).attr("data-value")) {
-        registro = registros[i]
+        registros[i][0] = newValue
+
         break;
       }
     }
     
-    registro[0] = newValue;
-
-    registros.push(registro);
-
     localStorage.setItem("clientesZona", JSON.stringify(registros))
 
     cell.data(newValue).draw();
