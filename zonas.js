@@ -25,13 +25,58 @@ if (registros) {
   var table = $("#tablaZonas").DataTable({
     data: obtenerRegistroZone(), // Data
     columns: [
-      { title: "Código ID" },
+      { title: "Orden", 
+          render: function(data, type, row, meta) {
+            if (type === 'display') {
+              return `<input type="number" data-value="${data}" class="editable" value="${data}">`;
+            }
+            return data;
+          }
+    
+    },
       { title: "Nombre" },
       { title: "Apellido" },
+      //{ title: "Direccion" },
       { title: "Zona" },
       { title: "Acciones" }
     ],
   });
+
+
+
+$("#tablaZonas").on("blur", "input.editable", function() {
+  const cell = table.cell($(this).closest("td"));
+  const newValue = $(this).val();
+  const regex = /^[0-9]+$/;
+  if (regex.test(newValue) && newValue !== "" && newValue.toLowerCase() !== "e") {
+    console.log(3)
+
+    const registros = obtenerRegistroZone();  
+    let registro;  
+    for (const i in registros) {
+      
+      if (registros[i][0] == $(this).attr("data-value")) {
+        registro = registros[i]
+        break;
+      }
+    }
+    
+    registro[0] = newValue;
+
+    registros.push(registro);
+
+    localStorage.setItem("clientesZona", JSON.stringify(registros))
+
+    cell.data(newValue).draw();
+  }else {
+    cell.data($(this).attr("data-value")).draw();
+  }
+  table.order([0, 'asc']).draw();
+});
+
+
+
+
   // Generar las opciones del select con los registros del DataTable
   generarOpcionesSelect(clienteSelect, registros);
 }
@@ -176,20 +221,5 @@ myModal.addEventListener('shown.bs.modal', function (e) {
 
 
 
-// // Obtener referencia al elemento donde se mostrarán los datos en la página de zonas
-// var datosClienteElemento = document.getElementById('datosCliente');
-
-// // Obtener los datos del cliente almacenados en el localStorage
-// var cliente = JSON.parse(localStorage.getItem('cliente'));
-
-// // Mostrar los datos del cliente en la página de zonas
-// if (cliente) {
-//   datosClienteElemento.textContent = 'Cliente: ' + cliente.nombre + ' ' + cliente.apellido;
-// } else {
-//   datosClienteElemento.textContent = 'No hay datos de cliente almacenados';
-// }
-
-
-// 
 
 

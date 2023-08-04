@@ -1,0 +1,7 @@
+.loader::before,
+.loader::after{
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+}
+

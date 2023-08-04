@@ -4,7 +4,7 @@ class Producto {
     this.id = id;
     this.zona = zona;
     this.precio = precio;
-  }
+  }
 }
 // Clase Cliente
 class Cliente {

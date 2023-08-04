@@ -61,6 +61,8 @@
       <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
       <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
       <li><a href="Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
+      <li><a href="/Registro/RegistroCarrito.html" onclick="mostrarVentana('zonas')">Registro del dia</a></li>
+      <li><a href="FrontEnd/comision.html" onclick="mostrarVentana('zonas')">Planilla de comision</a></li>
     </ul>
   </div>
 
@@ -112,32 +114,44 @@
                             </div>
                             <div class="col-6">
                                 <div>
+                                    <label for="Stock">Stock:</label>
+                                    <input type="text" id="Stock" name="Stock" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
                                     <label for="descripcionProducto">Descripción:</label>
-                                    <input type="text" id="descripcionProducto" name="descripcionProducto" required>
+                                    <input type="text" id="descripcionProducto" name="descripcionProducto" >
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label for="porcentaje1">Porcentaje 1:</label>
-                                    <input type="text" id="porcentaje1" name="porcentaje1" required>
+                                    <input type="text" id="porcentaje1" name="porcentaje1" >
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label for="porcentaje2">Porcentaje 2:</label>
-                                    <input type="text" id="porcentaje2" name="porcentaje2" required>
+                                    <input type="text" id="porcentaje2" name="porcentaje2" >
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label for="porcentaje3">Porcentaje 3:</label>
-                                    <input type="text" id="porcentaje3" name="porcentaje3" required>
+                                    <input type="text" id="porcentaje3" name="porcentaje3" >
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
                                     <label for="porcentaje4">Porcentaje 4:</label>
-                                    <input type="text" id="porcentaje4" name="porcentaje4" required>
+                                    <input type="text" id="porcentaje4" name="porcentaje4" >
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="descuento">% Descuento:</label>
+                                    <input type="number" max="100" min="0" step="any" name="descuento" value="0" id="descuento" name="descuento">
                                 </div>
                             </div>
                             <br>
@@ -164,11 +178,9 @@
                 </div>
                 <form id="actualizarProductoForm">
                     <div class="modal-body">
-                        <!-- Datos que se van a utilizar para actualizar los datos -->
-                        <input type="hidden" id="precioOriginal" value="">
+                
                         <input type="text" id="id-producto" style="display: none;">
-                        <input type="text" id="botones" style="display: none;">
-                        <input type="text" id="rowS" style="display: none;">
+                      
                         <!-- Datos que se van a utilizar para actualizar los datos -->
                         <div class="row">
                             <div class="col-6">
@@ -211,6 +223,12 @@
                                 <div>
                                     <label for="porcentaje4-act">Porcentaje 4:</label>
                                     <input type="text" id="porcentaje4-act" name="porcentaje4" required>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div>
+                                    <label for="descuento-act">% Descuento:</label>
+                                    <input type="number" max="100" min="0" step="any" name="descuento" value="0" id="descuento-act" name="descuento">
                                 </div>
                             </div>
                             <br>
