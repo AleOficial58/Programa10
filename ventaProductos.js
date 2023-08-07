@@ -222,8 +222,7 @@ btnAddProduct.addEventListener("click", function () {
             icon: "error"
         })
     } else {
-
-
+   
         selectProductos.selectedIndex = 0;
 
         let producto = obtenerProductoPorID(idProducto);
@@ -242,13 +241,24 @@ btnAddProduct.addEventListener("click", function () {
 
             table.clear().draw();
             temp.productos = temp.productos.map(p => {
-
+                
                 if (p[0] == producto.id) {
-                    p[2] = p[2] + 1; // incrementa 1 la cantidad
-                    p[4] = p[2] * p[3]
-                    flag = true;
-                    table.row.add(p).draw();
-                    return p;
+                    if (p[2] + 1 > producto.stock) {
+                        Swal.fire({
+                            title: "Atención",
+                            text: `No se pueden vender mas unidades de este producto, stock: ${producto.stock}`,
+                            icon: "error"
+                        })
+                        flag = true;
+                        table.row.add(p).draw();
+                        return p;
+                    } else {
+                        p[2] = p[2] + 1; // incrementa 1 la cantidad
+                        p[4] = p[2] * p[3]
+                        flag = true;
+                        table.row.add(p).draw();
+                        return p;
+                    }
                 }
                 table.row.add(p).draw();
                 return p
@@ -322,6 +332,7 @@ myModal.addEventListener('shown.bs.modal', function (e) {
         vendedor: vendedor,
         zona: ""
     }
+    
 
 
     document.querySelector(".left-section").innerHTML = `<div class="left-section">
@@ -372,6 +383,17 @@ myModal.addEventListener('shown.bs.modal', function (e) {
         factura.condicionVenta = document.getElementById('condicionVenta').textContent
         factura.entrega = document.getElementById('entrega').textContent
         factura.zona = document.getElementById('zona').textContent
+
+        // Reducir stock de productos
+        const _productos = JSON.parse(localStorage.getItem('productos'))
+        factura.productos.map(p => {
+            const producto = _productos.find(pr => pr.id == p[0])
+            if (producto != undefined) {
+                producto.stock = producto.stock - p[2]
+            }
+        })
+        localStorage.setItem('productos', JSON.stringify(_productos))
+
         facturas.push(factura)
         localStorage.setItem('facturas', JSON.stringify(facturas))
 

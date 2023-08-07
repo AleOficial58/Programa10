@@ -5,6 +5,7 @@ $(document).ready(function() {
         { data: "id" },
         { data: "nombre" },
         { data: "precio" },
+        { data: "stock" },
         { data: "descripcion" },
         { data: null }
       ],
@@ -33,6 +34,7 @@ $(document).ready(function() {
       var idProducto = generateUniqueID();
       var nombreProducto = $("#nombreProducto").val();
       var precioProducto = parseFloat($("#precioProducto").val());
+      var stock = parseFloat($("#Stock").val());
       var descripcionProducto = $("#descripcionProducto").val();
   
       var porcentaje1 = parseFloat($("#porcentaje1").val());
@@ -41,11 +43,7 @@ $(document).ready(function() {
       var porcentaje4 = parseFloat($("#porcentaje4").val());
       var descuento = parseFloat($("#descuento").val());
       var precioFinal = precioProducto
-<<<<<<< HEAD
-      if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes(NaN)) {
-=======
       if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes("") && ![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes(null)) {
->>>>>>> dc3cd8d2bf0f17b75d578fb193d89dce21941af1
         console.log(precioFinal)
          precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4);
       }
@@ -61,6 +59,7 @@ $(document).ready(function() {
         id: idProducto,
         nombre: nombreProducto,
         precio: precioFinal,
+        stock: stock,
         descripcion: descripcionProducto, 
         p1: porcentaje1, 
         p2: porcentaje2,
@@ -84,6 +83,7 @@ $(document).ready(function() {
       var idProducto = $("#id-producto").val();
       var nombreProducto = $("#nombreProducto-act").val();
       var precioProducto = parseFloat($("#precioProducto-act").val());
+      var stock = $("#Stock-act").val()
       var descripcionProducto = $("#descripcionProducto-act").val();
   
       var porcentaje1 = parseFloat($("#porcentaje1-act").val());
@@ -91,12 +91,7 @@ $(document).ready(function() {
       var porcentaje3 = parseFloat($("#porcentaje3-act").val());
       var porcentaje4 = parseFloat($("#porcentaje4-act").val());
       var descuento = parseFloat($("#descuento-act").val());
-<<<<<<< HEAD
-      precioFinal = precioProducto
-      if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes(NaN)) {
-=======
       if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes("")) {
->>>>>>> dc3cd8d2bf0f17b75d578fb193d89dce21941af1
         precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4);
       }
       
@@ -110,6 +105,7 @@ $(document).ready(function() {
         id: idProducto,
         nombre: nombreProducto,
         precio: precioFinal,
+        stock: stock,
         descripcion: descripcionProducto,
         p1: porcentaje1, 
         p2: porcentaje2,
@@ -156,6 +152,7 @@ $(document).ready(function() {
       $("#id-producto").val(producto.id);
       $("#nombreProducto-act").val(producto.nombre);
       $("#precioProducto-act").val(producto.precioBruto); // Restablecer el precio original
+      $("#Stock-act").val(producto.stock);
       $("#descripcionProducto-act").val(producto.descripcion);
       $("#porcentaje1-act").val(producto.p1);
       $("#porcentaje2-act").val(producto.p2);
