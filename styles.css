@@ -533,9 +533,6 @@ form {
       background-color: yellow;
     }
     
-
-  
-
     .menu {
       /* width: 100%; */
       width: auto;
@@ -588,4 +585,53 @@ form {
       top: 20px; /* Ajusta la posición vertical según tus necesidades */
       left: -50px; /* Ajusta la posición horizontal según tus necesidades */
   }
+<<<<<<< HEAD
   
+=======
+
+/* PESTAÑA COMISION */
+body {
+  font-family: Arial, sans-serif;
+}
+
+#commissions {
+  list-style: none;
+  padding: 0;
+}
+
+#commissions li {
+  margin-bottom: 10px;
+}
+
+#total {
+  font-weight: bold;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.total {
+  text-align: right;
+  font-weight: bold;
+  position: relative;
+  left: -530px;
+}
+>>>>>>> dc3cd8d2bf0f17b75d578fb193d89dce21941af1

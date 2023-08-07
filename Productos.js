@@ -41,7 +41,11 @@ $(document).ready(function() {
       var porcentaje4 = parseFloat($("#porcentaje4").val());
       var descuento = parseFloat($("#descuento").val());
       var precioFinal = precioProducto
+<<<<<<< HEAD
       if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes(NaN)) {
+=======
+      if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes("") && ![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes(null)) {
+>>>>>>> dc3cd8d2bf0f17b75d578fb193d89dce21941af1
         console.log(precioFinal)
          precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4);
       }
@@ -87,8 +91,12 @@ $(document).ready(function() {
       var porcentaje3 = parseFloat($("#porcentaje3-act").val());
       var porcentaje4 = parseFloat($("#porcentaje4-act").val());
       var descuento = parseFloat($("#descuento-act").val());
+<<<<<<< HEAD
       precioFinal = precioProducto
       if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes(NaN)) {
+=======
+      if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes("")) {
+>>>>>>> dc3cd8d2bf0f17b75d578fb193d89dce21941af1
         precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4);
       }
       

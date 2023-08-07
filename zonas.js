@@ -49,18 +49,33 @@ $("#tablaZonas").on("blur", "input.editable", function() {
   const newValue = $(this).val();
   const regex = /^[0-9]+$/;
   if (regex.test(newValue) && newValue !== "" && newValue.toLowerCase() !== "e") {
+<<<<<<< HEAD
+=======
+    console.log(3)
+>>>>>>> dc3cd8d2bf0f17b75d578fb193d89dce21941af1
 
     const registros = obtenerRegistroZone();  
     let registro;  
     for (const i in registros) {
       
       if (registros[i][0] == $(this).attr("data-value")) {
+<<<<<<< HEAD
         registros[i][0] = newValue
 
+=======
+        registro = registros[i]
+>>>>>>> dc3cd8d2bf0f17b75d578fb193d89dce21941af1
         break;
       }
     }
     
+<<<<<<< HEAD
+=======
+    registro[0] = newValue;
+
+    registros.push(registro);
+
+>>>>>>> dc3cd8d2bf0f17b75d578fb193d89dce21941af1
     localStorage.setItem("clientesZona", JSON.stringify(registros))
 
     cell.data(newValue).draw();
