@@ -14,6 +14,7 @@ function addRegistroToSystem(pnombre, papellido, pdni, pzona) {
   ImprimirTablaRegistro();
 }
 
+// Los sistemas automatizados
 
 function getListAgend() {
   var storedList = localStorage.getItem("LocallistAgend");
