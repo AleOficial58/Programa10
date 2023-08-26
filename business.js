@@ -13,6 +13,7 @@ function addRegistroToSystem(pnombre, papellido, pdni, pzona) {
   LocalStorageListAgend(listAgend);
   ImprimirTablaRegistro();
 }
+sessionStorage
 
 function getListAgend() {
   var storedList = localStorage.getItem("LocallistAgend");
