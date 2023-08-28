@@ -27,7 +27,7 @@ h1 {
 }
 
 .section {
-  color: white !important;  
+  color: white !important;
   background-color: #fff;
   border-radius: 10px;
   padding: 40px;
@@ -52,7 +52,7 @@ h2 {
 .form-group input[name="apellido"],
 .form-group input[name="dni"],
 .form-group input[name="zona"] {
-  
+
   width: 100%;
   padding: 15px;
   font-size: 18px;
@@ -437,154 +437,156 @@ form {
 }
 
 
-  header{
-      background:#512DA8;
-  }
-  
-  header {
-      background-image: linear-gradient(to right, #ff4081, #ff8f00);
-      padding: 60px;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    h1 {
-      color: #fff;
-      font-size: 64px;
-      font-family: "Montserrat", sans-serif;
-      font-weight: 900;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
-    }
-    
-    h3 {
-      color: #ff0000;
-      font-size: 32px;
-      font-family: "Playfair Display", serif;
-      margin-top: 0;
-      opacity: 0.8;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    }
-    
-    header:before {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background: radial-gradient(ellipse at center, #ff4081 0%, #ff8f00 100%);
-      z-index: -1;
-      opacity: 0.8;
-    }
-    
-    header:after {
-      content: "";
-      position: absolute;
-      top: -10px;
-      left: 0;
-      right: 0;
-      height: 10px;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
-      z-index: -1;
-    }
-  
-    .modal-title.fs-5{
-      color: rgb(255, 157, 0);
-    }
-    
-    
+header {
+  background: #512DA8;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-    }
-    
-    h1 {
-      color: #333;
-    }
-    
-    h2 {
-      color: #666;
-    }
-    
-    select {
-      margin-bottom: 10px;
-    }
-    
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-    
-    #facturaGenerada {
-      border: 1px solid #ccc;
-      padding: 10px;
-    }
-    
-    .selected {
-      background-color: yellow;
-    }
-    
-    .menu {
-      /* width: 100%; */
-      width: auto;
-    }
-    
-    .menu ul {
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    .menu ul li {
-      flex-grow: 1;
-    }
-    
-    .menu ul li a {
-      display: block;
-      padding: 10px;
-      text-decoration: none;
-    }
-    
-    .botonEliminar{
-      color: white !important;
-      background-color: red;
-    }
+header {
+  background-image: linear-gradient(to right, #ff4081, #ff8f00);
+  padding: 60px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
 
-    .botonEliminar:hover{
-      background-color: rgb(255, 162, 0) !important;
-    }
+h1 {
+  color: #fff;
+  font-size: 64px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 900;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
 
-    .input{
-      color: red;
-    }
+h3 {
+  color: #ff0000;
+  font-size: 32px;
+  font-family: "Playfair Display", serif;
+  margin-top: 0;
+  opacity: 0.8;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
 
-    .titulo{
-      color: black;
-      font-size: 20px;
-      margin-top: 20px;
-      margin-left: 20px;
-    }
+header:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(ellipse at center, #ff4081 0%, #ff8f00 100%);
+  z-index: -1;
+  opacity: 0.8;
+}
 
-    .analisiscliente{
-      color: black;
-      font-size: 20px;
-      margin-top: 20px;
-      margin-left: 20px;
-    }
+header:after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  z-index: -1;
+}
 
-    #tablaEnviosContainer {
-      position: relative;
-      top: 20px; /* Ajusta la posición vertical según tus necesidades */
-      left: -50px; /* Ajusta la posición horizontal según tus necesidades */
-  }
+.modal-title.fs-5 {
+  color: rgb(255, 157, 0);
+}
+
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+}
+
+h2 {
+  color: #666;
+}
+
+select {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#facturaGenerada {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.selected {
+  background-color: yellow;
+}
+
+.menu {
+  /* width: 100%; */
+  width: auto;
+}
+
+.menu ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu ul li {
+  flex-grow: 1;
+}
+
+.menu ul li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.botonEliminar {
+  color: white !important;
+  background-color: red;
+}
+
+.botonEliminar:hover {
+  background-color: rgb(255, 162, 0) !important;
+}
+
+.input {
+  color: red;
+}
+
+.titulo {
+  color: black;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.analisiscliente {
+  color: black;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#tablaEnviosContainer {
+  position: relative;
+  top: 20px;
+  /* Ajusta la posición vertical según tus necesidades */
+  left: -50px;
+  /* Ajusta la posición horizontal según tus necesidades */
+}
 
 /* PESTAÑA COMISION */
 body {
@@ -618,7 +620,8 @@ table {
   margin-bottom: 20px;
 }
 
-table th, table td {
+table th,
+table td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: center;
