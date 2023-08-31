@@ -3,29 +3,36 @@
 <head>
     <title>Registros de Zonas</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"> -->
+    <!-- <link href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="Tabulator/css/tabulator.css">
     <link rel="stylesheet" href="styles.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    
+    
 
 </head>
 <body>
 
 
-  <div id="menu">
-    <ul>
-      <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-      <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
-      <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
-      <li><a href="Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
-      <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
-      <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
-      <li><a href="Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
-      <li><a href="Registro/RegistroCarrito.html" onclick="mostrarVentana('zonas')">Registro del dia</a></li>
-    </ul>
-  </div>
+    <div id="menu">
+        <ul>
+          <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+          <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+          <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+          <li><a href="Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
+          <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+          <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+          <li><a href="Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
+          <li><a href="Registro/RegistroCarrito.html" onclick="mostrarVentana('zonas')">Registro del dia</a></li>
+          <li><a href="FrontEnd/comision.html" onclick="mostrarVentana('zonas')">Planilla de comision</a></li>
+          <li><a href="FrontEnd/Carga.html" onclick="mostrarVentana('zonas')">Planilla de carga</a></li>
+        </ul>
+      </div>
 
     <div class="container">
         <div class="row">
@@ -39,141 +46,28 @@
 
         <div class="row">
             <div class="col-12">
-                <h3>Clientes con zonas asignadas:</h3>
-                <table class="display" id="tablaZonas"></table>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar zona de cliente</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="container-fluid">
-                            <div class="col-12">
-                                <label for="updateZoneValue">Zona (<span id="oldZoneValue"></span>)</label>
-                                <input type="text" class="form-control" id="updateZoneValue" placeholder="Ingrese la nueva zona">
-                            </div>
-                        </div>
+                <div class="row mb-2">
+                    <div class="col-8">
+                        <h3>Clientes con zonas asignadas:</h3>
+                    </div>
+                    <div class="col-4 d-flex justify-content-right">
+                       
+                        <!-- Botón para imprimir -->
+                        <button class="btn btn-info form-control" id="printTableZonas">Imprimir DataTable</button>
+                
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" id="btnUpdateZoneModal">Actualizar</button>
-                </div>
+                <div id="tablaZonas"></div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script>
+    <script src="Tabulator/js/tabulator.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
     <script src="zonas.js"></script>
     <script src="Clientes.js"></script>
-    <script>
-        // // Variables de los elementos del DOM
-        // var tablaRegistros;
-        // var selectRegistros;
-        // var inputZona;
-        // var btnAsignar;
-        // var tablaZonas;
-
-        // $(document).ready(function() {
-        //     // Asignar elementos del DOM a las variables
-        //     tablaRegistros = $('#tablaRegistros').DataTable();
-        //     selectRegistros = $('#selectRegistros');
-        //     inputZona = $('#inputZona');
-        //     btnAsignar = $('#btnAsignar');
-        //     // tablaZonas = $('#tablaZonas').DataTable();
-
-        //     cargarRegistros();
-
-        //     selectRegistros.change(function() {
-        //         var selectedIdx = $(this).val();
-        //         var registros = obtenerRegistros();
-
-        //         if (selectedIdx >= 0 && selectedIdx < registros.length) {
-        //             var registro = registros[selectedIdx];
-        //             mostrarClienteSeleccionado(registro.nombre, registro.apellido, registro.zona);
-        //         }
-        //     });
-
-        //     btnAsignar.click(function() {
-        //         var zona = inputZona.val();
-        //         var selectedIdx = selectRegistros.val();
-        //         var registros = obtenerRegistros();
-
-        //         if (selectedIdx >= 0 && selectedIdx < registros.length) {
-        //             registros[selectedIdx].zona = zona;
-        //             actualizarRegistros(registros);
-        //             mostrarClienteSeleccionado(registros[selectedIdx].nombre, registros[selectedIdx].apellido, zona);
-        //             mostrarZonasAsignadas(registros);
-        //         }
-        //     });
-
-        //     function cargarRegistros() {
-        //         var registros = obtenerRegistros();
-
-        //         if (registros && registros.length > 0) {
-        //             for (var i = 0; i < registros.length; i++) {
-        //                 var registro = registros[i];
-        //                 tablaRegistros.row.add([registro.nombre + ' ' + registro.apellido, registro.zona]).draw(false);
-
-        //                 var option = '<option value="' + i + '">' + registro.nombre + ' ' + registro.apellido + '</option>';
-        //                 selectRegistros.append(option);
-
-        //                 if (registro.zona) {
-        //                     tablaZonas.row.add([registro.nombre + ' ' + registro.apellido, registro.zona]).draw(false);
-        //                 }
-        //             }
-        //         }
-        //     }
-
-        //     function obtenerRegistros() {
-        //         var registros = localStorage.getItem('clientes');
-        //         if (registros) {
-        //             return JSON.parse(registros);
-        //         }
-        //         return [];
-        //     }
-
-        //     function actualizarRegistros(registros) {
-        //         localStorage.setItem('clientes', JSON.stringify(registros));
-        //     }
-
-        //     function mostrarClienteSeleccionado(nombre, apellido, zona) {
-        //         $('#tablaClienteSeleccionado').remove();
-
-        //         var html = '<table id="tablaClienteSeleccionado" class="display">';
-        //         html += '<thead><tr><th>Nombre y Apellido</th><th>Zona</th></tr></thead>';
-        //         html += '<tbody><tr><td>' + nombre + ' ' + apellido + '</td><td>' + zona + '</td></tr></tbody>';
-        //         html += '</table>';
-
-        //         $('h3:contains("Cliente seleccionado:")').after(html);
-        //         $('#tablaClienteSeleccionado').DataTable();
-        //     }
-
-        //     function mostrarZonasAsignadas(registros) {
-        //         tablaZonas.clear().draw();
-
-        //         for (var i = 0; i < registros.length; i++) {
-        //             var registro = registros[i];
-        //             if (registro.zona) {
-        //                 tablaZonas.row.add([registro.nombre + ' ' + registro.apellido, registro.zona]).draw(false);
-        //             }
-        //         }
-        //     }
-        // });
-    </script>
 </body>
 
 </html>

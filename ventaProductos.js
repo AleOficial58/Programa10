@@ -309,8 +309,24 @@ function currentDate() {
     return formattedDate;
 }
 
-var myModal = document.getElementById('exampleModal')
-myModal.addEventListener('shown.bs.modal', function (e) {
+
+
+
+document.querySelector("#genFacId").addEventListener('click', function (e) {
+    var myModal = document.getElementById('exampleModal');
+    const facturaModalGen = new bootstrap.Modal(myModal);
+    if (table.rows().count() <= 0) {
+        facturaModalGen.hide(); 
+        
+        Swal.fire(
+            'ATENCION',
+            'La factura no tiene productos agregados',
+            'error'
+          )
+    } else {
+        
+    
+    facturaModalGen.show(); 
     const facturaID = generateUniqueID()
     document.getElementById('facturaID').textContent = facturaID
     const fecha = currentDate();
@@ -435,5 +451,6 @@ myModal.addEventListener('shown.bs.modal', function (e) {
         // redireccionar a facturacion
         location.href = "Facturacion.html"
     })
+    }
 
 })

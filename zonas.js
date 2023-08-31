@@ -9,72 +9,82 @@ var clienteSelect = document.getElementById("selectRegistros");
 var registros = obtenerRegistros();
 
 if (registros) {
-  // Generar las filas del DataTable
 
-  // var filas = registros.map(function (registro) {
-  //   return [
-  //     registro[0], // id
-  //     registro[1], // nombre
-  //     registro[2], // apellido
-  //     'N/A'
-  //   ];
-  // });
-
-
-  // Inicializar el DataTable
-  var table = $("#tablaZonas").DataTable({
-    data: obtenerRegistroZone(), // Data
-    columns: [
-      { title: "Orden", 
-          render: function(data, type, row, meta) {
-            if (type === 'display') {
-              return `<input type="number" data-value="${data}" class="editable" value="${data}">`;
-            }
-            return data;
+var table = new Tabulator("#tablaZonas", {
+  data: obtenerRegistroZone(),
+  
+  layout:"fitColumns",
+  index: "clienteID",
+  initialSort:[
+    {column:"order", dir:"asc"}, 
+],
+  columns: [
+      { title: "Orden", field: "order", editor: "number", validator:["min:1", "unique"]},
+      { title: "Nombre", field: "clienteNombre"},
+      { title: "Apellido", field: "clienteApellido"},
+      { title: "Zona", field: "clienteZone", editor: "input"},
+      { title: "Acciones",
+          formatter: "buttonCross",
+          width: 100,
+          align: "center",
+          print: false,
+          cellClick: function(e, cell) {
+              // Obtener el ID de la fila o cualquier otro dato necesario
+              var rowData = cell.getRow().getData();
+              var clienteID = rowData.clienteID;
+              
+              Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Esta acción eliminará la zona definitivamente. ¿Deseas continuar?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  let clientes = obtenerRegistroZone()
+                  const cliente = clientes.find((cliente) => cliente[0] == clienteID)
+                  const index = clientes.indexOf(cliente)
+                  clientes.splice(index, 1)
+                  localStorage.setItem('clientesZona', JSON.stringify(clientes));
+                  
+                  cell.getRow().delete()
+                  
+                  Swal.fire(
+                    'Eliminado',
+                    'La zona ha sido eliminada correctamente.',
+                    'success'
+                  )
+                }
+              });
           }
-    
-    },
-      { title: "Nombre" },
-      { title: "Apellido" },
-      //{ title: "Direccion" },
-      { title: "Zona" },
-      { title: "Acciones" }
-    ],
-  });
-
-
-
-$("#tablaZonas").on("blur", "input.editable", function() {
-  const cell = table.cell($(this).closest("td"));
-  const newValue = $(this).val();
-  const regex = /^[0-9]+$/;
-  if (regex.test(newValue) && newValue !== "" && newValue.toLowerCase() !== "e") {
-    console.log(3)
-
-    const registros = obtenerRegistroZone();  
-    let registro;  
-    for (const i in registros) {
-      
-      if (registros[i][0] == $(this).attr("data-value")) {
-        registro = registros[i]
-        break;
+  
       }
-    }
-    
-    registro[0] = newValue;
-
-    registros.push(registro);
-
-    localStorage.setItem("clientesZona", JSON.stringify(registros))
-
-    cell.data(newValue).draw();
-  }else {
-    cell.data($(this).attr("data-value")).draw();
-  }
-  table.order([0, 'asc']).draw();
+  ],
+  printHeader:"<h1>CLIENTES CON ZONAS ASIGNADAS</h1>"
 });
 
 
+
+table.on("cellEdited", function(row) {
+  if (row.getField() === "order") {
+      const registros = obtenerRegistroZone();
+
+      const registro = registros.find(value => value.clienteID === row.getData().clienteID);
+
+      if (registro) {
+          registro.order = row.getData().order;
+          localStorage.setItem("clientesZona", JSON.stringify(registros));
+          table.setSort("order", "asc");
+      }
+  }
+
+  if (row.getField() === "clienteZone") {
+    localStorage.setItem('clientesZona', JSON.stringify(table.getData()));
+  }
+});
 
 
   // Generar las opciones del select con los registros del DataTable
@@ -91,8 +101,8 @@ btnAgregar.addEventListener("click", function () {
   if (selectedValue !== "-1" && zone !== "") {
 
     // Obtener todas las filas del DataTable
-    var filas = table.rows().data().toArray();
-    let isAdded = filas.some((fila) => fila[0] == selectedValue)
+    var filas = table.getData();
+    let isAdded = filas.some((fila) => fila.clienteID == selectedValue)
     if (isAdded) {
       Swal.fire({
         title: "Atención",
@@ -105,19 +115,36 @@ btnAgregar.addEventListener("click", function () {
       const cliente = clientes.find((cliente) => cliente[0] == selectedValue)
 
       const clienteZona = obtenerRegistroZone()
-   
-      
-      const newClienteZona = [cliente[0], cliente[1], cliente[2], zone, 
-      `<button class="btn btn-danger btn-sm ml-2" onclick="eliminarCliente(${cliente[0]})">Eliminar</button>
-      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnOpenModal" data-cliente-id="${cliente[0]}">Editar</button>`
-    ]
+      let counter;
+      var rows = table.getData();
+      console.log(rows)
+      if (rows.length < 1){
+        counter = 1;
+      } else {
+        var lastRow = rows[rows.length - 1];
+        counter = lastRow.order + 1
+      }
+      const newClienteZona = {
+        order: counter,
+        clienteID: cliente[0], 
+        clienteNombre: cliente[1], 
+        clienteApellido: cliente[2], 
+        clienteZone: zone, 
+      }
       clienteZona.push(newClienteZona)
-      table.row.add(newClienteZona).draw();
+      table.addRow(newClienteZona)
       localStorage.setItem('clientesZona', JSON.stringify(clienteZona));
     }
 
   }
 });
+
+var btnPrintTable = document.querySelector("#printTableZonas");
+
+btnPrintTable.addEventListener('click', () => {
+  table.print("active", false, {columnGroups:false});
+})
+
 
 function obtenerRegistros() {
 
@@ -154,72 +181,5 @@ function generarOpcionesSelect(selectElement, registros) {
     selectElement.appendChild(option);
   });
 }
-
- // Generar las opciones del select con los registros del DataTable
-
-  // (FUNCION DE ABAJO UTILIZA SWEET ALERT)
-
-function eliminarCliente(id) {
-  Swal.fire({
-    title: '¿Estás seguro?',
-    text: 'Esta acción eliminará la zona definitivamente. ¿Deseas continuar?',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, eliminar',
-    cancelButtonText: 'Cancelar'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      let clientes = obtenerRegistroZone()
-      const cliente = clientes.find((cliente) => cliente[0] == id)
-      const index = clientes.indexOf(cliente)
-      clientes.splice(index, 1)
-      localStorage.setItem('clientesZona', JSON.stringify(clientes));
-      location.reload()
-      Swal.fire(
-        'Eliminado',
-        'La zona ha sido eliminada correctamente.',
-        'success'
-      )
-    }
-  });
-}
-
- // (FUNCION DE ARRIBA UTILIZA SWEET ALERT)
-
-// function editarCliente
-var myModal = document.getElementById('exampleModal')
-
-myModal.addEventListener('shown.bs.modal', function (e) {
-
-  let clientes = obtenerRegistroZone()
-  const cliente = clientes.find(cliente => cliente[0] == e.relatedTarget.getAttribute('data-cliente-id'))
-  const index = clientes.indexOf(cliente)
-  clientes.splice(index, 1)
-  document.getElementById("oldZoneValue").textContent = cliente[3]
-
- 
-
-  $("#btnUpdateZoneModal").unbind('click')
-  $("#btnUpdateZoneModal").bind('click', () => {
-
-    const newZone = document.getElementById("updateZoneValue")
-    if (newZone.value !== "") {
-      cliente[3] = newZone.value
-      clientes.push(cliente)
-      localStorage.setItem('clientesZona', JSON.stringify(clientes));
-      location.reload()
-    }
-
-
-  })
-
-
-})
-
-
-
-
 
 

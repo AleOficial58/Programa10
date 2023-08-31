@@ -8,7 +8,7 @@ const DB_USUARIOS = [
     },
     
     {   id: 2,
-        username: "Alan",
+        username: "alan",
         password: "1234",
         first_name: "Alan",
         last_name: "Borgo",

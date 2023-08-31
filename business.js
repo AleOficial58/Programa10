@@ -14,6 +14,8 @@ function addRegistroToSystem(pnombre, papellido, pdni, pzona) {
   ImprimirTablaRegistro();
 }
 
+
+
 function getListAgend() {
   var storedList = localStorage.getItem("LocallistAgend");
   if (storedList == null) {

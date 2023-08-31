@@ -2,111 +2,79 @@
 <html>
 <head>
   <title>Registro con DataTable</title>
-  <!-- Incluir el archivo CSS de DataTables -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="../Tabulator/css/tabulator.css">
   <link rel="stylesheet" href="../styles.css">
-  <style>
-    /* Estilo para alinear los inputs en línea */
-    .input-container {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-  </style>
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 </head>
 
 <body>
 
 <div id="menu">
     <ul>
-      <li><a href="Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-      <li><a href="Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
-      <li><a href="zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
-      <li><a href="Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
-      <li><a href="AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
-      <li><a href="AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
-      <li><a href="Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
-      <li><a href="/Registro/RegistroCarrito.html" onclick="mostrarVentana('zonas')">Registro del dia</a></li>
-      <li><a href="FrontEnd/comision.html" onclick="mostrarVentana('zonas')">Planilla de comision</a></li>
+      <li><a href="./../Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+      <li><a href="./../Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+      <li><a href="./../zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+      <li><a href="./../Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
+      <li><a href="./../AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+      <li><a href="./../AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+      <li><a href="./../Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
+      <li><a href="./../Registro/RegistroCarrito.html" onclick="mostrarVentana('zonas')">Registro del dia</a></li>
+      <li><a href="./../FrontEnd/comision.html" onclick="mostrarVentana('zonas')">Planilla de comision</a></li>
     </ul>
   </div>
 
 
-<div class="container">
-  <h1>Planilla de comision</h1>
+<!-- <div class="container"> -->
 
-  <!-- Crear una tabla HTML -->
-  <table id="registroTable" class="display">
-    <thead>
-    <tr>
-      <th>Cliente</th>
-      <th>Monto</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>Juan Pérez</td>
-      <td>25</td>
-    </tr>
-    <tr>
-      <td>María López</td>
-      <td>30</td>
-    </tr>
-    <tr>
-      <td>Pedro Gómez</td>
-      <td>22</td>
-    </tr>
-    </tbody>
-  </table>
-
-  <!-- Botón de descuento y total en línea -->
-  <div class="input-container">
-    <label for="descuento">Descuento:</label>
-    <input type="number" id="descuento" step="1" min="0">
-    <label for="total" style="margin-left: 10px;">Total:</label>
-    <p id="totalAmount" style="margin-left: 5px;">0</p>
-    <button onclick="aplicarDescuento()">Aplicar Descuento</button>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-8">
+            <h1>Planilla de comision</h1>
+          </div>
+          <div class="col-4 d-flex justify-content-center align-self-center">
+            <button class="btn btn-success form-control form-control-lg" id="printTable">Imprimir</button>
+          </div>
+        </div>
+  
+      </div>
+      <div class="col-12">
+        <div class="row mb-2">
+          <div class="col-4">
+            <input type="date" id="date" class="form-control form-control-lg">
+          </div>
+          <div class="col-4">
+            <input type="text" id="percentage" placeholder="Porcentaje total" class="form-control form-control-lg">
+          </div>
+          <div class="col-4">
+            <button class="btn btn-primary form-control form-control-lg" id="apply">Aplicar</button>
+          </div>
+        </div>
+      
+        <div id="comision"></div>
+      
+      </div>
+    </div>
   </div>
 
-  <!-- Espacio para separar los botones -->
-  <div style="margin-top: 10px;"></div>
+  
 
-  <!-- Botón de imprimir -->
-  <button onclick="imprimir()">Imprimir</button>
 
-</div>
+<!-- </div> -->
 
-<!-- Incluir la librería de jQuery (requerida para DataTables) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- Incluir el archivo JavaScript de DataTables -->
-<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+
+<script src="../Tabulator/js/tabulator.js"></script>
+<script src="./../js/comision.js"></script>
+
 
 <script>
-  // Inicializar el DataTable
-  $(document).ready(function() {
-    $('#registroTable').DataTable();
-    calcularTotal();
-  });
+  const dateInput = document.getElementById("date");
+  const currentDate = new Date().toISOString().split("T")[0];
 
-  function aplicarDescuento() {
-    const descuento = parseFloat(document.getElementById('descuento').value);
-    // Aquí puedes agregar la lógica para aplicar el descuento
-    alert("Descuento aplicado correctamente");
-  }
+  dateInput.setAttribute("max", currentDate);
+  dateInput.setAttribute("value", currentDate);
 
-  function imprimir() {
-    window.print();
-  }
-
-  function calcularTotal() {
-    let total = 0;
-    $('#registroTable tbody tr').each(function() {
-      const monto = parseInt($(this).find('td:nth-child(2)').text());
-      total += monto;
-    });
-    document.getElementById('totalAmount').textContent = total;
-  }
 </script>
-
 </body>
 </html>
