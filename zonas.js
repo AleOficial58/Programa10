@@ -22,7 +22,8 @@ var table = new Tabulator("#tablaZonas", {
       { title: "Orden", field: "order", editor: "number", validator:["min:1", "unique"]},
       { title: "Nombre", field: "clienteNombre"},
       { title: "Apellido", field: "clienteApellido"},
-      { title: "Zona", field: "clienteZone", editor: "input"},
+      { title: "Zona", field: "clienteZone", editor: "input", headerFilter:"input", },//headerFilter:true, headerFilterParams:{values:{"male":"Male", "female":"Female", "":""}, clearable:true}},
+
       { title: "Acciones",
           formatter: "buttonCross",
           width: 100,

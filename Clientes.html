@@ -284,50 +284,5 @@
             cargarClientesEnSelect();
         });
     </script>
-
-    <!-- Agrega el siguiente bloque de código -->
-<script>
-    $(document).ready(function() {
-        // Obtener la referencia al select en zonas.html
-
-        // Función para cargar los clientes en el select de zonas.html
-        function cargarClientesEnSelect() {
-            var clientes = obtenerClientes();
-
-            if (clientes && clientes.length > 0) {
-                for (var i = 0; i < clientes.length; i++) {
-                    var cliente = clientes[i];
-                    var option = document.createElement("option");
-                    option.text = cliente.nombre + " " + cliente.apellido;
-                    selectZonas.add(option);
-                }
-            }
-        }
-
-        // Función para obtener los clientes almacenados
-        function obtenerClientes() {
-            var clientes = localStorage.getItem('clientes');
-            if (clientes) {
-                return JSON.parse(clientes);
-            }
-            return [];
-        }
-
-        // Cargar los clientes en el select al cargar la página
-        cargarClientesEnSelect();
-    });
-</script>
-
-    <!-- DataTables -->
-    
-    
-    <!-- ACA VA EL JS DE CADA HTML -->
-
-    
-
-
-
-
-
 </body>
 </html>

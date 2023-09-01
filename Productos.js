@@ -28,24 +28,35 @@ $(document).ready(function() {
       var productos = JSON.parse(productosGuardados);
       productosTable.rows.add(productos).draw();
     }
+
+
+    const numberOrZero = (value) => {
+      if ([null, undefined, "", "e", NaN].includes(value)) {
+        return 0;
+      }
+      return value
+    }
   
     $("#agregarProductoForm").submit(function(event) {
       event.preventDefault();
       var idProducto = generateUniqueID();
       var nombreProducto = $("#nombreProducto").val();
-      var precioProducto = parseFloat($("#precioProducto").val());
-      var stock = parseFloat($("#Stock").val());
+      var precioProducto = numberOrZero(parseFloat($("#precioProducto").val()));
+      var stock = numberOrZero(parseFloat($("#Stock").val()));
       var descripcionProducto = $("#descripcionProducto").val();
-  
-      var porcentaje1 = parseFloat($("#porcentaje1").val());
-      var porcentaje2 = parseFloat($("#porcentaje2").val());
-      var porcentaje3 = parseFloat($("#porcentaje3").val());
-      var porcentaje4 = parseFloat($("#porcentaje4").val());
-      var descuento = parseFloat($("#descuento").val());
-      var precioFinal = precioProducto
-      if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes("") && ![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes(null)) {
-        console.log(precioFinal)
-         precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4);
+
+      var porcentaje1 = numberOrZero(parseFloat($("#porcentaje1").val()));
+      var porcentaje2 = numberOrZero(parseFloat($("#porcentaje2").val()));
+      var porcentaje3 = numberOrZero(parseFloat($("#porcentaje3").val()));
+      var porcentaje4 = numberOrZero(parseFloat($("#porcentaje4").val()));
+      var porcentaje5 = numberOrZero(parseFloat($("#porcentaje5").val()));
+      var descuento = numberOrZero(parseFloat($("#descuento").val()));
+      var precioFinal = precioProducto;
+
+
+      if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4, porcentaje5].includes("") && ![porcentaje1,porcentaje2, porcentaje3, porcentaje4, porcentaje5].includes(null)) {
+      
+         precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4, porcentaje5);
       }
       
       
@@ -65,6 +76,7 @@ $(document).ready(function() {
         p2: porcentaje2,
         p3: porcentaje3,
         p4: porcentaje4,
+        p4: porcentaje5,
         precioBruto: precioProducto,
         descuento: descuento
       };
@@ -82,17 +94,19 @@ $(document).ready(function() {
       event.preventDefault();
       var idProducto = $("#id-producto").val();
       var nombreProducto = $("#nombreProducto-act").val();
-      var precioProducto = parseFloat($("#precioProducto-act").val());
-      var stock = $("#Stock-act").val()
+      var precioProducto = numberOrZero(parseFloat($("#precioProducto-act").val()));
+      var stock = numberOrZero($("#Stock-act").val())
       var descripcionProducto = $("#descripcionProducto-act").val();
   
-      var porcentaje1 = parseFloat($("#porcentaje1-act").val());
-      var porcentaje2 = parseFloat($("#porcentaje2-act").val());
-      var porcentaje3 = parseFloat($("#porcentaje3-act").val());
-      var porcentaje4 = parseFloat($("#porcentaje4-act").val());
-      var descuento = parseFloat($("#descuento-act").val());
-      if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4].includes("")) {
-        precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4);
+      var porcentaje1 = numberOrZero(parseFloat($("#porcentaje1-act").val()));
+      
+      var porcentaje2 = numberOrZero(parseFloat($("#porcentaje2-act").val()));
+      var porcentaje3 = numberOrZero(parseFloat($("#porcentaje3-act").val()));
+      var porcentaje4 = numberOrZero(parseFloat($("#porcentaje4-act").val()));
+      var porcentaje5 = numberOrZero(parseFloat($("#porcentaje5-act").val()));
+      var descuento = numberOrZero(parseFloat($("#descuento-act").val()));
+      if (![porcentaje1,porcentaje2, porcentaje3, porcentaje4, porcentaje5].includes("")) {
+        precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4, porcentaje5);
       }
       
       // aplicar descuento
@@ -111,6 +125,7 @@ $(document).ready(function() {
         p2: porcentaje2,
         p3: porcentaje3,
         p4: porcentaje4,
+        p4: porcentaje5,
         precioBruto: precioProducto,
         descuento: descuento
 
@@ -203,13 +218,14 @@ $(document).ready(function() {
     }
 
     
-    function calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4) {
+    function calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4, porcentaje5) {
       
       let resultado =  precioProducto + (precioProducto *  (porcentaje1 / 100));
       
       resultado += (resultado *  (porcentaje2 / 100));
       resultado += (resultado *  (porcentaje3 / 100));
-      resultado += (resultado *  (porcentaje4 / 100));
+      resultado += (resultado *  (porcentaje4 / 100)); 
+      resultado += (resultado *  (porcentaje5 / 100)); 
       return resultado.toFixed(3);  // Redondear el resultado a 3 decimales
   
     }

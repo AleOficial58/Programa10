@@ -1,47 +1,164 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>Planilla de carga</title>
+    <link rel="stylesheet" href="../select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="../select2/css/select2.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../Tabulator/css/tabulator.css">
     <link rel="stylesheet" href="../styles.css">
+
 </head>
+
 <body>
 
     <div id="menu">
         <ul>
-          <li><a href="./../Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-          <li><a href="./../Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
-          <li><a href="./../zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
-          <li><a href="./../Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
-          <li><a href="./../AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
-          <li><a href="./../AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
-          <li><a href="./../Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
-          <li><a href="./../Registro/RegistroCarrito.html" onclick="mostrarVentana('zonas')">Registro del dia</a></li>
-          <li><a href="./../FrontEnd/comision.html" onclick="mostrarVentana('zonas')">Planilla de comision</a></li>
-          <li><a href="./../FrontEnd/Carga.html" onclick="mostrarVentana('zonas')">Planilla de carga</a></li>
+            <li><a href="./../Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
+            <li><a href="./../Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
+            <li><a href="./../zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
+            <li><a href="./../Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
+            <li><a href="./../AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
+            <li><a href="./../AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
+            <li><a href="./../Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
+            <li><a href="./../Registro/RegistroCarrito.html" onclick="mostrarVentana('zonas')">Registro del dia</a></li>
+            <li><a href="./../FrontEnd/comision.html" onclick="mostrarVentana('zonas')">Planilla de comision</a></li>
+            <li><a href="./../FrontEnd/Carga.html" onclick="mostrarVentana('zonas')">Planilla de carga</a></li>
         </ul>
-      </div>
+    </div>
 
-<div class="container">
-    <h1>Planilla de carga:</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>Producto</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Producto 1</td>
-        </tr>
-        <tr>
-            <td>Producto 1</td>
-        </tr>
-        <tr>
-            <td>Producto 1</td>
-        </tr>
-        </tbody>
-    </table>
-    <div class="total">Total de bultos: 3</div>
-</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-10">
+                        <h1>Planilla de carga</h1>
+                    </div>
+                    <div class="col-2 d-flex justify-content-center align-self-center">
+                        <button class="btn btn-success form-control form-control-lg" id="printTable">Imprimir</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12">
+                <div class="row mb-2">
+                    <div class="col-8">
+                        <select name="cliente" id="cliente" class="form-control form-control-lg" style="width: 100% !important;">
+                            <option value="">--SELECIONE UN CLIENTE--</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <h2>Total bultos: <span id="totalBulto">0</span></h2>
+                    </div>
+                </div>
+
+                <div id="carga"></div>
+
+            </div>
+        </div>
+    </div>
+    <script src="../jquery/jquery-3.3.1.min.js"></script>
+    <script src="../select2/js/select2.min.js"></script>
+    <script src="../Tabulator/js/tabulator.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#cliente').select2();
+        })
+        var PRINT_HEADER_TABLE = "";
+        const getTitle = () => PRINT_HEADER_TABLE;
+        const obtenerFechaHoraActual =  ()  => {
+            const ahora = new Date();
+
+            const year = ahora.getFullYear();
+            const month = String(ahora.getMonth() + 1).padStart(2, "0");
+            const day = String(ahora.getDate()).padStart(2, "0");
+
+            const hours = String(ahora.getHours()).padStart(2, "0");
+            const minutes = String(ahora.getMinutes()).padStart(2, "0");
+            const seconds = String(ahora.getSeconds()).padStart(2, "0");
+
+            const fechaHoraFormateada = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+            return fechaHoraFormateada;
+        }
+        function loadInvoices() {
+
+            var registros = localStorage.getItem("facturas");
+            if (registros) {
+                return JSON.parse(registros);
+            }
+            return []; // Devolver un arreglo vacío si no hay registros
+        }
+
+        $.each(loadInvoices(), function(index, item) {
+            let option = $("<option>", {
+                value: item.facturaID,
+                text: `${item.clienteID} | ${item.clienteNombre} ${item.clienteApellido} | ${item.facturaID}`
+            });
+            
+            $("#cliente").append(option);
+        
+        });
+        
+    
+        var table = new Tabulator("#carga", {
+            data: [],
+            layout: "fitColumns",
+            index: "order",
+            placeholder: "Debe selecionar un cliente y una factura",
+            columns: [
+
+                { title: "PRODUCTO", field: "producto" },
+                { title: "CANTIDAD", field: "cantidad" },
+
+
+            ],
+            printHeader: getTitle
+        });
+        var btnPrintTable = document.querySelector("#printTable");
+            btnPrintTable.addEventListener('click', () => {
+                table.print(false, true);
+        })
+
+        $('#cliente').on('change', ()=> {
+            const fac_id = $("#cliente").val();
+            if (fac_id != "") {
+                const factura = loadInvoices().filter((value, index) => {
+                    if (value.facturaID == fac_id) {
+                        return true;
+                    }
+                })
+                let output = [];
+                factura[0].productos.forEach(producto => {
+                    output.push({
+                        producto: producto[1],
+                        cantidad: producto[2]
+                    })
+                });
+
+                document.querySelector("#totalBulto").textContent = factura[0].productos.length;
+                
+                table.setData(output)
+                PRINT_HEADER_TABLE =  `<h1>PLANILLA DE CARGA DE LA FACTURA</h1>
+                <p>CLIENTE: ${factura[0].clienteNombre} ${factura[0].clienteApellido}</p>
+                <p>CLIENTE ID: ${factura[0].clienteID}</p>
+                <p>FACTURA: ${factura[0].facturaID}</p>
+                <p>MONTO TOTAL: ${factura[0].total}</p>
+                <p>FECHA DE FACTURACIÓN: ${factura[0].fecha}</p>
+                <p>FECHA ACTUAL DEL SISTEMA: ${obtenerFechaHoraActual()}</p>
+                <p>TOTAL DE BULTOS: ${factura[0].productos.length}</p>
+
+                `
+                
+            } else {
+                document.querySelector("#totalBulto").textContent = 0;
+            }
+            
+        })
+    </script>
+
 </body>
+
 </html>

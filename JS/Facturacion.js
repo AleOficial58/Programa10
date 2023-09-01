@@ -28,25 +28,42 @@ $('#facturasTable').DataTable({
 
 function EliminarFactura(btn) {
     const facturaID = btn.getAttribute('data-facturaID');
+    Swal.fire({
+        title: `¿Está seguro que desea eliminar la factura ${facturaID}?`,
+        text: "Esta acción es inreversible",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminarla',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.value) {
+            let facturas = JSON.parse(localStorage.getItem('facturas'))
+            facturas.map((factura, index) => {
+                if (factura.facturaID == facturaID) {
+                    facturas.splice(index, 1)
+                }
+                
+            })
+            localStorage.setItem('facturas', JSON.stringify(facturas))
+            let data = JSON.parse(localStorage.getItem("RegistroEnvioData"));
+            data.map((registro, index) => { 
+                if (registro.facturaID == facturaID) {
+                    data.splice(index, 1)
+                    
+                }
+            }) 
+            localStorage.setItem('RegistroEnvioData', JSON.stringify(data))
+            location.reload(); 
+          Swal.fire(
+            'Factura eliminada',
+            `La factura ${facturaID} ha sido eliminada correctamente`,
+            'success')
+        }
+      })
 
 
-    let facturas = JSON.parse(localStorage.getItem('facturas'))
-    facturas.map((factura, index) => {
-        if (factura.facturaID == facturaID) {
-            facturas.splice(index, 1)
-        }
-        
-    })
-    localStorage.setItem('facturas', JSON.stringify(facturas))
-    let data = JSON.parse(localStorage.getItem("RegistroEnvioData"));
-    data.map((registro, index) => { 
-        if (registro.facturaID == facturaID) {
-            data.splice(index, 1)
-            
-        }
-    }) 
-    localStorage.setItem('RegistroEnvioData', JSON.stringify(data))
-    location.reload(); 
 }
 
 
