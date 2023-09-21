@@ -1,5 +1,4 @@
 $(document).ready(function() {
-   
   var productosTable = $("#productosTable").DataTable({
       columns: [
         { data: "id" },
@@ -44,6 +43,8 @@ $(document).ready(function() {
       var precioProducto = numberOrZero(parseFloat($("#precioProducto").val()));
       var stock = numberOrZero(parseFloat($("#Stock").val()));
       var descripcionProducto = $("#descripcionProducto").val();
+      var today = new Date();
+      var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
 
       var porcentaje1 = numberOrZero(parseFloat($("#porcentaje1").val()));
       var porcentaje2 = numberOrZero(parseFloat($("#porcentaje2").val()));
@@ -72,6 +73,7 @@ $(document).ready(function() {
         precio: precioFinal,
         stock: stock,
         descripcion: descripcionProducto, 
+        fechaCreacion: date,
         p1: porcentaje1, 
         p2: porcentaje2,
         p3: porcentaje3,
@@ -97,6 +99,7 @@ $(document).ready(function() {
       var precioProducto = numberOrZero(parseFloat($("#precioProducto-act").val()));
       var stock = numberOrZero($("#Stock-act").val())
       var descripcionProducto = $("#descripcionProducto-act").val();
+ 
   
       var porcentaje1 = numberOrZero(parseFloat($("#porcentaje1-act").val()));
       
@@ -109,7 +112,12 @@ $(document).ready(function() {
         precioFinal = calcularPrecioFinal(precioProducto, porcentaje1, porcentaje2, porcentaje3, porcentaje4, porcentaje5);
       }
       
+
+     
+     
       // aplicar descuento
+
+
 
       if (descuento) {
         precioFinal -= precioFinal * (descuento / 100)
@@ -133,7 +141,7 @@ $(document).ready(function() {
       };
   
       productosTable.row(currentRow).data(rowData).draw();
-  
+      debugger
       guardarProductosEnLocalStorage();
   
       $("#modalProductos-act").modal("hide");
@@ -231,6 +239,7 @@ $(document).ready(function() {
     }
   
     function guardarProductosEnLocalStorage() {
+      debugger
       var productos = productosTable.data().toArray();
       localStorage.setItem("productos", JSON.stringify(productos));
     }

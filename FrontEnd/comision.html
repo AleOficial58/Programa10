@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="../Tabulator/css/tabulator.css">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+
 </head>
 
 <body>
@@ -64,18 +65,15 @@
 
 <!-- </div> -->
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../Tabulator/js/tabulator.js"></script>
 <script src="./../js/comision.js"></script>
-
 
 <script>
   const dateInput = document.getElementById("date");
   const currentDate = new Date().toISOString().split("T")[0];
-
   dateInput.setAttribute("max", currentDate);
   dateInput.setAttribute("value", currentDate);
-
 </script>
 </body>
 </html>
