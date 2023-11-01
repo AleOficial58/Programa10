@@ -1,12 +1,13 @@
 $(document).ready(function() {
-    
     var today = new Date();
     // var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
     var mesT = today.getMonth()+1 
     var mes = ''
     debugger
-    if(!mesT < 10){
+    if(mesT <= 9){
         mes = '0'+ mesT
+    }else{
+        mes = mesT.toString()
     }
     var date = today.getFullYear()+'-'+mes+'-'+today.getDate();
     var todasFacturasJSON = localStorage.getItem('facturas');
@@ -14,7 +15,7 @@ $(document).ready(function() {
     debugger
     var facuturasFiltrasdas = facturas.filter(x => x.fecha == date)
     let todoProductos = new Productos();
-    facturas.forEach(factura => {
+    facuturasFiltrasdas.forEach(factura => {
         var productosItem = factura?.productos
         productosItem?.forEach(producto => {
             todoProductos.newProducto(producto[0], producto[1] ,producto[2])

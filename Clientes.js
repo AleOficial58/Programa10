@@ -16,8 +16,6 @@ $(document).ready(function () {
     }
     $('#agregarClienteForm').on('submit', function (e) {
         e.preventDefault();
-        
-
         var nombre = $('#nombre').val();
         var apellido = $('#apellido').val();
         var dni = $('#dni').val();
@@ -39,6 +37,7 @@ $(document).ready(function () {
         table.row.add(rowData).draw();
 
         // Actualizar datos en el almacenamiento local
+        debugger
         var tableData = table.rows().data().toArray();
         localStorage.setItem('clientesData', JSON.stringify(tableData));
 
@@ -53,7 +52,7 @@ $(document).ready(function () {
         var id = $('#id-cliente').val();
         var fila = $('#rowS').val()
         var rowData = [id, $('#nombre-act').val(), $('#apellido-act').val(), $('#dni-act').val(),
-            $('#localidad-act').val(), $('#direccion-act').val(), $('#telefono-act').val(), $('#condicion').val(), $('#botones').val()];
+            $('#localidad-act').val(), $('#direccion-act').val(), $('#telefono-act').val(), $('#condicion-act').val(), $('#botones').val()];
         table.row(fila).data(rowData).draw();
         var tableDatas = table.rows().data().toArray();
         localStorage.setItem('clientesData', JSON.stringify(tableDatas));
