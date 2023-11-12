@@ -75,7 +75,6 @@ function VerFactura(btn) {
 function descargarFactura(btn) {
     const facturaID = btn.getAttribute('data-facturaID');
     window.open(`facturaDescargar.html?facturaID=${facturaID}`)
-
 }
 
 

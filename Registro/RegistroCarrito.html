@@ -17,24 +17,233 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        body {
+        background-color: #f9f9f9;
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .welcome {
+        text-align: center;
+        padding: 50px;
+        background-color: #16a085; /* Green */
+        color: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .welcome h1 {
+        font-size: 3em;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .sections {
+        text-align: center;
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .button-container {
+        margin: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .sections button {
+        display: block;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        background-color: #16a085; /* Green */
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .sections button:hover {
+        background-color: #1abc9c; /* Lighter Green */
+        transform: scale(1.05);
+        box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .logout-button {
+        text-align: right;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+
+    .logout-button button {
+        background-color: #e74c3c; /* Red */
+        padding: 10px 20px;
+        font-size: 1em;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .logout-button button:hover {
+        background-color: #c0392b; /* Darker Red */
+        transform: scale(1.05);
+        box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .welcome-text {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2.5em;
+        background-color: #16a085; /* Green */
+        color: #fff;
+        padding: 20px;
+        margin: 0;
+    }
+
+    #tablaInventario {
+        background-color: #fff;
+        margin-top: 30px;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #16a085; /* Green */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 0.5s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    body {
+            margin-bottom: 100px; 
+        }
+
     </style>
 </head>
 <body>
 
-  <div id="menu">
-    <ul>
-      <li><a href="./../Inicio.html" onclick="mostrarVentana('inicio')">Inicio</a></li>
-      <li><a href="./../Clientes.html" onclick="mostrarVentana('registro')">Gestion de clientes</a></li>
-      <li><a href="./../zonas.html" onclick="mostrarVentana('zonas')">Zonas</a></li>
-      <li><a href="./../Facturacion.html" onclick="mostrarVentana('zonas')">Facturación</a></li>
-      <li><a href="./../AgregaTusProductos.html" onclick="mostrarVentana('zonas')">Agrega tus Productos</a></li>
-      <li><a href="./../AgregaTusVentas.html" onclick="mostrarVentana('zonas')">Agrega tus Ventas</a></li>
-      <li><a href="./../Analisis.html" onclick="mostrarVentana('zonas')">Analisis</a></li>
-      <li><a href="./../Registro/RegistroCarrito.html" onclick="mostrarVentana('zonas')">Registro del dia</a></li>
-      <li><a href="./../FrontEnd/comision.html" onclick="mostrarVentana('zonas')">Planilla de comision</a></li>
-      <li><a href="./../FrontEnd/Carga.html" onclick="mostrarVentana('zonas')">Planilla de carga</a></li>
-    </ul>
-  </div>
+<div class="welcome">
+<h1 class="welcome-text">Bienvenido a nuestro sistema de ventas</h1>
+</div>
+
+<div class="sections">
+<div class="button-container">
+    <button onclick="showLoading('../clientes.html')">Gestión de Clientes</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../zonas.html')">Zonas</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../facturacion.html')">Facturación</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../AgregaTusProductos.html')">Agrega tus Productos</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../AgregaTusVentas.html')">Agrega tus Ventas</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../Analisis.html')">Analisis</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../Registro/RegistroCarrito.html')">Registros del dia</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../FrontEnd/comision.html')">Planilla de comisión</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../FrontEnd/carga.html')">Planilla de carga</button>
+</div>
+<div class="button-container">
+    <button onclick="showLoading('../inicio.html')">Inicio</button>
+</div>
+
+<div class="logout-button">
+<button onclick="logout()">Cerrar sesión</button>
+</div>
+
+<table id="tablaInventario">
+<!-- Contenido de la tabla aquí -->
+</table>
+
+<div class="overlay" id="loadingOverlay">
+<div class="loader"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+<script src="venta.js"></script>
+<script src="business.js"></script>
+<script src="uilogic.js"></script>
+<script>
+var inventarioTable;
+
+function logout() {
+    localStorage.setItem("usuarioActivo", JSON.stringify({}))
+    location.href = 'usuario.html'
+}
+
+function cerrarSesion() {
+    // Agrega aquí la lógica para cerrar sesión, como limpiar cookies o variables de sesión
+    window.location = "usuario.html"; // Redirige al formulario de inicio de sesión
+}
+
+function agregarProducto() {
+    var idProducto = document.getElementById("idProducto").value;
+    var nombreProducto = document.getElementById("nombreProducto").value;
+    var precioProducto = document.getElementById("precioProducto").value;
+
+    var rowNode = inventarioTable.row.add([idProducto, nombreProducto, precioProducto]).draw().node();
+    $(rowNode).addClass('producto-row');
+}
+
+function showLoading(destination) {
+    document.getElementById('loadingOverlay').style.display = 'flex';
+    setTimeout(function () {
+        window.location.href = destination;
+    }, 3000); // Simula una demora de 5 segundos antes de redirigir
+}
+
+function hideLoading() {
+    document.getElementById('loadingOverlay').style.display = 'none';
+}
+
+$(document).ready(function () {
+    inventarioTable = $('#tablaInventario').DataTable();
+});
+</script>
 
     <div class="container">
         <h1>Registro de Envíos</h1>

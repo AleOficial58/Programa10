@@ -633,3 +633,31 @@ table td {
   position: relative;
   left: -530px;
 }
+
+.columnaFacturaMed {
+  width: 10% !important;
+}
+
+.columnaFactura {
+  width: 80px !important;
+}
+
+@media print {
+  /* Estilos de impresión personalizados aquí */
+  #totalValueFactura {
+      font-weight: bold;
+  }
+}
+
+
+    body {
+        padding: 10px;
+    }
+
+    .subtotal-column,
+    #totalValueFactura {
+        text-align: left !important;
+    }
+
+    
+
