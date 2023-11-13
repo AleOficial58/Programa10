@@ -659,5 +659,19 @@ table td {
         text-align: left !important;
     }
 
-    
+    .claseHemof
+    {
+      background-color: #16a085
+    }
 
+    .claseHemof:hover{
+      background-color:
+      
+      #86908e
+    }
+
+    .claseHemof:hover{
+      outline: none;
+    }
+
+    
