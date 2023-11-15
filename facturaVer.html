@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <a id="back" class="btn btn-primary" href="Facturacion.html">Volver atras</a>
+    <a id="back" class="btn btn-primary" href="#" onclick="showLoading()">Volver atrás</a>
     <div id="factura">
         <div class="invoice">
             <div class="logo-left">
@@ -52,7 +52,7 @@
     
             <table id="facturaTabla">
                 <tfoot>
-                    <tr>
+                    <tr>Volver Atras
                         <th></th>
                         <th></th>
                         <th></th>
@@ -75,6 +75,7 @@
         </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    
 
 <script>
     const facturasData = JSON.parse(localStorage.getItem('facturas'));
@@ -125,6 +126,39 @@
 
 
 </script>
+
+<script>
+    function showLoading() {
+        // Muestra el loading
+        document.getElementById('loadingOverlay').style.display = 'flex';
+
+        // Simula una demora de 2 segundos antes de redirigir
+        setTimeout(function () {
+            // Redirige a Facturacion.html
+            window.location.href = 'Facturacion.html';
+        }, 2000);
+    }
+</script>
+
+
+<div id="loadingOverlay">
+    <div class="loader"></div>
+</div>
+
+<script>
+    function showLoading() {
+        // Muestra el loading
+        document.getElementById('loadingOverlay').style.display = 'flex';
+
+        // Simula una demora de 2 segundos antes de redirigir
+        setTimeout(function () {
+            // Redirige a Facturacion.html
+            window.location.href = 'Facturacion.html';
+        }, 2000);
+    }
+</script>
+
+
 
 
 </body>

@@ -21,7 +21,6 @@
 </head>
 
 <body>
-
     <div class="invoice">
         <div class="logo-left">
             <img src="./img/El SHADDAI (12).png" alt="Logo izquierdo">
@@ -45,16 +44,23 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th id="totalValueFactura">0.0</th>
+                    <th></th>
+                    <!-- <th id="totalValueFactura">0.0</th> -->
                 </tr>
             </tfoot>
         </table>
 
+        <div class="section saldo">
+            <div class="section-saldo">
+            </div>
+        </div>
 
         <div class="section contact">
             <h3>Contacto</h3>
             <p class="phone">Teléfono: +54 9 336 400-4107</p>
+
         </div>
+
     </div>
 
 
@@ -89,6 +95,7 @@
 
         $('#facturaTabla').DataTable({
             data: factura.productos,
+            "paging": false,
             "lengthChange": false,
             "searching": false,
             columns: [
@@ -96,10 +103,9 @@
                 { title: "Producto", "width": "8%" },
                 { title: "Cantidad", "width": "8%" },
                 { title: "Precio", "width": "8%" },
-                { title: "Subtotal", "width": "30%",  "className": "subtotal-column", "createdCell": function (td) { $(td).css('text-align', 'left'); } }
+                { title: "Subtotal", "width": "30%", "className": "subtotal-column", "createdCell": function (td) { $(td).css('text-align', 'left'); } }
             ],
-            
-            
+
             footerCallback: function (row, data, start, end, display) {
                 var api = this.api();
                 // Calcular la suma de la columna "Subtotal"
@@ -108,14 +114,18 @@
                         return acc + parseFloat(value);
                     }, 0);
                 // Agregar el valor de la suma debajo de la columna "Subtotal"
-                $(api.column(4).footer()).html(subtotalTotal.toFixed(2));
+                document.querySelector(".section-saldo").innerHTML = `<div class="section-saldo">
+                    <p >Total:  ${subtotalTotal.toFixed(2)}</p>
+                    </div>`
+
+                // $(api.column(4).footer()).html(subtotalTotal.toFixed(2));
                 // $('#totalValue').text(subtotalTotal.toFixed(2));
             }
         })
+
 
         print()
     </script>
 </body>
 
 </html>
-

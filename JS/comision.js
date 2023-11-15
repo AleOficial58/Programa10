@@ -116,3 +116,17 @@ var btnPrintTable = document.querySelector("#printTable");
 btnPrintTable.addEventListener('click', () => {
     table.print(false, true);
 })
+
+
+//RECARGA//
+
+window.addEventListener("keyup", function (e) {
+    if (e.key === "F5") {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        setTimeout(function () {
+            location.reload(true);
+        }, 1000);
+    }
+  });
+  
+  //RECARGA//

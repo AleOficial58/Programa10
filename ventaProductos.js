@@ -210,7 +210,7 @@ function obtenerProductoPorID(id) {
 
 let btnAddProduct = document.getElementById("addProductToCar");
 btnAddProduct.addEventListener("click", function () {
-
+    debugger
     let selectProductos = document.getElementById("productos");
     let clienteSelected = document.getElementById('clientes')
     let idProducto = selectProductos.options[selectProductos.selectedIndex].value
@@ -226,23 +226,34 @@ btnAddProduct.addEventListener("click", function () {
         selectProductos.selectedIndex = 0;
 
         let producto = obtenerProductoPorID(idProducto);
+        if(producto.stock <= 0)
+        {
+            Swal.fire({
+                title: "Atención",
+                text: `No se pueden vender mas unidades de este producto, stock: ${producto.stock}`,
+                icon: "error"
+            })
+            return
+        }
 
         let temp = JSON.parse(localStorage.getItem("temporal"))
-
+        debugger
         if (!temp.hasOwnProperty('productos')) {
             localStorage.setItem('temporal', JSON.stringify({
                 clienteID: -1,
                 productos: []
             }))
         }
-
+        debugger
         let flag = false;
+        debugger
         if (temp.productos.length > 0) {
 
             table.clear().draw();
             temp.productos = temp.productos.map(p => {
-                
+                debugger
                 if (p[0] == producto.id) {
+                    debugger
                     if (p[2] + 1 > producto.stock) {
                         Swal.fire({
                             title: "Atención",

@@ -125,23 +125,71 @@ $(document).ready(function () {
         $('#condicion').val('');
     });
 
-    // Delegación de eventos click para los botones de eliminar
     $('#clientesTable tbody').on('click', '.btn-eliminar', function () {
-        if (!window.confirm(`Estas seguro que deseas eliminar este registro?`)) {
-            return;
-        }
         var codigoID = $(this).data('id');
-        var rowData = table.row($(this).closest('tr')).data();
-        // Aquí puedes realizar la acción que necesites con los datos de la fila seleccionada
-        console.log('Eliminar', rowData);
-        // Aquí puedes eliminar la fila de la tabla
-        table.row($(this).closest('tr')).remove().draw();
 
-        // Actualizar datos en el almacenamiento local
-        var tableData = table.rows().data().toArray();
-        localStorage.setItem('clientesData', JSON.stringify(tableData));
+        
+            // Muestra SweetAlert al hacer clic en el botón de eliminación
+
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: 'Esta acción no se puede deshacer.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminarlo',
+                    showLoaderOnConfirm: true,  // Muestra el indicador de carga en el botón de confirmación
+                    preConfirm: () => {
+                
+                // Aquí puedes realizar la acción que necesites con los datos de la fila seleccionada
+
+                    var rowData = table.row($(this).closest('tr')).data();
+                    console.log('Eliminar', rowData);
+         
+                // Aquí puedes eliminar la fila de la tabla
+
+                    table.row($(this).closest('tr')).remove().draw();
+
+                // Actualizar datos en el almacenamiento local
+
+                    var tableData = table.rows().data().toArray();
+                    localStorage.setItem('clientesData', JSON.stringify(tableData));
+
+                
+                    // Simula una demora (puedes eliminar esto en tu código real)
+
+                    return new Promise(resolve => {
+                        setTimeout(() => {
+                            resolve();
+                        }, 3000); // Simular una demora de 1 segundo (puedes ajustar esto)
+                    });
+                },
+
+            }).then((result) => {
+
+                // Muestra un mensaje de éxito después de eliminar al cliente
+                        if (result.isConfirmed) {
+                            Swal.fire('Eliminado', 'El cliente ha sido eliminado.', 'success');
+
+            }
+        }); 
     });
 });
+
+//RECARGA//
+
+window.addEventListener("keyup", function (e) {
+    if (e.key === "F5") {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        setTimeout(function () {
+            location.reload(true);
+        }, 1000);
+    }
+  });
+  
+  //RECARGA//
 
 // // Función para obtener los datos del dataTable en Clientes.html
 // function obtenerDatosDataTable() {
@@ -180,3 +228,5 @@ $(document).ready(function () {
 
 //   // Resto del código para procesar el formulario o redirigir a otra página
 // });
+
+

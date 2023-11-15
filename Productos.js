@@ -244,4 +244,21 @@ $(document).ready(function() {
       localStorage.setItem("productos", JSON.stringify(productos));
     }
   });
+
   
+// RECARGA DE PAGINA //
+  // ESTE SISTEMA RECARGA LA PAGINA PARA MANTENER UN ORDEN Y ORGANIZACION DEL PROGRAMA CARGUE CORRECTAMENTE LOS DATOS.
+
+  
+  //RECARGA//
+
+window.addEventListener("keyup", function (e) {
+  if (e.key === "F5") {
+      document.getElementById('loadingOverlay').style.display = 'flex';
+      setTimeout(function () {
+          location.reload(true);
+      }, 1000);
+  }
+});
+
+//RECARGA//

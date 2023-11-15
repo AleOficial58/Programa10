@@ -180,6 +180,39 @@
         .btn-condicion.responsable-inscripto {
             background-color: #28a745;
         }
+
+        #loadingOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #16a085; /* Green */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
     </style>
 </head>
 
@@ -235,11 +268,7 @@
 <div class="loader"></div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-<script src="venta.js"></script>
-<script src="business.js"></script>
-<script src="uilogic.js"></script>
+
 <script>
 var inventarioTable;
 
@@ -367,8 +396,9 @@ $(document).ready(function () {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="cerrar-cliente" data-bs-dismiss="modal">Close</button>
-                        <button type="submit">Agregar Cliente</button>
+                        <button type="button" class="btn btn-secondary" id="cerrar-cliente" data-bs-dismiss="modal">Cerrar</button>
+                        <button onclick="AgregarCliente()">Agregar Cliente</button>
+
                     </div>
                 </form>
             </div>
@@ -440,17 +470,13 @@ $(document).ready(function () {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" id="cerrar-cliente-act" data-bs-dismiss="modal">Close</button>
-                        <button type="submit">Actualizar</button>
+                        <button onclick="EditarCliente()">Editar Cliente</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!-- <script src="zonas.js"></script> -->
-    <script src="Clientes.js"></script>
+
 
     
     <script>
@@ -485,5 +511,51 @@ $(document).ready(function () {
             cargarClientesEnSelect();
         });
     </script>
+
+<script>
+    function AgregarCliente() {
+        // Muestra el loading
+        document.getElementById('loadingOverlay').style.display = 'flex';
+
+        // Simula una demora de 2 segundos antes de ejecutar la operación
+        setTimeout(function () {
+            // Aquí puedes realizar la lógica para agregar un cliente
+            // ...
+
+            // Oculta el loading después de la operación
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }, 2000);
+    }
+</script>
+    
+<script>
+    function EditarCliente() {
+        // Muestra el loading
+        document.getElementById('loadingOverlay').style.display = 'flex';
+
+        // Simula una demora de 2 segundos antes de ejecutar la operación
+        setTimeout(function () {
+            // Aquí puedes realizar la lógica para editar un cliente
+            // ...
+
+            // Oculta el loading después de la operación
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }, 2000);
+    }
+</script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+<script src="venta.js"></script>
+<script src="business.js"></script>
+<script src="uilogic.js"></script>
+<script src="Clientes.js"></script>
+
+
 </body>
 </html>
