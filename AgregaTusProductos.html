@@ -440,6 +440,16 @@
         </div>
     </div>
 
+    <script>
+        function logout() {
+            document.getElementById('loadingOverlay').style.display = 'flex'; // Muestra el overlay de carga
+    
+            setTimeout(function () {
+                localStorage.setItem("usuarioActivo", JSON.stringify({}))
+                location.href = 'usuario.html';
+            }, 3000); // Espera 5 segundos antes de redirigir
+        }
+    </script>
     
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

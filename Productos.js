@@ -262,3 +262,5 @@ window.addEventListener("keyup", function (e) {
 });
 
 //RECARGA//
+
+
