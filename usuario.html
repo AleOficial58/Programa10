@@ -179,15 +179,15 @@
         document.querySelector("#btnLogin").addEventListener("click", () => {
             const user = document.getElementById("usuario").value;
             const pass = document.getElementById("contraseña").value;
-
+    
             // Muestra el overlay de carga
             document.getElementById('loadingOverlay').style.display = 'flex';
-
+    
             // Simula una demora de 5 segundos antes de redirigir
             setTimeout(() => {
                 usuarios = JSON.parse(localStorage.getItem("usuarios"));
                 let isCredentialsCorrect = false;
-
+    
                 usuarios.forEach(dbUser => {
                     if (dbUser.username == user && dbUser.password == pass) {
                         localStorage.setItem("usuarioActivo", JSON.stringify(dbUser));
@@ -195,7 +195,7 @@
                         isCredentialsCorrect = true;
                     }
                 });
-
+    
                 if (!isCredentialsCorrect) {
                     // Muestra SweetAlert si las credenciales son incorrectas
                     Swal.fire({
@@ -203,8 +203,12 @@
                         title: 'Error',
                         text: 'Usuario o contraseña incorrectos',
                     });
+    
+                    // Restablece los campos
+                    document.getElementById("usuario").value = "";
+                    document.getElementById("contraseña").value = "";
                 }
-
+    
                 // Oculta el overlay de carga después de 5 segundos
                 document.getElementById('loadingOverlay').style.display = 'none';
             }, 5000);
