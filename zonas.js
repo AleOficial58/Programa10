@@ -22,6 +22,7 @@ var table = new Tabulator("#tablaZonas", {
       { title: "Orden", field: "order", editor: "number", validator:["min:1", "unique"]},
       { title: "Nombre", field: "clienteNombre"},
       { title: "Apellido", field: "clienteApellido"},
+      { title: "Direccion", field: "clienteDireccion"},
       { title: "Zona", field: "clienteZone", editor: "input", headerFilter:"input", },//headerFilter:true, headerFilterParams:{values:{"male":"Male", "female":"Female", "":""}, clearable:true}},
 
       { title: "Acciones",
@@ -96,11 +97,17 @@ var btnAgregar = document.getElementById("btnAsignar")
 
 // Escuchar el evento de cambio en el select
 btnAgregar.addEventListener("click", function () {
-
+debugger
   var selectedValue = clienteSelect.options[clienteSelect.selectedIndex].value;
   let zone = document.getElementById("inputZona").value
+  var direccion
   if (selectedValue !== "-1" && zone !== "") {
-
+    var clientesData = JSON.parse(localStorage.getItem("clientesData"))
+    if(clientesData?.length > 0){
+      var clientePorId = clientesData.filter(item => item[0] === selectedValue)
+      if(clientePorId?.length > 0 && clientePorId[0]?.length > 0)
+      direccion = clientePorId[0][4]
+    }
     // Obtener todas las filas del DataTable
     var filas = table.getData();
     let isAdded = filas.some((fila) => fila.clienteID == selectedValue)
@@ -130,7 +137,9 @@ btnAgregar.addEventListener("click", function () {
         clienteID: cliente[0], 
         clienteNombre: cliente[1], 
         clienteApellido: cliente[2], 
+        clienteDireccion: direccion,
         clienteZone: zone, 
+        
       }
       clienteZona.push(newClienteZona)
       table.addRow(newClienteZona)
