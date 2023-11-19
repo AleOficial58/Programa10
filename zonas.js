@@ -1,4 +1,3 @@
-
 // Obtener referencia al dataTable
 var dataTable = document.getElementById("clientesTable");
 
@@ -46,24 +45,32 @@ var table = new Tabulator("#tablaZonas", {
                 cancelButtonText: 'Cancelar'
               }).then((result) => {
                 if (result.isConfirmed) {
-                  let clientes = obtenerRegistroZone()
-                  const cliente = clientes.find((cliente) => cliente[0] == clienteID)
-                  const index = clientes.indexOf(cliente)
-                  clientes.splice(index, 1)
-                  localStorage.setItem('clientesZona', JSON.stringify(clientes));
-                  
-                  cell.getRow().delete()
-                  
-                  Swal.fire(
-                    'Eliminado',
-                    'La zona ha sido eliminada correctamente.',
-                    'success'
-                  )
+                  Swal.fire({
+                    title: 'Eliminando...',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                      Swal.showLoading();
+                      setTimeout(() => {
+                        let clientes = obtenerRegistroZone();
+                        const cliente = clientes.find((cliente) => cliente[0] == clienteID);
+                        const index = clientes.indexOf(cliente);
+                        clientes.splice(index, 1);
+                        localStorage.setItem('clientesZona', JSON.stringify(clientes));
+        
+                        cell.getRow().delete();
+        
+                        Swal.fire(
+                          'Eliminado',
+                          'La zona ha sido eliminada correctamente.',
+                          'success'
+                        );
+                      }, 3000); // Tiempo en milisegundos (3 segundos)
+                    }
+                  });
                 }
               });
           }
-  
-      }
+        }
   ],
   printHeader:"<h1>CLIENTES CON ZONAS ASIGNADAS</h1>"
 });
@@ -144,7 +151,20 @@ debugger
       clienteZona.push(newClienteZona)
       table.addRow(newClienteZona)
       localStorage.setItem('clientesZona', JSON.stringify(clienteZona));
-    }
+
+      // Agregar notificación de éxito con SweetAlert
+        Swal.fire({
+          title: "Éxito",
+          text: "Cliente agregado exitosamente a la tabla",
+          icon: "success",
+        });
+      }
+
+      // Restablecer los valores de los campos
+    document.getElementById("selectRegistros").value = "-1";
+    document.getElementById("inputZona").value = "";
+
+    
 
   }
 });

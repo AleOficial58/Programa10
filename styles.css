@@ -8,10 +8,11 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
 }
+
 
 .header {
   text-align: center;
@@ -731,6 +732,153 @@ table td {
 }
 
 
-.boton001{
+.boton001 {
   color: #16a085;
 }
+
+.zone-section {
+  margin-top: 50px;
+}
+
+.zone-title {
+  color: #16a085;
+  font-size: 2em;
+}
+
+.zone-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.zone-form select,
+.zone-form input,
+.zone-form button {
+  margin: 10px;
+}
+
+.zone-form button {
+  background-color: #16a085;
+  border: none;
+}
+
+.zone-form button:hover {
+  background-color: #1abc9c;
+}
+
+#tablaZonas {
+  margin-top: 30px;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+
+/* Estilos para "Asignar Zona" y "Clientes con zonas asignadas" */
+
+h3#asignarZona,
+h3#clientesConZonas {
+    color: #fff; /* Texto blanco para contrastar */
+    font-size: 3em; /* Tamaño de fuente más grande */
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif; /* Nueva fuente */
+    background-color: #16a085 !important; /* Color de fondo verde */
+    padding: 20px; /* Añade espacio interno generoso */
+    border-radius: 20px; /* Bordes redondeados más notables */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sutil sombra más pronunciada */
+}
+
+/* Estilos adicionales para mejorar la apariencia general */
+body {
+    font-family: 'Montserrat', sans-serif; /* Nueva fuente principal */
+    background-color: #ecf0f1; /* Color de fondo suave */
+    color: #333; /* Color de texto principal */
+}
+
+.container {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sutil sombra para el contenedor principal */
+    border-radius: 20px; /* Bordes redondeados en el contenedor */
+    background-color: #fff; /* Fondo del contenedor blanco */
+    padding: 20px; /* Espaciado interno */
+}
+
+.button {
+    margin-top: 10px; /* Separación superior del botón */
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #16a085 !important; /* Nuevo color de botón verde */
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background-color: #138a6e !important; /* Cambio de color sutil al pasar el ratón */
+    transform: scale(1.05);
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el select "Selecciona un cliente" */
+select {
+    margin-top: 10px; /* Separación superior del select */
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #16a085 !important; /* Borde delgado verde */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+    color: #16a085 !important; /* Texto verde */
+    outline: none; /* Elimina el contorno al hacer clic */
+    transition: border-color 0.3s ease;
+}
+
+select:hover,
+select:focus {
+    border-color: #138a6e !important; /* Cambia el color del borde al pasar el ratón o enfocar */
+}
+
+#printTableZonas {
+  background-color: #16a085;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.Texto1 {
+    color: #fff; /* Texto blanco para contrastar */
+    font-size: 3em; /* Tamaño de fuente más grande */
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif; /* Nueva fuente */
+    background-color: #16a085 !important; /* Color de fondo verde */
+    padding: 20px; /* Añade espacio interno generoso */
+    border-radius: 20px; /* Bordes redondeados más notables */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sutil sombra más pronunciada */
+}
+
+.Texto2 {
+  color: #fff; /* Texto blanco para contrastar */
+  font-size: 3em; /* Tamaño de fuente más grande */
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif; /* Nueva fuente */
+  background-color: #16a085 !important; /* Color de fondo verde */
+  padding: 20px; /* Añade espacio interno generoso */
+  border-radius: 20px; /* Bordes redondeados más notables */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sutil sombra más pronunciada */
+  margin-top: 20px;
+}
+
+#btnAsignar {
+  margin-top: 20px; /* Ajusta el margen superior según tus preferencias */
+}
+
+.logotipo{
+  margin-left: 30px;
+}
+

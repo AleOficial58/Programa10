@@ -224,36 +224,36 @@
 </div>
 
 <div class="sections">
-<div class="button-container">
-    <button onclick="showLoading('clientes.html')">Gestión de Clientes</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('zonas.html')">Zonas</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('facturacion.html')">Facturación</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('AgregaTusProductos.html')">Agrega tus Productos</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('AgregaTusVentas.html')">Agrega tus Ventas</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('Analisis.html')">Analisis</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('Registro/RegistroCarrito.html')">Registros del dia</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('FrontEnd/comision.html')">Planilla de comisión</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('FrontEnd/carga.html')">Planilla de carga</button>
-</div>
-<div class="button-container">
-    <button onclick="showLoading('inicio.html')">Inicio</button>
-</div>
+    <div class="button-container">
+        <button onclick="showLoading('clientes.html')">Clientes</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('zonas.html')">Zonas</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('facturacion.html')">Facturación</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('AgregaTusProductos.html')">Productos</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('AgregaTusVentas.html')">Ventas</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('Analisis.html')">Analisis</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('Registro/RegistroCarrito.html')">Registros del dia</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('FrontEnd/comision.html')">Planilla de comisión</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('FrontEnd/carga.html')">Planilla de carga</button>
+    </div>
+    <div class="button-container">
+        <button onclick="showLoading('inicio.html')">Inicio</button>
+    </div>
 </div>
 
 <div class="logout-button">
@@ -441,13 +441,13 @@ $(document).ready(function () {
                             </div>
                             <div class="col-6">
                                 <div>
-                                    <label for="localidad">Localidad:</label>
+                                    <label for="localidad">Direccion:</label>
                                     <input type="text" id="localidad-act" name="localidad" required>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div>
-                                    <label for="direccion">Dirección:</label>
+                                    <label for="direccion">Localidad:</label>
                                     <input type="text" id="direccion-act" name="direccion" required>
                                 </div>
                             </div>
@@ -544,6 +544,17 @@ $(document).ready(function () {
     }
 </script>
 
+
+<script>
+    function logout() {
+        document.getElementById('loadingOverlay').style.display = 'flex'; // Muestra el overlay de carga
+
+        setTimeout(function () {
+            localStorage.setItem("usuarioActivo", JSON.stringify({}))
+            location.href = 'usuario.html';
+        }, 3000); // Espera 5 segundos antes de redirigir
+    }
+</script>
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
